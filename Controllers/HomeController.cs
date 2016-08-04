@@ -230,11 +230,9 @@ namespace MVC_CRUD.Controllers
 
         public ActionResult masterAgent()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
             {
-                return RedirectToAction("Login", "Auth");
-            }
-            IEnumerable<contactCenterModels.User>
+                IEnumerable<contactCenterModels.User>
                 user = (from User in db.TR_User
                         join Role in db.TR_Role on User.RoleId equals Role.RoleId
                         where Role.RoleId == 4
@@ -248,29 +246,40 @@ namespace MVC_CRUD.Controllers
                             Level = User.UserSkill,
                             Active = User.UserStatus == 1 ? "Active" : "Inactive"
                         }).ToList();
-            ViewBag.User = user;
-            return View();
+                ViewBag.User = user;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
         }
 
         public ActionResult upload()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
+            {
+                var CustPro = db.TT_CustomerProject.Where(x => x.status == 1);
+                ViewBag.GroupId = new SelectList(CustPro, "CustProId", "CustProName");
+                return View();
+            }
+            else
             {
                 return RedirectToAction("Login", "Auth");
             }
-            var CustPro = db.TT_CustomerProject.Where(x => x.status == 1);
-            ViewBag.GroupId = new SelectList(CustPro, "CustProId", "CustProName");
-            return View();
         }
 
         /* Master Customer*/
         public ActionResult masterCustomer()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
+            {
+                return View(db.TR_Customer);
+            }
+            else
             {
                 return RedirectToAction("Login", "Auth");
             }
-            return View(db.TR_Customer);
         }
 
         [HttpPost]
@@ -315,27 +324,29 @@ namespace MVC_CRUD.Controllers
         /* Master CustPro*/
         public ActionResult masterCustomerProject()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
+            {
+                ViewBag.CustomerName = db.TR_Customer.ToList();
+                var result = (from CustP in db.TT_CustomerProject
+                              join cust in db.TR_Customer on CustP.CustomerId equals cust.CustomerId
+                              select new contactCenterModels.Customer()
+                              {
+                                  CustProId = CustP.CustProId,
+                                  CustProName = CustP.CustProName,
+                                  CustProExpired = CustP.CustProExpired,
+                                  CustomerName = cust.CustomerName,
+                                  Param1 = CustP.Param1,
+                                  Param2 = CustP.Param2,
+                                  Param3 = CustP.Param3,
+                                  Param4 = CustP.Param4,
+                                  Param5 = CustP.Param5
+                              }).ToList();
+                return View(result);
+            }
+            else
             {
                 return RedirectToAction("Login", "Auth");
             }
-
-            ViewBag.CustomerName = db.TR_Customer.ToList();
-            var result = (from CustP in db.TT_CustomerProject
-                          join cust in db.TR_Customer on CustP.CustomerId equals cust.CustomerId
-                          select new contactCenterModels.Customer()
-                          {
-                              CustProId = CustP.CustProId,
-                              CustProName = CustP.CustProName,
-                              CustProExpired = CustP.CustProExpired,
-                              CustomerName = cust.CustomerName,
-                              Param1 = CustP.Param1,
-                              Param2 = CustP.Param2,
-                              Param3 = CustP.Param3,
-                              Param4 = CustP.Param4,
-                              Param5 = CustP.Param5
-                          }).ToList();
-            return View(result);
         }
 
         [HttpPost]
@@ -410,52 +421,66 @@ namespace MVC_CRUD.Controllers
 
         public ActionResult createAgent()
         {
-            ViewBag.Manager = db.TR_User.Where(x => x.RoleId == 2).ToList();
-            ViewBag.CustProject = (from custP in db.TT_CustomerProject
-                                   join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
-                                   where custP.status == 1
-                                   select new contactCenterModels.Customer
-                                   {
-                                       CustProId = custP.CustProId,
-                                       CustProName = custP.CustProName,
-                                       CustProExpired = custP.CustProExpired,
-                                       CustomerName = cust.CustomerName
-                                   }
-                                  ).ToList();
-            return View();
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
+            {
+                ViewBag.Manager = db.TR_User.Where(x => x.RoleId == 2).ToList();
+                ViewBag.CustProject = (from custP in db.TT_CustomerProject
+                                       join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
+                                       where custP.status == 1
+                                       select new contactCenterModels.Customer
+                                       {
+                                           CustProId = custP.CustProId,
+                                           CustProName = custP.CustProName,
+                                           CustProExpired = custP.CustProExpired,
+                                           CustomerName = cust.CustomerName
+                                       }
+                                      ).ToList();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
         }
 
         public ActionResult updateAgent(int? id)
         {
-            ViewBag.Manager = db.TR_User.Where(x => x.RoleId == 2).ToList();
-            ViewBag.User = db.TR_User.Where(x => x.UserId == id).FirstOrDefault();
-            ViewBag.CustProjectAda = (from userProject in db.TT_UserProject
-                                      join custP in db.TT_CustomerProject on userProject.CustProId equals custP.CustProId
-                                      join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
-                                      where userProject.UserId == id
-                                      select new contactCenterModels.Customer
-                                      {
-                                          CustProId = custP.CustProId,
-                                          CustProName = custP.CustProName,
-                                          CustProExpired = custP.CustProExpired,
-                                          CustomerName = cust.CustomerName
-                                      }
-                                  ).ToList();
-            ViewBag.CustProjectTiada = (from custP in db.TT_CustomerProject
-                                        join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
-                                        where !(from userProject in db.TT_UserProject
-                                                join custP in db.TT_CustomerProject on userProject.CustProId equals custP.CustProId
-                                                where userProject.UserId == id && custP.status == 1
-                                                select custP.CustProId).Contains(custP.CustProId)
-                                        select new contactCenterModels.Customer
-                                        {
-                                            CustProId = custP.CustProId,
-                                            CustProName = custP.CustProName,
-                                            CustProExpired = custP.CustProExpired,
-                                            CustomerName = cust.CustomerName
-                                        }
-                                  ).ToList();
-            return View();
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
+            {
+                ViewBag.Manager = db.TR_User.Where(x => x.RoleId == 2).ToList();
+                ViewBag.User = db.TR_User.Where(x => x.UserId == id).FirstOrDefault();
+                ViewBag.CustProjectAda = (from userProject in db.TT_UserProject
+                                          join custP in db.TT_CustomerProject on userProject.CustProId equals custP.CustProId
+                                          join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
+                                          where userProject.UserId == id
+                                          select new contactCenterModels.Customer
+                                          {
+                                              CustProId = custP.CustProId,
+                                              CustProName = custP.CustProName,
+                                              CustProExpired = custP.CustProExpired,
+                                              CustomerName = cust.CustomerName
+                                          }
+                                      ).ToList();
+                ViewBag.CustProjectTiada = (from custP in db.TT_CustomerProject
+                                            join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
+                                            where !(from userProject in db.TT_UserProject
+                                                    join custP in db.TT_CustomerProject on userProject.CustProId equals custP.CustProId
+                                                    where userProject.UserId == id && custP.status == 1
+                                                    select custP.CustProId).Contains(custP.CustProId)
+                                            select new contactCenterModels.Customer
+                                            {
+                                                CustProId = custP.CustProId,
+                                                CustProName = custP.CustProName,
+                                                CustProExpired = custP.CustProExpired,
+                                                CustomerName = cust.CustomerName
+                                            }
+                                      ).ToList();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
         }
 
         [HttpPost]
@@ -670,7 +695,7 @@ namespace MVC_CRUD.Controllers
 
         public ActionResult createUser()
         {
-            if (Session["RoleId"] != null && Session["RoleId"].ToString() == "1")
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
             {
                 ViewBag.Manager = db.TR_User.Where(x => x.RoleId == 1).ToList();
                 ViewBag.CustProject = db.TT_CustomerProject.ToList();
@@ -679,7 +704,7 @@ namespace MVC_CRUD.Controllers
                 return View();
             }
             else {
-                return Redirect("~/");
+                return RedirectToAction("Login", "Auth");
             }
             
         }
@@ -707,11 +732,18 @@ namespace MVC_CRUD.Controllers
 
         public ActionResult updateUser(int? id)
         {
-            ViewBag.Manager = db.TR_User.Where(x => x.RoleId == 1).ToList();
-            ViewBag.User = db.TR_User.Where(x => x.UserId == id).FirstOrDefault();
-     
-            ViewBag.Role = db.TR_Role.Where(x => x.RoleId != 4 && x.RoleId != 1).ToList();
-            return View();
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
+            {
+                ViewBag.Manager = db.TR_User.Where(x => x.RoleId == 1).ToList();
+                ViewBag.User = db.TR_User.Where(x => x.UserId == id).FirstOrDefault();
+
+                ViewBag.Role = db.TR_Role.Where(x => x.RoleId != 4 && x.RoleId != 1).ToList();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
         }
 
         [HttpPost]
@@ -1191,23 +1223,30 @@ namespace MVC_CRUD.Controllers
 
         public ActionResult MasterSettingTarget()
         {
-            ViewBag.CustomerProjectName = db.TT_CustomerProject.Where(x => x.status == 1).ToList();
-            var result = (from settTarget in db.TR_TargetSetting
-                          join custP in db.TT_CustomerProject on settTarget.CustProId equals custP.CustProId
-                          select new contactCenterModels.MasterSettingTarget
-                          {
-                              TargetId = settTarget.TargetId,
-                              TargetName = settTarget.TargetName,
-                              TargetFrom = settTarget.TargetFrom,
-                              TargetTo = settTarget.TargetTo,
-                              TargetData = settTarget.TargetData,
-                              TargetAmountPaid = settTarget.TargetAmount,
-                              CustProName = custP.CustProName,
-                              Advance = settTarget.Advance,
-                              Beginner = settTarget.Beginner,
-                              Intermediate = settTarget.Intermediate
-                          }).ToList();
-            return View(result);
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
+            {
+                ViewBag.CustomerProjectName = db.TT_CustomerProject.Where(x => x.status == 1).ToList();
+                var result = (from settTarget in db.TR_TargetSetting
+                              join custP in db.TT_CustomerProject on settTarget.CustProId equals custP.CustProId
+                              select new contactCenterModels.MasterSettingTarget
+                              {
+                                  TargetId = settTarget.TargetId,
+                                  TargetName = settTarget.TargetName,
+                                  TargetFrom = settTarget.TargetFrom,
+                                  TargetTo = settTarget.TargetTo,
+                                  TargetData = settTarget.TargetData,
+                                  TargetAmountPaid = settTarget.TargetAmount,
+                                  CustProName = custP.CustProName,
+                                  Advance = settTarget.Advance,
+                                  Beginner = settTarget.Beginner,
+                                  Intermediate = settTarget.Intermediate
+                              }).ToList();
+                return View(result);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Auth");
+            }
         }
 
         [HttpPost]
