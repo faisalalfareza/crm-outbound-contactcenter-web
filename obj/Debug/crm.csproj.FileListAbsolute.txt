@@ -478,3 +478,4 @@ C:\Users\jessica.susanto\CRM_CC\bin\MVC_CRUD.dll
 C:\Users\jessica.susanto\CRM_CC\bin\MVC_CRUD.pdb
 C:\Users\jessica.susanto\CRM_CC\obj\Debug\MVC_CRUD.dll
 C:\Users\jessica.susanto\CRM_CC\obj\Debug\MVC_CRUD.pdb
+C:\Users\jessica.susanto\CRM_CC\obj\Debug\crm.csprojResolveAssemblyReference.cache

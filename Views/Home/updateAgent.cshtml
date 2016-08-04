@@ -4,7 +4,7 @@
 
 <!-- Include Page Head -->
 @RenderPage("~/Views/Gates/Head.cshtml")
-<script src="~/Scripts/jquery-1.7.1.js"></script>
+@*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
 <script>
     function remove(formdata) {
         $.ajax({
@@ -57,12 +57,12 @@
                                         <input type="hidden" name="UserId" value="@ViewBag.User.UserId" />
                                         <div class="form-group">
                                             <label class="control-label" for="inputSmall">Username</label>
-                                            <input type="text" name="Email" class="form-control input-sm" id="inputSmall" placeholder="entry username or full name" value="@ViewBag.User.Email" autofocus>
+                                            <input type="text" name="Email" class="form-control input-sm" id="inputSmall" placeholder="entry email ex. abc@domain.com" value="@ViewBag.User.Email" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputSmall">Name</label>
-                                            <input type="text" name="Username" class="form-control input-sm" id="inputSmall" placeholder="entry username or full name" value="@ViewBag.User.UserName" autofocus>
+                                            <input type="text" name="Username" class="form-control input-sm" id="inputSmall" placeholder="entry full name" value="@ViewBag.User.UserName" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group">

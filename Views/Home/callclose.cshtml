@@ -120,7 +120,7 @@
                                                         Birth Date
                                                     </td>
                                                     <td>
-                                                        @ViewBag.call.BirthDate
+                                                        @Convert.ToDateTime(@ViewBag.call.BirthDate).ToShortDateString()
                                                      
                                                     </td>
                                                 </tr>

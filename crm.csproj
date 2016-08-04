@@ -682,10 +682,7 @@
     <Content Include="Views\Gates\Head.cshtml" />
     <Content Include="Views\Home\withdraw.cshtml" />
     <Content Include="Views\Home\callclose.cshtml" />
-    <Content Include="Views\Auth\forgotPassword.cshtml" />
-    <Content Include="Views\Auth\Index.cshtml" />
     <Content Include="Views\Auth\login.cshtml" />
-    <Content Include="Views\Auth\signup.cshtml" />
     <Content Include="Views\Auth\unlock.cshtml" />
     <Content Include="Views\Gates\Header.cshtml" />
     <Content Include="Views\Home\createAgent.cshtml" />

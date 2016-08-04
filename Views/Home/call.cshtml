@@ -4,7 +4,7 @@
 
 <!-- Include Page Head -->
 @RenderPage("~/Views/Gates/Head.cshtml")
-<script src="~/Scripts/jquery-1.7.1.js"></script>
+@*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
 
 <script>
     function dialCallPost() {
@@ -168,7 +168,7 @@
                                                             Birth Date
                                                         </td>
                                                         <td>
-                                                            @ViewBag.call.BirthDate
+                                                            @Convert.ToDateTime(@ViewBag.call.BirthDate).ToShortDateString()
                                                         </td>
                                                     </tr>
                                                     <tr>

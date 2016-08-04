@@ -5,7 +5,7 @@
 
 <!-- Include Page Head -->
 @RenderPage("~/Views/Gates/Head.cshtml")
-<script src="~/Scripts/jquery-1.7.1.js"></script>
+@*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
 
 <body class="sb-left">
     @RenderPage("~/Views/Gates/Header.cshtml")
@@ -156,19 +156,19 @@
                                     <div class="col-sm-12">
                                         <div class="form-group col-md-6">
                                             <label class="control-label" for="inputSmall">Advance</label>
-                                            <input type="number" name="Advance" class="form-control input-sm" id="Advance" placeholder="entry target for advance agent" autofocus>
+                                            <input type="number" name="Advance" class="form-control input-sm" id="Advance" placeholder="entry target for advance agent (%)" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="control-label" for="inputSmall">Intermediate</label>
-                                            <input type="number" name="Intermediate" class="form-control input-sm" id="Inter" placeholder="entry target for intermediate agent" autofocus>
+                                            <input type="number" name="Intermediate" class="form-control input-sm" id="Inter" placeholder="entry target for intermediate agent (%)" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group col-md-6">
                                             <label class="control-label" for="inputSmall">Beginner</label>
-                                            <input type="number" name="Beginner" class="form-control input-sm" id="Beginner" placeholder="entry target for beginner agent" autofocus>
+                                            <input type="number" name="Beginner" class="form-control input-sm" id="Beginner" placeholder="entry target for beginner agent (%)" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                     </div>
