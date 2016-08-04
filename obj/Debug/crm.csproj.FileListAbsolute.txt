@@ -1,0 +1,475 @@
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\crm\MVC_CRUD\bin\MVC_CRUD.dll.config
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\crm\MVC_CRUD\bin\MVC_CRUD.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\crm\MVC_CRUD\bin\MVC_CRUD.pdb
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\crm\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\crm\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\crm\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\Crm\MVC_CRUD\bin\Rotativa.dll
+C:\Users\alde.asprilla\Documents\Visual Studio 2015\Projects\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.dll.config
+C:\Users\alde.asprilla\Documents\Visual Studio 2015\Projects\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.dll
+C:\Users\alde.asprilla\Documents\Visual Studio 2015\Projects\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.pdb
+C:\Users\alde.asprilla\Documents\Visual Studio 2015\Projects\crmFrontEnd\MVC_CRUD\bin\Rotativa.dll
+C:\Users\alde.asprilla\Documents\Visual Studio 2015\Projects\crmFrontEnd\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+C:\Users\alde.asprilla\Documents\Visual Studio 2015\Projects\crmFrontEnd\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+C:\Users\alde.asprilla\Documents\Visual Studio 2015\Projects\crmFrontEnd\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\crmFrontEnd\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\crmFrontEnd\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\crmFrontEnd\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\crmFrontEnd\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\UPDATE 30-06-2016\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\UPDATE 30-06-2016\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\UPDATE 30-06-2016\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\UPDATE 30-06-2016\crmFrontEnd\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\UPDATE 30-06-2016\crmFrontEnd\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\UPDATE 30-06-2016\crmFrontEnd\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\UPDATE 30-06-2016\crmFrontEnd\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\Visionet\Work\CRM\crm v1.4(Tampilan Baru)\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\Visionet\Work\CRM\crm v1.4(Tampilan Baru)\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.dll
+D:\Visionet\Work\CRM\crm v1.4(Tampilan Baru)\crmFrontEnd\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\Visionet\Work\CRM\crm v1.4(Tampilan Baru)\crmFrontEnd\MVC_CRUD\bin\Rotativa.dll
+D:\Visionet\Work\CRM\crm v1.4(Tampilan Baru)\crmFrontEnd\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\Visionet\Work\CRM\crm v1.4(Tampilan Baru)\crmFrontEnd\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\Visionet\Work\CRM\crm v1.4(Tampilan Baru)\crmFrontEnd\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Visionet\Work\CRM\contact center v1.4 (12 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\Visionet\Work\CRM\contact center v7.13 (13 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\Visionet\Work\CRM\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\contact center v7.14 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\contact center v7.14.1 (14 Juli)\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\update 18 juli\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 19-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 20-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 21-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 22-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+C:\Users\Faisal Alfareza\Documents\Visual Studio 2015\Projects\22 Juli 16\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 25-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 26-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 27-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.16  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.17  TGL 28-07-2016\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.18\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.19\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+E:\validasi\bam\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\VISIONET\INTERNAL\Contact Center\CRM OUTBOUND SOFWARE\Update V7.20\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll.config
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Owin.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Rotativa.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\obj\Debug\MVC_CRUD.pdb

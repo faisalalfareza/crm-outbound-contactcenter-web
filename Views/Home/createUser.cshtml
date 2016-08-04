@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.submenu = "Create User";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <form id="formUser" class="edit-modal" action="@Url.Action("addUser", "Home")" method="post" onsubmit="return false">
+                            <div class="widget">
+                                <div class="widget-body">
+
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Username</label>
+                                            <input type="email" id="UName" name="Email" class="form-control input-sm" placeholder="entry email" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="RoleId">Role</label>
+                                            <select id="RoleId" name="RoleId" class="form-control input-sm" title="Select Role for User">
+                                                <optgroup label="Level or role">
+                                                    @foreach (var item in ViewBag.Role)
+                                                    {
+                                                        <option value="@item.RoleId">@item.Rolename</option>
+                                                    }
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        
+   </div>
+                                    <div class="col-sm-6">
+                                       
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Name</label>
+                                            <input type="text" id="UName" name="Username" class="form-control input-sm" placeholder="entry name" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Level or Skill</label>
+                                            <input type="text" id="USkill" name="UserSkill" class="form-control input-sm" placeholder="used ( , ) to separate skill">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="widget-footer">
+                                        <button type="button" class="btn btn-success btn-raised btn-sm submit" data-toggle="modal" data-target="#CreateUser" disabled><i class="fa fa-check-circle-o"></i> &nbsp; Finish</button>
+                                    <div class="modal fade" id="CreateUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    Confirm Create
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger btn-ok" onclick="create()">Create</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- .widget -->
+                        </form>
+                    </div>
+                </div><!-- END column -->
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+</body>
+
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    //JQuery No Conflict
+    var noConflict = jQuery.noConflict();
+
+    //Generate Password for Agent
+    function randomString() {
+        var chars = "vsn16";
+        var string_length = 5;
+        var randomstring = '';
+        for (var i = 0; i < string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum, rnum + 1);
+        }
+        document.getElementById("getPass").value = randomstring;
+    }
+
+    noConflict(document).ready(function () {
+
+        //Validation on Add Agent
+        var form = document.getElementById("formUser");
+        var form1 = document.getElementById("CreateUser");
+        var role = document.getElementById("RoleId");
+        var name = document.getElementById("UName");
+        var skill = document.getElementById("USkill");
+
+        role.onchange = function () {
+            validation();
+            var selected = $(this).find("option:selected").text();
+            if (selected != (1 || 2 || 3)) {
+                $("#UManager").show();
+            }
+            else {
+                $("#UManager").hide();
+            }
+        };
+        name.onkeyup = function () { validation() };
+        skill.onkeyup = function () { validation() };
+
+        function validation() {
+            if (role.value && name.value && skill.value != "") {
+                $('.submit').prop('disabled', false);
+                form.onsubmit = function () { return true };
+                form1.onsubmit = function () { return true };
+            }
+            else {
+                $('.submit').prop('disabled', true);
+                form.onsubmit = function () { return false };
+                form1.onsubmit = function () { return false };
+            }
+        }
+
+        //for select roleId
+        $(".createSelect").selectpicker({
+            style: "btn-success btn-outline btn-sm",
+        });
+        $(".updateSelect").selectpicker({
+            style: "btn-warning btn-outline btn-sm",
+        });
+        $("#CreateUser").click(function () {
+            $("#myModal").modal();
+        });
+    });
+</script>

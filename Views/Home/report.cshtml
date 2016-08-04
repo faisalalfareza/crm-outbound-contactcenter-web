@@ -1,0 +1,159 @@
+﻿@model IEnumerable<MVC_CRUD.Models.contactCenterModels.Performance>
+@{
+    ViewBag.submenu = "Report";
+}
+<!-- Include Page Header -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    function add(CustData)
+    {
+        $.ajax({
+            url: '@Url.Action("targetSet", "Home")',
+            type: 'POST',
+            data: CustData,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+                if (data.Performance)
+                {
+                    data.Performance.forEach(function (item) {
+                        $('#byPerformance').find('tbody').append('<tr><td>' + item.Periode + '</td><td>' + item.UserName + '</td><td>' + item.level + '</td><td>' + item.Achievement + ' %</td><td>' + item.Target + '</td><td>' + item.Closing + '</td><td>' + item.Prospect + '</td><td>' + item.Contacted + '</td><td>' + item.Connected + '</td><td>' + item.NotConnected + '</td></tr>')
+                    });
+                }
+                if (data.Productivity)
+                {
+                    data.Productivity.forEach(function (item) {
+                        $('#byProductivity').find('tbody').append('<tr><td>' + item.Periode + '</td><td>' + item.UserName + '</td><td>' + item.callAtemp + '</td><td>' + item.Utillization + '</td><td>' + item.talkTime + '</td><td>')
+                    });
+                }
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });
+    }
+</script>
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-md-12">
+                        <select id="Periode" name="periode" class="selectpicker show-menu-arrow show-tick selectstyle" title="Select a periode" data-width="13%" data-style="btn-info">
+                            <optgroup label="Periode">
+                                <option value="Daily" selected>Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly">Monthly</option>
+                                <option value="Yearly">Yearly</option>
+                            </optgroup>
+                        </select>
+                        <select id="CustProId" name="CustomerId" class="selectpicker show-menu-arrow show-tick selectstyle createSelect" data-width="15%" title="Select a Customer" data-style="btn-info">
+                            <optgroup label="Customer name">
+                                @foreach (var item in ViewBag.CustProId)
+                                {
+                                    <option value="@item.CustProId">@item.CustProName</option>
+                                }
+                            </optgroup>
+                        </select>
+                    </div>
+                    <hr class="separator" />
+
+                    <div class="widget">
+                        <div class="widget-header">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#byPerformance">Report by Performance</a></li>
+                                <li><a data-toggle="tab" href="#byProductivity">Report by Productivity</a></li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div id="byPerformance" class="tab-pane fade in active">
+                                <div class="widget-body">
+                                    <div class="table-responsive">
+                                        <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Periode</th>
+                                                    <th>Agent Name</th>
+                                                    <th>Level</th>
+                                                    <th>Achievement</th>
+                                                    <th>Target</th>
+                                                    <th>Closing</th>
+                                                    <th>Prospect</th>
+                                                    <th>Contacted</th>
+                                                    <th>Connected</th>
+                                                    <th>Not Connected</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div><!-- .widget-body -->
+                            </div>
+
+                            <div id="byProductivity" class="tab-pane fade in">
+                                <div class="widget-body">
+                                    <div class="table-responsive">
+                                        <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Periode</th>
+                                                    <th>User</th>
+                                                    <th>Call Attemp</th>
+                                                    <th>Utillization</th>
+                                                    <th>Talk Time</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div><!-- .widget-body -->
+                            </div>
+                        </div>
+
+                    </div><!-- .widget -->
+                </div><!-- END column -->
+                <!-- Ajax dataTable -->
+        </div><!-- .row -->
+        </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+</body>
+<script>
+    $(document).on("change", "#CustProId", function () {
+        var Custdata = new FormData();
+        var CustProId = $("#CustProId").val();
+        Custdata.append("CustProId", CustProId);
+        var Periode = $("#Periode").val();
+        Custdata.append("Periode", Periode);
+        $("#byPerformance").find('tbody tr').remove();
+        $("#byProductivity").find('tbody tr').remove();
+
+        add(Custdata);
+    });
+    $(document).on("change", "#Periode", function () {
+        var Custdata = new FormData();
+        var CustProId = $("#CustProId").val();
+        Custdata.append("CustProId", CustProId);
+        var Periode = $("#Periode").val();
+        Custdata.append("Periode", Periode);
+        $("#byPerformance").find('tbody tr').remove();
+        $("#byProductivity").find('tbody tr').remove();
+
+        add(Custdata);
+    });
+
+
+</script>

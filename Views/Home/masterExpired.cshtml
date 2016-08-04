@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MVC_CRUD.Models.contactCenterModels.Customer>
+@{
+    ViewBag.submenu = "Extend Expired Date Project";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <div class="widget">
+                            <header class="widget-header">
+                                <h4 class="widget-title">Expired File </h4>
+                            </header><!-- .widget-header -->
+                            <hr class="widget-separator">
+                            <div class="widget-body">
+                                <div class="table-responsive">
+                                    <table id="default-datatable" data-plugin="DataTable" class="table table-striped table-responsive" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>Project Name</th>
+                                                <th>Customer</th>
+                                                <th>Expired Date</th>
+                                                <th>Parameter 1</th>
+                                                <th>Parameter 2</th>
+                                                <th>Parameter 3</th>
+                                                <th>Parameter 4</th>
+                                                <th>Parameter 5</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.CustProName
+                                                    </td>
+                                                    <td>
+                                                        @item.CustomerName
+                                                    </td>
+                                                    <td>
+                                                        @String.Format("{0:dd MMMM yyyy}", item.CustProExpired)
+                                                    </td>
+                                                    <td>
+                                                        @item.Param1
+                                                    </td>
+                                                    <td>
+                                                        @item.Param2
+                                                    </td>
+                                                    <td>
+                                                        @item.Param3
+                                                    </td>
+                                                    <td>
+                                                        @item.Param4
+                                                    </td>
+                                                    <td>
+                                                        @item.Param5
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div>
+                </div><!-- END column -->
+
+        </div><!-- .row -->
+        </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+
+</body>

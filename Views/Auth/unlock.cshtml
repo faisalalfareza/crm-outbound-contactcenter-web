@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "CRM Outbond Contact Center";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="simple-page">
+    <div class="simple-page-wrap">
+
+        <div id="unlock-user" class="animated zoomInDown">
+            <div class="avatar avatar-xl avatar-circle">
+                <img class="img-responsive" src="~/Asset/images/222.jpg" />
+            </div><!-- .avatar -->
+            <h4>Faisal Alfareza</h4>
+        </div>
+        <div id="unlock-form" class="animated slideInUp">
+            <form action="">
+                <div class="form-group has-info">
+                    <input type="password" class="form-control input-sm" id="inputSmall" placeholder="entry your password" autocomplete="off">
+                </div>
+                <input id="unlock-btn" class="btn" type="submit" value="Unlock">
+            </form>
+        </div>
+
+    </div><!-- .simple-page-wrap -->
+    <!-- Include Page Foot -->
+    @RenderPage("~/Views/Gates/Foot.cshtml")
+
+</body>

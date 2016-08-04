@@ -1,0 +1,413 @@
+﻿@model IEnumerable<MVC_CRUD.Models.contactCenterModels.MasterSettingTarget>
+@{
+    ViewBag.submenu = "Master Setting Target";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <button type="button" data-toggle="modal" data-target="#createCust" class="btn btn-info btn-raised btn-sm"><i class="fa fa-plus-circle"></i> &nbsp; Input Form Target</button>
+                                <hr class="separator" />
+                            </div>
+                            <div class="widget-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Target Name</th>
+                                                <th>From</th>
+                                                <th>To</th>
+                                                <th>Target Data</th>
+                                                <th>Target Amount Paid</th>
+                                                <th>Project Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a class="edit-modal" data-toggle="modal" data-target="#editSettingTarget" data-Id="@item.TargetId" data-Name="@item.TargetName" data-From="@item.TargetFrom" data-To="@item.TargetTo" data-Data="@item.TargetData" data-AmountPaid="@item.TargetAmountPaid" data-CustProName="@item.CustProName" data-Advance="@item.Advance" data-Beginner="@item.Beginner" data-Intermediate="@item.Intermediate"><span class='badge badge-warning'><i class="fa fa-edit"></i></span></a>
+                                                            <a class="formDelete" href="#" data-href="@Url.Action("deleteSettingTarget/" + item.TargetId, "Home")" data-id="@item.CustProId" data-name="@item.CustProName" data-toggle="modal" data-target="#delete"><span class='badge badge-danger'><i class="fa fa-trash-o"></i></span></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @item.TargetName
+                                                    </td>
+                                                    <td>
+                                                        @item.TargetFrom
+                                                    </td>
+                                                    <td>
+                                                        @item.TargetTo
+                                                    </td>
+                                                    <td>
+                                                        @item.TargetData
+                                                    </td>
+                                                    <td>
+                                                        @item.TargetAmountPaid
+                                                    </td>
+                                                    <td>
+                                                        @item.CustProName
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div>
+                </div><!-- END column -->
+                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Confirm Delete
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <a href="" class="btn btn-danger btn-ok">Delete</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal - Create Agent -->
+                <div class="modal fade" id="createCust" role="dialog" style="background: rgba(38, 194, 129, .2)">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title col-sm-8"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Form Input</h4>
+                            </div>
+                            <form id="formCreate" action="@Url.Action("createSettingTarget", "Home")" method="post" name="Customer" onsubmit="return validation()">
+                                <div class="modal-body">
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Input Target Name</label>
+                                            <input type="text" name="TargetName" class="form-control input-sm" id="TName" placeholder="entry target name" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Input Target All</label>
+                                            <input type="number" name="TargetAmountPaid" class="form-control input-sm" id="TTall" placeholder="entry target all" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="from">From</label>
+                                            <div class="input-group date" id="TFrom" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                                                <input type="text" id="TagetFrom" name="TargetFrom" class="form-control" value="" required />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input type="hidden" id="dtp_input1" value="" />
+                                            </div>
+                                            <div id="ManagerError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="CustomerId">Select a Customer Project</label>
+                                            <select id="CustomerId" name="CustProId" class="form-control input-sm">
+                                                @foreach (var item in ViewBag.CustomerProjectName)
+                                                {
+                                                    <option value="@item.CustProId">@item.CustProName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Input Target Data</label>
+                                            <input type="number" name="TargetData" class="form-control input-sm" id="TData" placeholder="entry target data" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="to">To</label>
+                                            <div class="input-group date" id="to" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input type="text" id="TTo" class="form-control" name="TargetTo" value="" required />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input type="hidden" id="dtp_input2" value="" />
+                                            </div>
+                                            <div id="ManagerError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>Input Parameter</h4>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" for="inputSmall">Advance</label>
+                                            <input type="number" name="Advance" class="form-control input-sm" id="Advance" placeholder="entry target for advance agent" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" for="inputSmall">Intermediate</label>
+                                            <input type="number" name="Intermediate" class="form-control input-sm" id="Inter" placeholder="entry target for intermediate agent" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" for="inputSmall">Beginner</label>
+                                            <input type="number" name="Beginner" class="form-control input-sm" id="Beginner" placeholder="entry target for beginner agent" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-footer">
+                                        <button type="button" class="btn btn-success btn-raised btn-sm" data-toggle="modal" data-target="#inputTarget" disabled><i class="fa fa-check-circle-o"></i> &nbsp; Submit</button>
+
+                                        <div class="modal fade" id="inputTarget" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        Confirm Create
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger btn-ok">Create</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="reset" class="btn btn-default btn-raised btn-sm">Or Reset</button>
+                                        <button type="button" class="btn btn-default btn-raised btn-sm" data-dismiss="modal">Close</button>
+                                    </div
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal - Edit Agent -->
+                <div class="modal fade" id="editSettingTarget" role="dialog" style="background: rgba(38, 194, 129, .2)">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title col-sm-8"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Form Edit</h4>
+                            </div>
+                            <form id="formCreate" action="@Url.Action("editSettingTarget", "Home")" method="post" name="Customer" onsubmit="return validateForm()">
+                                <div class="modal-body">
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <input type="hidden" name="TargetId" id="editId" />
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Input Target Name</label>
+                                            <input type="text" name="TargetName" class="form-control input-sm" id="editName" placeholder="entry target name" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Input Target All</label>
+                                            <input type="number" name="TargetAmountPaid" class="form-control input-sm" id="editAmountPaid" placeholder="entry target all" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="from">From</label>
+                                            <div class="input-group date" id="from" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input type="text" id="editFrom" name="TargetFrom" class="form-control" required />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input type="hidden" id="dtp_input2" value="" />
+                                            </div>
+                                            <div id="ManagerError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="CustomerId">Select a Customer Project</label>
+                                            <select id="CustomerId" name="CustProId" class="form-control input-sm">
+                                                @foreach (var item in ViewBag.CustomerProjectName)
+                                                {
+                                                    <option value="@item.CustProId">@item.CustProName</option>
+                                                }
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Input Target Data</label>
+                                            <input type="number" name="TargetData" class="form-control input-sm" id="editData" placeholder="entry target data" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="to">To</label>
+                                            <div class="input-group date" id="to" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input type="text" id="editTo" name="TargetTo" class="form-control" required />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input type="hidden" id="dtp_input2" value="" />
+                                            </div>
+                                            <div id="ManagerError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <h4>Input Parameter</h4>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" for="inputSmall">Advance</label>
+                                            <input type="number" name="Advance" class="form-control input-sm" id="editAdvance" placeholder="entry target for advance agent (%)" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" for="inputSmall">Intermediate</label>
+                                            <input type="number" name="Intermediate" class="form-control input-sm" id="editIntermediate" placeholder="entry target for intermediate agent (%)" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group col-md-6">
+                                            <label class="control-label" for="inputSmall">Beginner</label>
+                                            <input type="number" name="Beginner" class="form-control input-sm" id="editBeginner" placeholder="entry target for beginner agent (%)" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-footer">
+                                        <div class="modal fade" id="cc" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        Confirm Update
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger btn-ok">Update</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+
+</body>
+<script>
+    $(document).on("click", ".edit-modal", function () {
+        var from = $(this).attr("data-From");
+
+        var TargetId = $(this).attr("data-Id");
+        var TargetName = $(this).attr("data-Name");
+        var TargetFrom = from;
+        var TargetTo = $(this).attr("data-To");
+        var TargetData = $(this).attr("data-Data");
+        var TargetAmountPaid = $(this).attr("data-AmountPaid");
+        var TargetAdvance = $(this).attr("data-Advance");
+        var TargetBeginner = $(this).attr("data-Beginner");
+        var TargetIntermediate = $(this).attr("data-Intermediate");
+
+        $("#editId").prop("value", TargetId);
+        $("#editName").prop("value", TargetName);
+        $("#editFrom").prop("value", TargetFrom);
+        $("#editTo").prop("value", TargetTo);
+        $("#editData").prop("value", TargetData);
+        $("#editAmountPaid").prop("value", TargetAmountPaid);
+        $("#editAdvance").prop("value", TargetAdvance);
+        $("#editBeginner").prop("value", TargetBeginner);
+        $("#editIntermediate").prop("value", TargetIntermediate);
+    });
+
+    $(document).ready(function () {
+        $("#CreateCust").click(function () {
+            $("#myModal").modal();
+        });
+        $(".selectpicker").selectpicker({
+            style: "btn-primary btn-outline btn-sm",
+        });
+    });
+$(document).ready(function () {
+        noConflict(document).ready(function () {
+
+            //Validation on Add Agent
+            var form = document.getElementById("formST");
+            var form1 = document.getElementById("inputTarget");
+            var name = document.getElementById("TName");
+            var ttall = document.getElementById("TTall");
+            var tfrom = document.getElementById("TFrom");
+            var custId = document.getElementById("CustomerId");
+            var tdata = document.getElementById("TData");
+            var tto = document.getElementById("TTo");
+            var uf = document.getElementById("Advance");
+            var inter = document.getElementById("Inter");
+            var begin = document.getElementById("Beginner");
+
+
+            name.onkeyup = function () { validation() };
+            ttall.onkeyup = function () { validation() };
+            tfrom.onkeyup = function () { validation() };
+            custId.onkeyup = function () { validation() };
+            tdata.onkeyup = function () { validation() };
+            tto.onkeyup = function () { validation() };
+            uf.onkeyup = function () { validation() };
+            inter.onkeyup = function () { validation() };
+            begin.onkeyup = function () { validation() };
+        });
+    });
+            function validation() {
+                if (name.value && ttall.value && tfrom.value && custId.value && tdata.value&& tto.value && uf.value&& inter.value&& begin.value != "") {
+                    $('.submit').prop('disabled', false);
+                    form.onsubmit = function () { return true };
+                    form1.onsubmit = function () { return true };
+                }
+                else {
+                    $('.submit').prop('disabled', true);
+                    form.onsubmit = function () { return false };
+                    form1.onsubmit = function () { return false };
+                }
+            }
+            $("#inputTarget").click(function () {
+                $("#myModal").modal();
+            });
+            noConflict(document).on("click", ".formDelete", function () {
+                var href = $(this).attr("data-href");
+                var mail = $(this).attr("data-name");
+
+                $("#delete .modal-body").html("Are you sure delete " + mail + " ?");
+                var a = $("#delete .modal-footer a");
+                a.attr("href", href);
+            })
+
+</script>

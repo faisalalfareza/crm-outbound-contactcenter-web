@@ -1,0 +1,254 @@
+﻿@model IEnumerable<MVC_CRUD.Models.TR_Customer>
+@{
+    ViewBag.submenu = "Master Customer";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <button type="button" data-toggle="modal" data-target="#createCust" class="btn btn-info btn-raised btn-sm" ><i class="fa fa-plus-circle"></i> &nbsp; Create Customer</button>
+                                <hr class="separator" />
+                            </div>
+                            <div class="widget-body">
+                                <div class="table-responsive">
+                                    <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Customer</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a class="edit-modal" href="#" data-href="@Url.Action("updateCustomer/" + item.CustomerId, "Home")" data-toggle="modal" data-target="#updateCust" data-id="@item.CustomerId" data-name="@item.CustomerName" data-desc="@item.CustomerDesc"><span class='badge badge-warning'><i class="fa fa-edit"></i></span></a>
+                                                            <a class="formDelete" href="#" data-href="@Url.Action("deleteCustomer/" + item.CustomerId, "Home")" data-id="@item.CustomerId" data-name="@item.CustomerName" data-toggle="modal" data-target="#delete"><span class='badge badge-danger'><i class="fa fa-trash-o"></i></span></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @item.CustomerName
+                                                    </td>
+                                                    <td>
+                                                        @item.CustomerDesc
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div>
+                </div><!-- END column -->
+
+                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Confirm Delete
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <a href="" class="btn btn-danger btn-ok">Delete</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal - Create Agent -->
+                <div class="modal fade" id="createCust" role="dialog" style="background: rgba(38, 194, 129, .2)">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Create Customer</h4>
+                            </div>
+                            <form id="formCreate" action="@Url.Action("createCustomer", "Home")" method="post" onsubmit="return false">
+                                <div class="modal-body">
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Customer Name</label>
+                                            <input type="text" id="CustName" name="CustomerName" class="form-control input-sm" placeholder="entry customer name" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Customer Description</label>
+                                            <input type="text" id="CustDesc" name="CustomerDesc" class="form-control input-sm" placeholder="description of this customer">
+                                            <div id="ManagerError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-footer">
+                                        <button type="button" class="btn btn-success btn-raised btn-sm submit" data-toggle="modal" data-target="#CreateCust" disabled><i class="fa fa-check-circle-o"></i> &nbsp; Submit</button>
+                                        
+                                        <div class="modal fade" id="CreateCust" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        Confirm Create
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger btn-ok" onclick="create()">Create</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="reset" class="btn btn-default btn-raised btn-sm">Or Reset</button>
+                                        <button type="button" class="btn btn-default btn-raised btn-sm" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal - Edit Customer -->
+                <div class="modal fade" id="updateCust" style="background: rgba(249, 191, 59, .2)">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><button class="btn btn-warning btn-raised"><i class="fa fa-pencil-square"></i></button> &nbsp; Edit User Customer</h4>
+                            </div>
+                            <form action="@Url.Action("updateCustomer", "Home")" method="post">
+                                <input type="hidden" name="CustomerId" id="CustomerId" value="">
+                                <div class="modal-body">
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Customer Name</label>
+                                            <input type="text" id="CustomerName" value="" name="CustomerName" class="form-control input-sm" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Customer Description</label>
+                                            <input type="text" id="CustomerDesc" value="" name="CustomerDesc" class="form-control input-sm" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="widget-footer">
+                                        <br />
+                                        <a class="btn btn-success btn-raised btn-sm submit edit-modal" data-toggle="modal" data-target="#update"><i class="fa fa-check-circle-o"></i> &nbsp; Finish</a>
+                                        <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        Confirm Update
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure ?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger btn-ok" onclick="create()">Update</button>
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+
+</body>
+
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    //JQuery No Conflict
+    var noConflict = jQuery.noConflict();
+
+    noConflict(document).on("click", ".edit-modal", function () {
+        var CustomerId = $(this).attr("data-id");
+        var CustomerName = $(this).attr("data-name");
+        var CustomerDesc = $(this).attr("data-desc");
+
+        $("#CustomerId").prop("value", CustomerId);
+        $("#CustomerName").prop("value", CustomerName);
+        $("#CustomerDesc").prop("value", CustomerDesc);
+    });
+
+    noConflict(document).ready(function () {
+        //Validation on Create User
+        var form = document.getElementById("formCreate");
+        var form1 = document.getElementById("CreateCust");
+        var name = document.getElementById("CustName");
+        var desc = document.getElementById("CustDesc");
+
+        name.onkeyup = function () { validation() };
+        desc.onkeyup = function () { validation() };
+
+        function validation() {
+            if (name.value && desc.value != "") {
+                $('.submit').prop('disabled', false);
+                form.onsubmit = function () { return true };
+                form1.onsubmit = function () { return true };
+            }
+            else {
+                $('.submit').prop('disabled', true);
+                form.onsubmit = function () { return false };
+                form1.onsubmit = function () { return false };
+            }
+        }
+
+        noConflict(document).on("click", ".formDelete", function () {
+            var href = $(this).attr("data-href");
+            var mail = $(this).attr("data-name");
+
+            $("#delete .modal-body").html("Are you sure delete " + mail + " ?");
+            var a = $("#delete .modal-footer a");
+            a.attr("href", href);
+        })
+
+        $("#update").click(function () {
+            $("#myModal").modal();
+        });
+
+        $("#CreateCust").click(function () {
+            $("#myModal").modal();
+        });
+    });
+</script>

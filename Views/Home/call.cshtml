@@ -1,0 +1,376 @@
+﻿@{
+    ViewBag.submenu = "Detail Call";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+
+<script>
+    function dialCallPost() {
+        ended();
+
+        var formdata = new FormData();
+        var other_data = $('#formInteraction').serializeArray();
+        $.each(other_data, function (key, input) {
+            formdata.append(input.name, input.value);
+        });
+        other_data = $('#formDuration').serializeArray();
+        $.each(other_data, function (key, input) {
+            formdata.append(input.name, input.value);
+        });
+        other_data = $('#formParameter').serializeArray();
+        $.each(other_data, function (key, input) {
+            formdata.append(input.name, input.value);
+        });
+
+        $.ajax({
+            url: '@Url.Action("dialCallPost", "Home")',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (json) {
+                if (json.isRedirect) {
+                    window.location.href = json.redirectUrl;
+                    alert('Success!');
+                }
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });
+    }
+</script>
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-6 col-md-6">
+                        <div class="widget stats-widget">
+                            <div class="widget-body dial">
+                                <div class="dial-header">
+                                    <h3>Call Duration</h3>
+                                    <h1><span id="jam"></span>:<span id="menit"></span>:<span id="detik"></span></h1>
+                                    <form id="formDuration">
+                                        <input type="hidden" id="CallDuration" name="CallDuration" value="" />
+                                    </form>
+                                </div>
+                                <div class="dial-footer">
+                                    <h3 id="callStatus"></h3>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <tbody>
+                                        <tr valign="center">
+                                            <td>Mobile Phone</td>
+
+                                            <td>@ViewBag.call.ContactPhone</td>
+                                            <td><a class="badge badge-info nmrDial" readonly><i class="fa fa-phone-square text-white"></i></a></td>
+
+                                        </tr>
+                                        <tr valign="center">
+
+                                            <td>Home Phone</td>
+                                            <td>-</td>
+                                            <td><a onclick="" class="badge badge-info nmrDial"><i class="fa fa-phone-square text-white"></i></a></td>
+
+                                        </tr>
+                                        <tr valign="center">
+
+                                            <td>Other Phone</td>
+                                            <td>-</td>
+                                            <td><a onclick="" class="badge badge-info nmrDial"><i class="fa fa-phone-square text-white"></a></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Second Acordion -->
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><i class="zmdi zmdi-phone-in-talk zmdi-hc-lg"></i> &nbsp; Call Interaction</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <form id="formInteraction">
+                                            <div class="form-group">
+                                                <select id="status" class="form-control" name="callstatus" onchange="jsFunction(value);" disabled>
+                                                    <option value="select" selected>--Select Call Status--</option>
+                                                    <option value="Closing">Closing</option>
+                                                    <option value="Promising">Promising</option>
+                                                    <option value="Prospect">Prospect</option>
+                                                    <option value="Contacted">Contacted</option>
+                                                    <option value="Connected">Connected</option>
+                                                    <option value="Not Connected">Not Connected</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <select id="transaction" class="form-control" name="substatus" disabled>
+                                                    <option value="">Select Sub Status</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group has-info">
+                                                <input type="text" name="Remarks" class="form-control input-sm" id="remark" placeholder="Your Remarks .." readonly>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Second Acordion -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-6">
+                        <!-- First Acordion -->
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="fa fa-list-alt"></i> &nbsp; Customer Information</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="big">
+                                            <table align="center">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            Name
+                                                        </td>
+                                                        <td>
+                                                            @ViewBag.call.ContactName
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Cust Id
+                                                        </td>
+                                                        <td>
+                                                            @ViewBag.call.CustomerContactId
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Birth Date
+                                                        </td>
+                                                        <td>
+                                                            @ViewBag.call.BirthDate
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Address
+                                                        </td>
+                                                        <td>
+                                                            @ViewBag.call.KTP_Adress
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Monthly Income
+                                                        </td>
+                                                        <td>
+                                                            IDR @String.Format("{0:0,0.00}", @ViewBag.call.MonthlyFixedIncome)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Level
+                                                        </td>
+                                                        <td>
+                                                            Gold
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Customer Project
+                                                        </td>
+                                                        <td>
+                                                            @ViewBag.CustomerName
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End First Acordion -->
+                        <!-- Third Acordion -->
+                        <div class="panel-group parameterForm" id="accordion">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><i class="fa fa-list-ol"></i> &nbsp; &nbsp; Customer Parameter</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse3" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <form id="formParameter">
+                                            <div class="form-group">
+                                                <input type="text" name="Param1" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param1">
+                                            </div>
+                                            <input type="hidden" name="id" value="@ViewBag.call.ContactId" />
+                                            <div class="form-group">
+                                                <input type="text" name="Param2" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param2">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="Param3" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param3">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="Param4" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param4">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="Param5" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param5">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Third Acordion -->
+                    </div>
+
+                    <!-- Ajax dataTable -->
+
+                </div><!-- .row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="parameterButton">
+                            <button type="button" onclick="javascript: dialCallPost();" class="btn btn-warning btn-raised submitForm"><i class="fa fa-check-circle"></i> &nbsp; Save Call</button>
+                        </div>
+
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><i class="fa fa-history"></i> &nbsp; History Detail</h4>
+                            </div>
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <th>Date Time</th>
+                                        <th>Phone Number</th>
+                                        <th>Call Status</th>
+                                        <th>Sub Status</th>
+                                        <th>Remarks</th>
+                                        <th>Aging Agent</th>
+                                        <th>agent</th>
+                                    </tr>
+                                    @foreach (var item in ViewBag.historydetail)
+                                    {
+                                        <tr>
+                                            <td>@item.CallDate</td>
+                                            <td>@item.ContactPhone</td>
+                                            <td>@item.CallStatus</td>
+                                            <td>@item.SubStatus</td>
+                                            <td>@item.Remarks</td>
+                                            <td>@item.AgingAgent Day</td>
+                                            <td>@item.UserName</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+
+</body>
+
+<script>
+    var time = { detik: "00", menit: "00", jam: "00" };
+    var getTime = time['jam'] + ":" + time['menit'] + ":" + time['detik'];
+
+    $(document).ready(function () {
+        dial();
+    });
+
+    function ended() {
+        var getTime = time['jam'] + ":" + time['menit'] + ":" + time['detik'];
+        var status = "Call ended at <br> <div class='callResult'>" + getTime + "</div>";
+        document.getElementById("callStatus").innerHTML = status;
+        document.getElementById("CallDuration").value = getTime;
+        $('.dial-header').css("display", "none");
+        $('.dial-button').css("display", "none");
+        $('.widget-body').css("background", "rgba(239, 72, 54,.7)");
+    }
+
+    function dial() {
+        $('#status, #transaction').prop('disabled', false);
+        $('#remark').prop('readonly', false);
+        $('.nmrDial').prop('onclick', "");
+        $('.widget-body').css("background", "rgba(63, 195, 128,.7)");
+        $('.dial-button a').css("visibility", "visible").delay(500);
+
+        setInterval(function () {
+            time['detik']++;
+
+            //jika detik kurang dari 10
+            if (time['detik'] < 10) {
+                time['detik'] = "0" + time['detik'];
+            }
+            //jika detik lebih dari 10
+            else {
+                //jika detik sama dengan 60
+                if (time['detik'] == 60) {
+                    time['menit']++; time['detik'] = 0;
+
+                    //jika menit kurang dari 10
+                    if (time['menit'] < 10) {
+                        time['menit'] = "0" + time['menit'];
+                    }
+                    //jika menit lebih dari 10
+                    else {
+                        //jika menit sama dengan 60
+                        if (time['menit'] == 60) {
+                            time['jam']++; time['menit'] = 0; time['detik'] = 0;
+
+                            //jika jam kurang dari 10
+                            if (time['jam'] < 10) {
+                                time['jam'] = "0" + time['jam'];
+                            }
+                            //jika jam lebih dari 10
+                            else {
+                                time['jam'];
+                            }
+                        }
+                    }
+                }
+                else {
+                    document.getElementById("detik").innerHTML = time['detik'];
+                    document.getElementById("menit").innerHTML = time['menit'];
+                    document.getElementById("jam").innerHTML = time['jam'];
+                }
+            }
+
+            document.getElementById("detik").innerHTML = time['detik'];
+            document.getElementById("menit").innerHTML = time['menit'];
+            document.getElementById("jam").innerHTML = time['jam'];
+
+        }, 1000);
+        enableDropdown();
+    }
+
+</script>

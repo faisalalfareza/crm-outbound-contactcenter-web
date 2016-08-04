@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.submenu = "Master User";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <a href="@Url.Action("createUser", "Home")" class="btn btn-info btn-raised btn-sm"><i class="fa fa-plus-circle"></i> &nbsp; Create User</a>
+                                <hr class="separator" />
+                            </div>
+                            <div class="widget-body">
+                                <div class="table-responsive">
+                                    <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Username</th>
+                                                <th>Name</th>
+                                                <th>Role</th>
+                                                <th>Skill</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.User)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a href="@Url.Action("updateUser/"+item.UserId, "Home")" class="edit-modal"><span class='badge badge-warning'><i class="fa fa-edit"></i></span></a>
+                                                            <a class="formDelete" href="#" data-href="@Url.Action("deleteUser/"+item.UserId, "Home")" data-id="@item.UserId" data-mail="@item.Email" data-toggle="modal" data-target="#delete"><span class='badge badge-danger'><i class="fa fa-trash-o"></i></span></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @item.Email
+                                                    </td>
+                                                    <td>
+                                                        @item.UserName
+                                                    </td>
+                                                    <td>
+                                                        @item.Role
+                                                    </td>
+                                                    <td>
+                                                        @item.Level
+                                                    </td>
+                                                    <td>
+                                                        @item.Active
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div>
+                </div><!-- END column -->
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        Confirm Delete
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <a href="" class="btn btn-danger btn-ok">Delete</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+</body>
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    //JQuery No Conflict
+    var noConflict = jQuery.noConflict();
+
+    noConflict(document).on("click", ".formDelete", function () {
+        var href = $(this).attr("data-href");
+        var mail = $(this).attr("data-mail");
+
+        $("#delete .modal-body").html("Are you sure delete " + mail + " ?");
+        var a = $("#delete .modal-footer a");
+        a.attr("href", href);
+    })
+</script>

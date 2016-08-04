@@ -1,0 +1,156 @@
+﻿@{
+    ViewBag.submenu = "Withdraw";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="widget">
+                            <header class="widget-header">
+                                <h4 class="widget-title">Withdraw File </h4>
+                            </header><!-- .widget-header -->
+                            <hr class="widget-separator">
+                            <div class="widget-body">
+                                @using (Html.BeginForm("ExpExportToExcel", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+                                {
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="control-label" for="from">Customer Project</label>
+                                                @Html.DropDownList("GroupExp", null, new { @class = "form-control", id = "GroupId" })
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label class="control-label" for="from">Call Status</label>
+                                                        <select id="status" class="form-control" name="callstatus" onchange="jsFunction(value);">
+                                                            <option value="notselected" selected>--Select Call Status--</option>
+                                                            <option value="Closing">Closing</option>
+                                                            <option value="Promising">Promising</option>
+                                                            <option value="Prospect">Prospect</option>
+                                                            <option value="Contacted">Contacted</option>
+                                                            <option value="Connected">Connected</option>
+                                                            <option value="Not Connected">Not Connected</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label class="control-label" for="from">From</label>
+                                                        <div class="input-group date" id="from" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                            <input type="text" id="DateFrom" name="DateFrom" class="form-control" required />
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                            <input type="hidden" id="dtp_input2" value="" />
+                                                        </div>
+                                                        <div id="ManagerError"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label class="control-label" for="to">To</label>
+                                                        <div class="input-group date" id="to" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                            <input type="text" id="DateTo" name="DateTo" class="form-control" required />
+                                                            <span class="input-group-addon">
+                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                            </span>
+                                                            <input type="hidden" id="dtp_input2" value="" />
+                                                        </div>
+                                                        <div id="ManagerError"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-7">
+                                            <button type="button" class="btn btn-info btn-raised btn-sm submit" data-toggle="modal" data-target="#CreateUser"><i class="fa fa-paw"></i> &nbsp; Finish</button>
+                                            <div class="modal fade" id="CreateUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            Confirm Withdraw
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" id="sub" class="btn btn-danger btn-ok">Withdraw</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div><!-- END column -->
+                </div><!-- .row -->
+            </section><!-- #dash-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+</body>
+
+<script>
+    $(document).ready(function () {
+        $(".selectpicker").selectpicker({
+            style: "btn-primary btn-outline btn-sm",
+        });
+        selectDefault();
+        
+        $("#sub").click( function(){
+            $("#CreateUser").fadeOut();
+            $(".modal-backdrop").fadeOut();
+        });
+            
+    });
+    function selectDefault(formdata) {
+        var formdata = new FormData()
+        var GroupId = document.getElementById("GroupId");
+        var Id = GroupId.options[GroupId.selectedIndex].value;
+        formdata.append("CustProId", Id);
+        $.ajax({
+            url: '@Url.Action("selectFromTo", "Home")',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (hasil) {
+                var from = document.getElementById("DateFrom");
+                var to = document.getElementById("DateTo");
+                from.value = hasil.dateFrom;
+                to.value = hasil.dateTo;
+            },
+            error: function (error) {
+                alert('error');
+            }
+       
+        });
+    }
+    
+</script>

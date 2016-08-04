@@ -1,0 +1,167 @@
+﻿@model IEnumerable<MVC_CRUD.Models.contactCenterModels.HistoryCall>
+@{
+    ViewBag.submenu = "Call Status";
+}
+
+<!-- Include Page Header -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-md-12">
+
+                        <div class="widget">
+                            <div class="widget-header">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#dataSuspect">Suspect</a></li>
+                                    <li><a data-toggle="tab" href="#dataClosing">Closing</a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div id="dataSuspect" class="tab-pane fade in active">
+                                    <div class="widget-body">
+                                        <div class="table-responsive">
+                                            <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Contact</th>
+                                                        <th>Status</th>
+                                                        <th>Begin Call</th>
+                                                        <th>Call Back</th>
+                                                        <th>Aging</th>
+                                                        <th>Level</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        if (!(item.CallStatus.Equals("Closing")))
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="@Url.Action("callView/" + item.ContactId, "Home")"><span class='badge badge-info'> <i class='fa fa-book'></i> &nbsp; View</span></a>
+                                                                </td>
+
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ContactName)
+                                                                </td>
+                                                               <td>
+                                                                    @Html.DisplayFor(modelItem => item.CallStatus)<span> , </span>@Html.DisplayFor(modelItem => item.SubStatus)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.BeginCall)
+                                                                </td>
+                                                                <td>
+                                                                    @if (item.CallBack.Equals(item.BeginCall))
+                                                                    {
+                                                                        <span>-</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.DisplayFor(modelItem => item.CallBack)
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.AgingData)<span> Day</span>
+                                                                </td>
+                                                                <td>
+                                                                    Platinum
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Reach)<span>x</span>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .widget-body -->
+                                </div>
+
+                                <div id="dataClosing" class="tab-pane fade">
+                                    <div class="widget-body">
+                                        <div class="table-responsive">
+                                            <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Contact</th>
+                                                        <th>Status</th>
+                                                        <th>Begin Call</th>
+                                                        <th>Call Back</th>
+                                                        <th>Aging</th>
+                                                        <th>Level</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        if (item.CallStatus.Equals("Closing"))
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="@Url.Action("callclose/" + item.ContactId, "Home")"><span class='badge badge-success'> <i class='fa fa-book'></i> &nbsp; View</span></a>
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ContactName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.CallStatus)<span> , </span>@Html.DisplayFor(modelItem => item.SubStatus)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.BeginCall)
+                                                                </td>
+                                                                <td>
+                                                                    @if (item.CallBack.Equals(item.BeginCall))
+                                                                    {
+                                                                        <span>-</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.DisplayFor(modelItem => item.CallBack)
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.AgingData)<span> Day</span>
+                                                                </td>
+                                                                <td>
+                                                                    Platinum
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Reach)<span>x</span>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .widget-body -->
+                                </div>
+                            </div>
+
+                        </div><!-- .widget -->
+                    </div><!-- END column -->
+                    <!-- Ajax dataTable -->
+                </div><!-- .row -->
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+</body>

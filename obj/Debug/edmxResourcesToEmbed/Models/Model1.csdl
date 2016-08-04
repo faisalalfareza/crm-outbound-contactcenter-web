@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_CRM_CCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TR_Contact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerContactId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactStatus" Type="Int32" />
+    <Property Name="ContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BranchId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BranchFullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="AgreementNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Usia" Type="Int32" />
+    <Property Name="KTP_Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="KTP_RT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="KTP_RW" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="KTP_Kelurahan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KTP_Kecamatan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KTP_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="KTP_Zipcode" Type="Int32" />
+    <Property Name="Residence_Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Residence_Kelurahan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Residence_Kecamatan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Residence_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Residence_Zipcode" Type="Int32" />
+    <Property Name="Jenis_Pekerjaan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MonthlyFixedIncome" Type="Int32" />
+    <Property Name="InstallmentAmount" Type="Int32" />
+    <Property Name="Status_Rumah" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="JumlahTanggungan" Type="Int32" />
+    <Property Name="DownPayment" Type="Int32" />
+    <Property Name="GoLiveDate" Type="DateTime" Precision="0" />
+    <Property Name="TglSelesaiAngsuran" Type="DateTime" Precision="0" />
+    <Property Name="Tenor" Type="Int32" />
+    <Property Name="Odmax_Day_Final" Type="Int32" />
+    <Property Name="LastPayment" Type="DateTime" Precision="0" />
+    <Property Name="Payment" Type="Int32" />
+    <Property Name="CallStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SubStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Param1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Param2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Param3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Param4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Param5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+    <Property Name="CustProId" Type="Int32" />
+    <Property Name="ExpiredDate" Type="DateTime" Precision="0" />
+    <Property Name="UserId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TR_Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TR_Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="Rolename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TR_TargetSetting">
+    <Key>
+      <PropertyRef Name="TargetId" />
+    </Key>
+    <Property Name="TargetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TargetName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TargetFrom" Type="DateTime" Precision="0" />
+    <Property Name="TargetTo" Type="DateTime" Precision="0" />
+    <Property Name="TargetData" Type="Int32" />
+    <Property Name="TargetAmount" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Advance" Type="Int32" />
+    <Property Name="Intermediate" Type="Int32" />
+    <Property Name="Beginner" Type="Int32" />
+    <Property Name="CustProId" Type="Int32" />
+    <Property Name="Created_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="TR_User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserManager" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserStatus" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="UserPass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserSkill" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="TT_CallHistory">
+    <Key>
+      <PropertyRef Name="CallLogId" />
+    </Key>
+    <Property Name="CallLogId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CallDuration" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CallStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SubStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CallDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ContactId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TT_CallResult">
+    <Key>
+      <PropertyRef Name="ResultId" />
+    </Key>
+    <Property Name="ResultId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Param1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Param2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Param3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Param4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Param5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CallLogId" Type="Int32" />
+    <Property Name="ContactId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TT_CustomerProject">
+    <Key>
+      <PropertyRef Name="CustProId" />
+    </Key>
+    <Property Name="CustProId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustProName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" />
+    <Property Name="CustProExpired" Type="DateTime" Precision="0" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Param1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Param2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Param3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Param4" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Param5" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerId" Type="Int32" />
+    <Property Name="r_closing" Type="Int32" />
+    <Property Name="r_promise" Type="Int32" />
+    <Property Name="r_prospect" Type="Int32" />
+    <Property Name="r_contact" Type="Int32" />
+    <Property Name="r_connect" Type="Int32" />
+    <Property Name="r_not_connect" Type="Int32" />
+  </EntityType>
+  <EntityType Name="TT_UserProject">
+    <Key>
+      <PropertyRef Name="UserProId" />
+    </Key>
+    <Property Name="UserProId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CustProId" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="DB_CRM_CCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TR_Contact" EntityType="Self.TR_Contact" />
+    <EntitySet Name="TR_Customer" EntityType="Self.TR_Customer" />
+    <EntitySet Name="TR_Role" EntityType="Self.TR_Role" />
+    <EntitySet Name="TR_TargetSetting" EntityType="Self.TR_TargetSetting" />
+    <EntitySet Name="TR_User" EntityType="Self.TR_User" />
+    <EntitySet Name="TT_CallHistory" EntityType="Self.TT_CallHistory" />
+    <EntitySet Name="TT_CallResult" EntityType="Self.TT_CallResult" />
+    <EntitySet Name="TT_CustomerProject" EntityType="Self.TT_CustomerProject" />
+    <EntitySet Name="TT_UserProject" EntityType="Self.TT_UserProject" />
+  </EntityContainer>
+</Schema>

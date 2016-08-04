@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBDemoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="DBDemoEntities1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Employees" EntityType="DBDemoModel.Employee" />
+    <EntitySet Name="TblProjects" EntityType="DBDemoModel.TblProject" />
+  </EntityContainer>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Guid" Nullable="false" />
+    <Property Name="NIP" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="Nama" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="NoKTP" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Alamat" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+    <Property Name="Kota" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TblProject">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="ProjectId" Type="Guid" Nullable="false" />
+    <Property Name="ProjectCode" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="ProjectDesc" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Customer" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="ServiceType" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

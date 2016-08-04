@@ -1,0 +1,381 @@
+﻿@model IEnumerable<MVC_CRUD.Models.contactCenterModels.Customer>
+@{
+    ViewBag.submenu = "Master Customer Project";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <button type="button" id="CreateCustPro" data-toggle="modal" data-target="#CreateModal" class="btn btn-info btn-raised btn-sm"><i class="fa fa-plus-circle"></i> &nbsp; Create Project</button>
+                                <hr class="separator" />
+                            </div>
+                            <div class="widget-body">
+                                <div class="table-responsive">
+                                    <table id="default-datatable" data-plugin="DataTable" class="table table-striped table-responsive" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Project Name</th>
+                                                <th>Customer</th>
+                                                <th>Expired Date</th>
+                                                <th>Parameter 1</th>
+                                                <th>Parameter 2</th>
+                                                <th>Parameter 3</th>
+                                                <th>Parameter 4</th>
+                                                <th>Parameter 5</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <div class="btn-group">
+                                                            <a class="edit-modal" href="#" data-href="@Url.Action("updateCustomerProject/" + item.CustProId, "Home")" data-toggle="modal" data-target="#editCustPro" data-id="@item.CustProId" data-name="@item.CustProName" data-exp="@item.CustProExpired" data-prm1="@item.Param1" data-prm2="@item.Param2" data-prm3="@item.Param3" data-prm4="@item.Param4" data-prm5="@item.Param5"><span class='badge badge-warning'><i class="fa fa-edit"></i></span></a>
+                                                            <a class="formDelete" href="#" data-href="@Url.Action("deleteCustomerProject/" + item.CustProId, "Home")" data-id="@item.CustProId" data-name="@item.CustProName" data-toggle="modal" data-target="#delete"><span class='badge badge-danger'><i class="fa fa-trash-o"></i></span></a>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @item.CustProName
+                                                    </td>
+                                                    <td>
+                                                        @item.CustomerName
+                                                    </td>
+                                                    <td>
+                                                        @String.Format("{0:dd MMMM yyyy}", item.CustProExpired)
+                                                    </td>
+                                                    <td>
+                                                        @item.Param1
+                                                    </td>
+                                                    <td>
+                                                        @item.Param2
+                                                    </td>
+                                                    <td>
+                                                        @item.Param3
+                                                    </td>
+                                                    <td>
+                                                        @item.Param4
+                                                    </td>
+                                                    <td>
+                                                        @item.Param5
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div>
+                </div><!-- END column -->
+                <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Confirm Delete
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <a href="" class="btn btn-danger btn-ok">Delete</a>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal - Create Agent -->
+                <div class="modal fade" id="CreateModal" role="dialog" style="background: rgba(38, 194, 129, .2)">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <form id="formCreate" action="@Url.Action("createCustomerProject", "Home")" method="post" onsubmit="return false">
+                                <div class="modal-header">
+                                    <h4 class="modal-title col-sm-8"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Create Customer Project</h4>
+                                    <div class="col-sm-4">
+                                        <select id="CustomerId" name="CustomerId" class="form-control selectpicker show-menu-arrow show-tick createSelect" title="Select a Customer">
+                                            <optgroup label="Customer name">
+                                                @foreach (var item in ViewBag.CustomerName)
+                                                {
+                                                    <option value="@item.CustomerId" data-subtext="@item.CustomerDesc">@item.CustomerName</option>
+                                                }
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Customer Project Name</label>
+                                            <input type="text" id="cekCustProName" name="CustProName" class="form-control input-sm" placeholder="entry name of customer project" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Customer Project Expired</label>
+                                            <div class="input-group date" id="form_dt" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input type="text" id="cekCustProExpired" name="CustProExpired" class="form-control" />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input type="hidden" id="dtp_input2" value="" />
+                                            </div>
+                                            <div id="ManagerError"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 1</label>
+                                            <input type="text" id="cekParam1" name="Param1" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="SkillError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 2</label>
+                                            <input type="text" id="cekParam2" name="Param2" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="PassError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 3</label>
+                                            <input type="text" id="cekParam3" name="Param3" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="StatusError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 4</label>
+                                            <input type="text" id="cekParam4" name="Param4" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="NumError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 5</label>
+                                            <input type="text" id="cekParam5" name="Param5" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="NumError"></div>
+                                        </div>
+                                        <div class="form-group submitMaster">
+
+                                            <button type="button" class="btn btn-default btn-raised btn-sm" data-dismiss="modal">Close</button>
+                                            <button type="reset" class="btn btn-default btn-raised btn-sm">Or Reset</button>
+                                            <button type="button" class="btn btn-success btn-raised btn-sm submit" data-toggle="modal" data-target="#cc" disabled><i class="fa fa-check-circle-o"></i> &nbsp; Enter Project</button>
+                                        </div>
+                                    </div>
+                                    <div class="widget-footer">
+                                        <div class="modal fade" id="cc" tabindex="-1" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        Confirm Create
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p>Are you sure ?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-danger btn-ok" onclick="create()">Create</button>
+                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Modal - Edit Agent -->
+                <div class="modal fade" id="editCustPro" style="background: rgba(249, 191, 59, .2)">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><button class="btn btn-warning btn-raised"><i class="fa fa-pencil-square"></i></button> &nbsp; Edit Customer Project</h4>
+                            </div>
+                            <form action="@Url.Action("updateCustomerProject", "Home")" method="post">
+                                <input type="hidden" name="CustProId" id="CustProId" value="">
+                                <div class="modal-body">
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Customer Project Name</label>
+                                            <input type="text" id="CustProName" name="CustProName" value="" class="form-control input-sm" placeholder="entry name of customer project" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Customer Project Expired</label>
+                                            <div class="input-group date" id="form_dt" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input type="text" id="CustProExpired" name="CustProExpired" value="" class="form-control" readonly />
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                                <input type="hidden" id="dtp_input2" value="" />
+                                            </div>
+                                            <div id="ManagerError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 1</label>
+                                            <input type="text" id="Param1" name="Param1" value="" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="SkillError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 2</label>
+                                            <input type="text" id="Param2" name="Param2" value="" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="PassError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 3</label>
+                                            <input type="text" id="Param3" name="Param3" value="" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="StatusError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 4</label>
+                                            <input type="text" id="Param4" name="Param4" value="" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="NumError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Parameter 5</label>
+                                            <input type="text" id="Param5" name="Param5" value="" class="form-control input-sm" placeholder="entry first parameter">
+                                            <div id="NumError"></div>
+                                        </div>
+                                        <div class="form-group submitMaster">
+                                            <button type="button" class="btn btn-default btn-raised btn-sm" data-dismiss="modal">Close</button>
+                                            <button type="reset" class="btn btn-default btn-raised btn-sm">Or Reset</button>
+                                            <a class="btn btn-warning btn-raised btn-sm submit edit-modal" data-toggle="modal" data-target="#update"><i class="fa fa-check-circle-o"></i> &nbsp; Change Project</a>
+                                            <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            Confirm Update
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure ?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" class="btn btn-danger btn-ok" onclick="create()">Update</button>
+
+                                                         </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer"></div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+        </div><!-- .row -->
+        </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+
+</body>
+
+<script>
+    //JQuery No Conflict
+    var noConflict = jQuery.noConflict();
+
+    //Edit Customer Project
+    noConflict(document).on("click", ".edit-modal", function () {
+        var id = $(this).attr("data-id");
+        var name = $(this).attr("data-name");
+        var exp = $(this).attr("data-exp");
+        var prm1 = $(this).attr("data-prm1");
+        var prm2 = $(this).attr("data-prm2");
+        var prm3 = $(this).attr("data-prm3");
+        var prm4 = $(this).attr("data-prm4");
+        var prm5 = $(this).attr("data-prm5");
+
+        $("#CustProId").prop("value", id);
+        $("#CustProName").prop("value", name);
+        $("#CustProExpired").prop("value", exp);
+        $("#Param1").prop("value", prm1);
+        $("#Param2").prop("value", prm2);
+        $("#Param3").prop("value", prm3);
+        $("#Param4").prop("value", prm4);
+        $("#Param5").prop("value", prm5);
+    });
+
+    noConflict(document).ready(function () {
+        //Validation on Create Customer Project
+        var form = document.getElementById("formCreate");
+        var cust = document.getElementById("CustomerId");
+        var name = document.getElementById("cekCustProName");
+        var param1 = document.getElementById("cekParam1");
+        var form1 = document.getElementById("cc");
+        
+        cust.onchange = function () { validation() };
+        name.onkeyup = function () { validation() };
+        param1.onkeyup = function () { validation() };
+        
+        function validation() {
+            if (cust.value && name.value && param1.value != "") {
+                $('.submit').prop('disabled', false);
+                form.onsubmit = function () { return true };
+                form1.onsubmit = function () { return true };
+            }
+            else {
+                $('.submit').prop('disabled', true);
+                form.onsubmit = function () { return false };
+                form1.onsubmit = function () { return false };
+            }
+        }
+
+        $("#createCustPro").click(function () {
+            $("#CreateModal").modal();
+        });
+        $(".createSelect").selectpicker({
+            style: "btn-success btn-outline btn-sm",
+        });
+        $(".updateSelect").selectpicker({
+            style: "btn-warning btn-outline btn-sm",
+        });
+
+        $("#cc").click(function () {
+            $("#myModal").modal();
+        });
+
+        $("#update").click(function () {
+            $("#myModal").modal();
+        });
+
+        noConflict(document).on("click", ".formDelete", function () {
+            var href = $(this).attr("data-href");
+            var mail = $(this).attr("data-name");
+
+            $("#delete .modal-body").html("Are you sure delete " + mail + " ?");
+            var a = $("#delete .modal-footer a");
+            a.attr("href", href);
+        })
+
+    });
+</script>

@@ -1,0 +1,332 @@
+﻿@{
+    ViewBag.submenu = "Update Agent";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    function remove(formdata) {
+        $.ajax({
+            url: '@Url.Action("deleteUserProject", "Home")',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (success) {
+                //alert('Deleted!');
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });
+    }
+    function add(formdata) {
+        $.ajax({
+            url: '@Url.Action("addUserProject", "Home")',
+            type: 'POST',
+            data: formdata,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (success) {
+                //alert('Added!');
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });
+    }
+</script>
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <form action="@Url.Action("editAgent", "Home")" method="post" id="createAgent" onsubmit="return validateForm()">
+                            <div class="widget">
+                                <div class="widget-body">
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <input type="hidden" name="UserId" value="@ViewBag.User.UserId" />
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Username</label>
+                                            <input type="text" name="Email" class="form-control input-sm" id="inputSmall" placeholder="entry username or full name" value="@ViewBag.User.Email" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Name</label>
+                                            <input type="text" name="Username" class="form-control input-sm" id="inputSmall" placeholder="entry username or full name" value="@ViewBag.User.UserName" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Leader</label>
+                                            <select class="form-control input-sm" name="UserManager">
+                                                @foreach (var item in ViewBag.Manager)
+                                                {
+                                                    if (item.UserName == ViewBag.User.UserManager)
+                                                    {
+                                                        <option value="@item.UserName" selected>@item.UserName</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@item.UserName">@item.UserName</option>
+                                                    }
+                                                }
+                                            </select>
+                                            <div id="ManagerError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Level or Skill</label>
+                                            <input type="text" name="UserSkill" class="form-control input-sm" id="inputSmall" placeholder="used ( , ) to separate skill" value="@ViewBag.User.UserSkill">
+                                            <div id="SkillError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">User Status</label>
+                                            <select class="form-control input-sm" name="UserStatus">
+                                                <option value="1" @(ViewBag.User.UserStatus == 1 ? "selected" : "")>Active</option>
+                                                <option value="0" @(ViewBag.User.UserStatus == 0 ? "selected" : "")>Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="button" id="buttonProject" data-toggle="modal" data-target="#project" class="btn btn-info btn-raised btn-sm"><i class="fa fa-plus-circle"></i> &nbsp; Assign to Project</button>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Customer
+                                                    </th>
+                                                    <th>
+                                                        Customer Project
+                                                    </th>
+                                                    <th>
+                                                        Expired Date
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in ViewBag.CustProjectAda)
+                                                {
+                                                    <tr>
+                                                        <td>@item.CustomerName</td>
+                                                        <input type="hidden" value="@ViewBag.User.UserId" name="Id" />
+                                                        <input class="CustProId" type="hidden" value="@item.CustProId" name="CustProId" />
+                                                        <td>@item.CustProName</td>
+                                                        <td>@item.CustProExpired</td>
+                                                        <td><button type="button" class="btn btn-info btn-raised btn-sm remove">Remove</button></td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="widget-footer">
+                                    <br />
+                                    <a class="btn btn-success btn-raised btn-sm submit" data-toggle="modal" data-target="#UpdateAgent"><i class="fa fa-check-circle-o"></i> &nbsp; Finish</a>
+                                    <div class="modal fade" id="UpdateAgent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    Confirm Update
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger btn-ok" onclick="create()">Update</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- .widget -->
+                        </form>
+                    </div>
+                </div><!-- END column -->
+                <!-- Modal - Create Agent -->
+                <div class="modal fade" id="project" role="dialog" style="background: rgba(38, 194, 129, .2)">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Assign to Project</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-striped" id="custProject">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Customer
+                                            </th>
+                                            <th>
+                                                Customer Project
+                                            </th>
+                                            <th>
+                                                Expired Date
+                                            </th>
+                                            <th>
+                                                #
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            foreach (var item in ViewBag.CustProjectTiada)
+                                            {
+                                                <tr>
+                                                    <td>@item.CustomerName</td>
+                                                    <input type="hidden" value="@ViewBag.User.UserId" name="Id" />
+                                                    <input type="hidden" value="@item.CustProId" name="CustProId" />
+                                                    <td>@item.CustProName</td>
+                                                    <td>@item.CustProExpired</td>
+                                                    <td><button type="button" class="btn btn-info btn-raised btn-sm add-custProject"><i class="fa fa-plus-circle"></i> &nbsp; Add</button></td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success btn-raised btn-sm" data-dismiss="modal">Finish</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+    </main>
+    <!--========== END app main -->
+</body>
+<script>
+    $(document).on("click", ".project", function () {
+        var id = $(this).attr("data-id");
+        var name = $(this).attr("data-name");
+        var pass = $(this).attr("data-pass");
+        var team = $(this).attr("data-team");
+        var skill = $(this).attr("data-skill");
+        var status = $(this).attr("data-status");
+
+        $("#UserId").prop("value", id);
+        $("#UserName").prop("value", name);
+        $("#UserPass").prop("value", pass);
+        $("#UserManager").prop("value", team);
+        $("#UserSkill").prop("value", skill);
+        $("#UserStatus").prop("value", status);
+    });
+
+    $(document).ready(function () {
+        //$("#buttonProject").click(function () {
+        //    $("#project").modal();
+        //});
+    });
+
+    function validateForm() {
+        $('#ErrorMessage').hide().fadeIn(1000);
+        var username = document.forms["Agent"]["UserName"].value;
+        var password = document.forms["Agent"]["UserPass"].value;
+        var team = document.forms["Agent"]["UserManagaer"].value;
+        var skill = document.forms["Agent"]["UserSkill"].value;
+        var status = document.forms["Agent"]["UserStatus"].value;
+        var extnum = document.forms["Agent"]["ExtNum"].value;
+
+        if (username == null && password == null && team == null && skill == null && status == null && extnum == null) {
+            var MsgError = '<div class="text-danger"><i class="fa fa-times-circle"></i> You have not filled all the fields, please fill in soon .</div>';
+            document.getElementById("ErrorMessage").innerHTML = MsgError;
+            return false;
+        }
+        else if (username == null || username == "") {
+            var MsgError = '<div class="text-warning"><i class="fa fa-info-circle"></i> username can not be empty .</div>';
+            document.getElementById("NameError").innerHTML = MsgError;
+            return false;
+        }
+        else if (password == null || password == "") {
+            var MsgError = '<div class="text-warning"><i class="fa fa-info-circle"></i> try to contain numbers and symbols .</div>';
+            document.getElementById("PassError").innerHTML = MsgError;
+            return false;
+        }
+        else if (team == null || team == "") {
+            var MsgError = '<div class="text-warning"><i class="fa fa-info-circle"></i> who will be the leader? .</div>';
+            document.getElementById("ManagerError").innerHTML = MsgError;
+            return false;
+        }
+        else if (skill == null || skill == "") {
+            var MsgError = '<div class="text-warning"><i class="fa fa-info-circle"></i> skill can not be empty .</div>';
+            document.getElementById("SkillError").innerHTML = MsgError;
+            return false;
+        }
+        else if (status == null || status == "") {
+            var MsgError = '<div class="text-warning"><i class="fa fa-info-circle"></i> give these agents a status .</div>';
+            document.getElementById("StatusError").innerHTML = MsgError;
+            return false;
+        }
+        else if (extnum == null || extnum == "") {
+            var MsgError = '<div class="text-warning"><i class="fa fa-info-circle"></i> give these agents a extension number .</div>';
+            document.getElementById("NumError").innerHTML = MsgError;
+            return false;
+        }
+        else {
+            var MsgError = '<div class="text-success"><i class="fa fa-check-circle"></i><strong>Success!</strong> You have successfully added agent .</div>';
+            document.getElementById("ErrorMessage").innerHTML = MsgError;
+            document.forms["CreateAgent"].submit();
+            return true;
+        }
+    }
+</script>
+<script>
+    $(document).ready(function () {
+
+        $("#createAgent").on('click', '.remove', function (e) {
+            var formdata = new FormData()
+            var customerProjectId = $(this).closest('tr').find("input[name^=CustProId]").val();
+            var Id = $(this).closest('tr').find("input[name^=Id]").val();
+            formdata.append("CustProId", customerProjectId);
+            formdata.append("Id", Id);
+
+            remove(formdata);
+
+            var button = $(this).closest('tr').clone();
+            var lastTd = button.find('td:last');
+            lastTd.html("<button type='button' class='btn btn-info btn-raised btn-sm add-custProject'><i class='fa fa-plus-circle'></i> &nbsp; Add</button>");
+
+            var $tableBody = $("#custProject tbody").append(button);
+            $(this).closest('tr').remove();
+            var whichtr = $(this).closest("tr");
+            whichtr.remove();
+        });
+
+        //1. Add new row
+        $("#custProject").on('click', '.add-custProject', function (e) {
+            var formdata = new FormData();
+            var customerProjectId = $(this).closest('tr').find("input[name^=CustProId]").val();
+            var Id = $(this).closest('tr').find("input[name^=Id]").val();
+            formdata.append("CustProId", customerProjectId);
+            formdata.append("Id", Id);
+
+            add(formdata);
+
+            var button = $(this).closest('tr').clone();
+            var lastTd = button.find('td:last');
+            lastTd.html("<button type='button' class='btn btn-info btn-raised btn-sm remove'>Remove</button>");
+
+            var $tableBody = $("#createAgent tbody").append(button);
+            $(this).closest('tr').remove();
+        });
+        $("#UpdateAgent").click(function () {
+            $("#myModal").modal();
+        });
+    });
+</script>

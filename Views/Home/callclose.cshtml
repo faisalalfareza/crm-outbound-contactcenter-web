@@ -1,0 +1,244 @@
+﻿@{
+    ViewBag.submenu = "Detail Call";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-6 col-md-6">
+                        <div class="widget stats-widget">
+                            <div class="widget-body dial">
+                                <div class="dial-header">
+                                    <h3>Call Duration</h3>
+
+                                <h1>@ViewBag.callhis.CallDuration</h1>
+                                    <form id="formDuration">
+                                        <input type="hidden" id="CallDuration" name="CallDuration" value="" />
+                                    </form>
+                                </div>
+                                <div class="dial-button">
+                                    <a class="btn btn-danger btn-raised btn-lg" onclick=""><i class="zmdi zmdi-phone-end zmdi-hc-lg"></i></a>
+                                </div>
+                                <div class="dial-footer">
+                                    <h3 id="callStatus"></h3>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table text-center">
+                                    <tbody>
+                                        <tr valign="center">
+                                            <td>Mobile Phone</td>
+                                            <td>@ViewBag.call.ContactPhone</td>
+                                        </tr>
+                                        <tr valign="center">
+                                            <td>Home Phone</td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr valign="center">
+                                            <td>Other Phone</td>
+                                            <td>-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Second Acordion -->
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-success">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2"><i class="zmdi zmdi-phone-in-talk zmdi-hc-lg"></i> &nbsp; Call Interaction</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse2" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <form id="formInteraction">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="status">Call Status</label>
+                                                <select disabled id="status" class="form-control" name="callstatus">
+                                                    <option value="Closing" selected>Closing</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="transaction">Sub Status</label>
+                                                <select disabled id="transaction" class="form-control" name="substatus">
+                                                    <option value="Payment">Payment</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group has-info">
+                                                <input readonly type="text" name="Remarks" class="form-control input-sm" id="inputSmall" placeholder="@ViewBag.call.Remarks">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Second Acordion -->
+                    </div>
+
+                    <div class="col-sm-6 col-md-6">
+                        <!-- First Acordion -->
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1"><i class="fa fa-list-alt"></i> &nbsp; Customer Information</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse1" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <div class="big">
+                                            <table align="center">
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        Name
+                                                    </td>
+                                                    <td>
+                                                        @ViewBag.call.ContactName
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Cust Id
+                                                    </td>
+                                                    <td>
+                                                        @ViewBag.call.CustomerContactId
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        Birth Date
+                                                    </td>
+                                                    <td>
+                                                        @ViewBag.call.BirthDate
+                                                     
+                                                    </td>
+                                                </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Address
+                                                        </td>
+                                                        <td>
+                                                            @ViewBag.call.KTP_Adress
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Monthly Income
+                                                        </td>
+                                                        <td>
+                                                            IDR @String.Format("{0:0,0.00}", @ViewBag.call.MonthlyFixedIncome)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Level
+                                                        </td>
+                                                        <td>
+                                                            Gold
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            Customer Name
+                                                        </td>
+                                                        <td>
+                                                            @ViewBag.CustomerName
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End First Acordion -->
+                        <!-- Third Acordion -->
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-warning">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3"><i class="fa fa-list-ol"></i> &nbsp; &nbsp; Customer Parameter</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse3" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <form id="formParameter">
+                                            <div class="form-group">
+                                                <input readonly type="text" name="Param1" class="form-control input-sm" id="inputSmall" placeholder="@ViewBag.call.Param1">
+                                            </div>
+                                            <div class="form-group">
+                                                <input readonly type="text" name="Param2" class="form-control input-sm" id="inputSmall" placeholder="@ViewBag.call.Param2">
+                                            </div>
+                                            <div class="form-group">
+                                                <input readonly type="text" name="Param3" class="form-control input-sm" id="inputSmall" placeholder="@ViewBag.call.Param3">
+                                            </div>
+                                            <div class="form-group">
+                                                <input readonly type="text" name="Param4" class="form-control input-sm" id="inputSmall" placeholder="@ViewBag.call.Param4">
+                                            </div>
+                                            <div class="form-group">
+                                                <input readonly type="text" name="Param5" class="form-control input-sm" id="inputSmall" placeholder="@ViewBag.call.Param5">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- .row -->
+                    <!-- End Third Acordion -->
+                    <!-- Ajax dataTable -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title"><i class="fa fa-history"></i> &nbsp; History Detail</h4>
+                                </div>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <th>Date Time</th>
+                                            <th>Phone Number</th>
+                                            <th>Call Status</th>
+                                            <th>Sub Status</th>
+                                            <th>Remarks</th>
+                                            <th>Aging Agent</th>
+                                            <th>Agent</th>
+                                        </tr>
+                                        @foreach (var item in ViewBag.historydetail)
+                                        {
+                                            <tr>
+                                                <td>@item.CallDate</td>
+                                                <td>@item.ContactPhone</td>
+                                                <td>@item.CallStatus</td>
+                                                <td>@item.SubStatus</td>
+                                                <td>@item.Remarks</td>
+                                                <td>@item.AgingAgent Day</td>
+                                                <td>@item.UserName</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+    </main>
+    <!-- Include Page Footer -->
+    @RenderPage("~/Views/Gates/Footer.cshtml")
+
+    <!-- Include Page Foot -->
+    @RenderPage("~/Views/Gates/Foot.cshtml")
+</body>

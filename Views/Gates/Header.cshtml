@@ -1,0 +1,261 @@
+﻿<!-- APP ASIDE ==========-->
+<aside id="app-aside" class="app-aside left light">
+    <header class="aside-header">
+        <div class="animated">
+            <a id="app-brand" class="app-brand">
+                <!--<span id="brand-icon" class="brand-icon"><i class="fa fa-gg"></i></span>!-->
+                <span id="brand-name" class="brand-icon foldable">CRM OutBound</span>
+            </a>
+        </div>
+    </header><!-- #sidebar-header -->
+
+    <div class="aside-user">
+        <!-- aside-user -->
+        <div class="media">
+            <hr class="separator" />
+            <div class="media-left">
+                <div class="avatar avatar-md avatar-circle">
+                    <a href=""> <div id="set"></div> </a>
+                </div><!-- .avatar -->
+            </div>
+
+            <div class="media-body">
+
+
+                <div class="foldable">
+                    <h5><a href="javascript:void(0)" class="username"> <div id="get">@Session["UserName"]</div> </a></h5>
+
+                    <ul>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle usertitle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @if (Session["RoleId"].Equals(1))
+                                {
+                                    <small>As admin</small>
+                                }
+                                else if (Session["RoleId"].Equals(2))
+                                {
+                                    <small>As leader</small>
+                                }
+                                else if (Session["RoleId"].Equals(3))
+                                {
+                                    <small>As manager</small>
+                                }
+                                else if (Session["RoleId"].Equals(4))
+                                {
+                                    <small>As agent</small>
+                                }
+                                else
+                                {
+                                    <small>Unknown</small>
+                                }
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu animated flipInY">
+                                <li>
+                                    <a class="text-color" href="">
+                                        <span class="m-r-xs"><i class="fa fa-home"></i></span>
+                                        <span>Home</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-color" class="edit-modal" data-toggle="modal" data-target="#changePass" style="cursor:pointer">
+                                        <span class="m-r-xs"><i class="fa fa-key"></i></span>
+                                        <span>Change Password</span>
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a class="text-color" href="@Url.Action("Logout", "Auth")">
+                                        <span class="m-r-xs"><i class="fa fa-power-off"></i></span>
+                                        <span>logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="separator" />
+
+        </div>
+        <!-- /aside-user -->
+    </div><!-- #aside-user -->
+
+    <div class="aside-scroll">
+        <div id="aside-scroll-inner" class="aside-scroll-inner">
+            <ul class="aside-menu aside-left-menu open" role="tablist">
+                @if (Session["RoleId"].Equals(4))
+                {
+                    <li class="menu-item has-submenu @(ViewBag.submenu=="Call Activity"?"open":"")">
+                        <a href="@Url.Action("crmAgent", "Home")" class="menu-link">
+                            <span class="menu-icon"><i class="zmdi zmdi-phone-in-talk zmdi-hc-lg"></i></span>
+                            <span class="menu-text foldable">Call Activity</span>
+                        </a>
+                    </li><!-- .menu-item -->
+                }
+                @if (Session["RoleId"].Equals(1))
+                {
+                    <li class="menu-item has-submenu @(ViewBag.submenu=="Master User"||ViewBag.submenu=="Master Agent"||ViewBag.submenu=="Master Setting Target"||ViewBag.submenu =="Master Customer"||ViewBag.submenu=="Master Customer Project"||ViewBag.submenu=="Upload"?"open":"")">
+                        <a href="javascript:void(0)" class="menu-link submenu-toggle">
+                            <span class="menu-icon"><i class="zmdi zmdi-storage zmdi-hc-lg"></i></span>
+                            <span class="menu-text foldable">Admin</span>
+                            <span class="menu-caret foldable"><i class="zmdi zmdi-hc-sm zmdi-chevron-right"></i></span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="@Url.Action("masterUser", "Home")"><i class="fa fa-suitcase"></i> &nbsp; Master User</a></li>
+                            <li><a href="@Url.Action("masterAgent", "Home")"><i class="fa fa-suitcase"></i> &nbsp; Master Agent</a></li>
+                            <li><a href="@Url.Action("masterSettingTarget", "Home")"><i class="fa fa-suitcase"></i> &nbsp; Master Target</a></li>
+                            <li><a href="@Url.Action("masterCustomer", "Home")"><i class="fa fa-suitcase"></i> &nbsp; Master Customer</a></li>
+                            <li><a href="@Url.Action("masterCustomerProject", "Home")"><i class="fa fa-suitcase"></i> &nbsp; Master Project</a></li>
+                            <li><a href="@Url.Action("upload", "Home")"><i class="fa fa-cloud-upload"></i> &nbsp; Upload Data</a></li>
+                        </ul>
+                    </li><!-- .menu-item -->
+                }
+                @if (Session["RoleId"].Equals(2))
+                {
+                    <li class="menu-item has-submenu @(ViewBag.submenu=="Call Status"?"open":"")">
+                        <a href="@Url.Action("callStatus", "Home")" class="menu-link">
+                            <span class="menu-icon"><i class="zmdi zmdi-phone-in-talk zmdi-hc-lg"></i></span>
+                            <span class="menu-text foldable">Call Status</span>
+                        </a>
+                    </li><!-- .menu-item -->
+                    <li class="menu-item has-submenu @(ViewBag.submenu=="Report"?"open":"")">
+                        <a href="@Url.Action("report", "Home")" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-list-alt"></i></span>
+                            <span class="menu-text foldable">Report</span>
+                        </a>
+                    </li><!-- .menu-item -->
+                    <li class="menu-item has-submenu @(ViewBag.submenu=="Withdraw"?"open":"")">
+                        <a href="@Url.Action("withdraw", "Home")" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-paw"></i></span>
+                            <span class="menu-text foldable">Withdraw</span>
+                        </a>
+                    </li><!-- .menu-item -->
+                }
+                @if (Session["RoleId"].Equals(3))
+                {
+                    <li class="menu-item has-submenu @(ViewBag.submenu=="Extend Expired Date Project"?"open":"")">
+                        <a href="@Url.Action("masterExpired", "Home")" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-list-alt"></i></span>
+                            <span class="menu-text foldable">Extend Project</span>
+                        </a>
+                    </li><!-- .menu-item -->
+                    <li class="menu-item has-submenu @(ViewBag.submenu=="Withdraw"?"open":"")">
+                        <a href="@Url.Action("withdrawExpired", "Home")" class="menu-link">
+                            <span class="menu-icon"><i class="fa fa-paw"></i></span>
+                            <span class="menu-text foldable">Withdraw</span>
+                        </a>
+                    </li><!-- .menu-item -->
+                }
+            </ul>
+            <hr>
+            @*<footer id="aside-footer">
+                    <ul class="aside-menu aside-left-menu">
+
+
+                        <li class="menu-item">
+                            <a href="javascript:void(0)" class="menu-link">
+                                <span class="menu-icon"><i class="zmdi zmdi-settings zmdi-hc-lg"></i></span>
+                                <span class="menu-text foldable">Settings</span>
+                            </a>
+                        </li><!-- .menu-item -->
+
+                    </ul>
+                </footer><!-- #sidebar-footer -->*@
+        </div><!-- .aside-scroll-inner -->
+    </div><!-- #aside-scroll -->
+</aside>
+<!-- END app aside -->
+<!-- APP NAVBAR -->
+<nav id="app-navbar" class="app-navbar p-l-lg p-r-md primary">
+    <div id="navbar-header" class="pull-left">
+        <button id="aside-fold" class="hamburger visible-lg-inline-block hamburger--arrowalt is-active js-hamburger" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        <button id="aside-toggle" class="hamburger hidden-lg hamburger--spin js-hamburger" type="button">
+            <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+            </span>
+        </button>
+        <h5 id="page-title" class="visible-md-inline-block visible-lg-inline-block m-l-md">@ViewBag.submenu</h5>
+    </div>
+</nav>
+<!-- END app navbar -->
+<!-- Modal - Change Password -->
+<div class="modal fade" id="changePass" style="background: rgba(249, 191, 59, .2)">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header warning">
+                <h4 class="modal-title"><button class="btn btn-warning btn-raised"><i class="fa fa-key"></i></button> &nbsp; Change Password - @Session["UserName"]</h4>
+            </div>
+            <form id="formChange" action="@Url.Action("changePassword", "Home")" method="post" onsubmit="return false">
+                <input type="hidden" name="UserId" id="UserId" value="@Session["UserId"]">
+                <div class="modal-body">
+                    <div id="ErrorMessage"></div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label" for="inputSmall">New Password</label>
+                            <input type="password" id="UserPass" name="UserPass" class="form-control input-sm" placeholder="Please entry your new password." autofocus>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label" for="inputSmall">Confirm Password</label>
+                            <input type="password" id="ConfUserPass" class="form-control input-sm" placeholder="Please confirm your new password." onkeyup="myFunction()">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-warning btn-raised btn-sm change" disabled><i class="fa fa-check-circle-o"></i> &nbsp; Change</button>
+                        <button type="reset" class="btn btn-default btn-raised btn-sm">Or Reset</button>
+                        <button type="button" class="btn btn-default btn-raised btn-sm" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    //JQuery No Conflict
+    var noConflict = jQuery.noConflict();
+
+    noConflict(document).ready(function () {
+        //Get First Character on Username
+        var get = document.getElementById("get").innerHTML;
+        document.getElementById("set").innerHTML = get.charAt(0).toUpperCase();
+
+        //Change Password Validation
+        var form = document.getElementById("formChange");
+        var pass = document.getElementById("UserPass");
+        var confpass = document.getElementById("ConfUserPass");
+
+        pass.onkeyup = function () { myFunction() };
+        confpass.onkeyup = function () { myFunction() };
+
+        function myFunction() {
+            if (pass.value && confpass.value != "") {
+                if (pass.value != confpass.value) {
+                    document.getElementById("ErrorMessage").innerHTML = '<div class="alert alert-warning"><button class="btn btn-warning"><i class="fa fa-times"></i></button> &nbsp; Not match.</div>';
+                    $('.change').prop('disabled', true);
+                    form.onsubmit = function () { return false };
+                }
+                else {
+                    document.getElementById("ErrorMessage").innerHTML = '<div class="alert alert-warning"><button class="btn btn-warning"><i class="fa fa-check"></i></button> &nbsp; Match.</div>';
+                    $('.change').prop('disabled', false);
+                    form.onsubmit = function () { return true };
+                }
+            }
+            else {
+                document.getElementById("ErrorMessage").innerHTML = '<div class="alert alert-warning"><button class="btn btn-warning"><i class="fa fa-times"></i></button> &nbsp; Empty.</div>';
+                $('.change').prop('disabled', true);
+                form.onsubmit = function () { return false };
+            }
+        }
+    });
+</script>

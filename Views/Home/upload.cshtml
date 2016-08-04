@@ -1,0 +1,135 @@
+﻿@{
+    ViewBag.submenu = "Upload";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#GroupId").selectpicker({
+            style: "btn-primary btn-outline btn-sm",
+        });
+    });
+
+    $(document).ready(function () {
+        UploadFile.AddEventListenerForFileSelect();
+        var form = document.getElementById("uploadform");
+        form.onsubmit = function (event) {
+            event.preventDefault();
+
+            UploadFile.UploadFileToServer();
+        }
+    });
+
+    function UploadFile() { }
+
+    // file selection
+    UploadFile.FileSelectHandler = function (e) {
+
+      //if from drag and drop then reset file select
+      if (e.dataTransfer != undefined &&
+          e.dataTransfer.files != undefined) {
+        UploadFile.ResetFileSelect();
+      }
+
+      // fetch FileList object
+      var files = e.target.files || e.dataTransfer.files;
+
+      if (files != undefined && files.length > 0) {
+          UploadFile.ResetFileSelect(files[0].name);
+          $("#submitButton").prop("disabled", false);
+      }
+    }
+
+    UploadFile.AddEventListenerForFileSelect = function () {
+      var fileselect = $("#fileselect");
+      // file selected
+      fileselect[0].addEventListener("change", UploadFile.FileSelectHandler, false);
+    }
+
+    //Resets File Select
+    UploadFile.ResetFileSelect = function (name) {
+        $("#inputFile").replaceWith('<span id="inputFile"><i class="fa fa-folder-open"></i> &nbsp; File '+name+' Selected</span>');
+    }
+
+    //--------- Upload Functions ------- //
+    UploadFile.UploadFileToServer = function () {
+        var file = $('#fileselect').get(0).files;
+        var formdata = new FormData()
+        formdata.append("fileselect", file[0]);
+        var other_data = $('form').serializeArray();
+        $.each(other_data, function (key, input) {
+            formdata.append(input.name, input.value);
+        });
+
+      $.ajax({
+        url: '@Url.Action("UploadHandler", "Upload")',
+        type: 'POST',
+        data: formdata,
+        contentType: false,
+        processData: false,
+        async: true,
+        success: function (data) {
+          window.location.href = "@Url.Action("upload", "Home")";
+          alert(data.success);
+        },
+        error: function (error) {
+          alert('error');
+        }
+      });
+    }
+</script>
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="widget">
+                            <header class="widget-header">
+                                <h4 class="widget-title">Drop Upload File</h4>
+                            </header><!-- .widget-header -->
+                            <hr class="widget-separator">
+                            <div class="widget-body">
+                                <form id="uploadform" class="form-horizontal" role="form" onsubmit="return false;">
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+
+                                            <input type="number" id="collumnNumber" name="collumnNumber" class="form-control input-sm collumnNumber" placeholder="Masukan jumlah baris / data" autofocus /> <br>
+                                            @Html.DropDownList("GroupId", null, new { @class = "selectpicker show-menu-arrow show-tick", id = "GroupId", title = "Select Customer Project" })
+                                            <div class="fileUpload btn btn-raised btn-info btn-sm">
+                                                <span id="inputFile"><i class='fa fa-folder-open'></i> &nbsp; Select File</span>
+                                                <input type="file" id="fileselect" class="upload" name="fileselect[]" />
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-1">
+                                            @*<div id="filedrag">Drop Files Here</div>*@
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button type="submit" class="btn btn-info btn-sm" id="submitButton" disabled style="margin-top:1%;">Upload</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div><!-- END column -->
+                </div><!-- .row -->
+            </section><!-- #dash-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+
+</body>

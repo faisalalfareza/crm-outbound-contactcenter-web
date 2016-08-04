@@ -1,0 +1,256 @@
+﻿@model IEnumerable<MVC_CRUD.Models.contactCenterModels.HistoryCall>
+@{
+    ViewBag.submenu = "Call Activity";
+}
+
+<!-- Include Page Header -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <a class="scale" data-toggle="modal" data-target="#myModal">
+                            <div class="widget-scale">
+                                <div class="widget stats-widget">
+                                    <div class="widget-body clearfix">
+                                        <div class="pull-left">
+                                            <h3 class="widget-title text-success"><span class="counter" data-plugin="counterUp">@ViewBag.closing</span> Data</h3>
+                                           
+                                        </div>
+                                        <span class="pull-right big-icon watermark"><i class="fa fa-paperclip"></i></span>
+                                    </div>
+                                    <footer class="widget-footer bg-success">
+                                        <small>Closing</small>
+                                        <span class="small-chart pull-right" data-plugin="sparkline" data-options="[4,3,5,2,1], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
+                                    </footer>
+                                </div><!-- .widget -->
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget-scale">
+                            <div class="widget stats-widget">
+                                <div class="widget-body clearfix">
+                                    <div class="pull-left">
+                                        <h3 class="widget-title text-warning"><span class="counter" data-plugin="counterUp">@ViewBag.prospect</span> Data</h3>
+                                       
+                                    </div>
+                                    <span class="pull-right big-icon watermark"><i class="fa fa-unlock-alt"></i></span>
+                                </div>
+                                <footer class="widget-footer bg-warning">
+                                    <small>Prospect</small>
+                                    <span class="small-chart pull-right" data-plugin="sparkline" data-options="[2,4,3,4,3], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
+                                </footer>
+                            </div><!-- .widget -->
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget-scale">
+                            <div class="widget stats-widget">
+                                <div class="widget-body clearfix">
+                                    <div class="pull-left">
+                                        <h3 class="widget-title text-danger"><span class="counter" data-plugin="counterUp">@ViewBag.notprospect</span> Data</h3>
+                                       
+                                    </div>
+                                    <span class="pull-right big-icon watermark"><i class="fa fa-ban"></i></span>
+                                </div>
+                                <footer class="widget-footer bg-danger">
+                                    <small>Not Prospect</small>
+                                    <span class="small-chart pull-right" data-plugin="sparkline" data-options="[1,2,3,5,4], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
+                                </footer>
+                            </div><!-- .widget -->
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="widget-scale">
+                            <div class="widget stats-widget">
+                                <div class="widget-body clearfix">
+                                    <div class="pull-left">
+                                        <h3 class="widget-title text-primary"><span class="counter" data-plugin="counterUp">@ViewBag.newdata</span> Data</h3>
+                                      
+                                    </div>
+                                    <span class="pull-right big-icon watermark"><i class="fa fa-file-text-o"></i></span>
+                                </div>
+                                <footer class="widget-footer bg-primary">
+                                    <small>New Data</small>
+                                    <span class="small-chart pull-right" data-plugin="sparkline" data-options="[5,4,3,5,2],{ type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
+                                </footer>
+                            </div><!-- .widget -->
+                        </div>
+                    </div>
+                </div><!-- .row -->
+
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-md-12">
+                        <a href="@Url.Action("crmNewCall", "Home")" class="btn btn-primary btn-sm"><i class="fa fa-phone"></i>&nbsp; New Call</a></li> <br><br>
+
+                        <div class="widget">
+                            <div class="widget-header">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a data-toggle="tab" href="#dataSuspect">Active</a></li>
+                                    <li><a data-toggle="tab" href="#dataClosing">Closing</a></li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div id="dataSuspect" class="tab-pane fade in active">
+                                    <div class="widget-body">
+                                        <div class="table-responsive">
+                                            <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Contact</th>
+                                                        <th>Status</th>
+                                                        <th>Begin Call</th>
+                                                        <th>Call Back</th>
+                                                        <th>Aging Agent</th>
+                                                        <th>Level</th>
+                                                        <th>Aging Data</th>
+                                                        <th>Project Name</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        if (!(item.CallStatus.Equals("Closing")))
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <a id="dial" href="@Url.Action("call/" + item.ContactId, "Home")"><span class='badge badge-primary'><i class='fa fa-phone'></i> Dial</span></a>
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ContactName)
+                                                                </td>
+                                                                
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.CallStatus)<span> , </span>@Html.DisplayFor(modelItem => item.SubStatus)
+                                                                </td>
+                                                               <td>
+                                                                    @Html.DisplayFor(modelItem => item.BeginCall)
+                                                                </td>
+                                                                <td>
+                                                                    @if (item.CallBack.Equals(item.BeginCall))
+                                                                    {
+                                                                        <span>-</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.DisplayFor(modelItem => item.CallBack)  
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.AgingAgent)<span> Day</span>
+                                                                </td>
+                                                               <td>
+                                                                    Platinum
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.AgingData)<span> Day</span>
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.CustomerName)<span> - </span>@Html.DisplayFor(modelItem => item.CustProName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Reach)<span>x</span>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .widget-body -->
+                                </div>
+
+                                <div id="dataClosing" class="tab-pane fade in">
+                                    <div class="widget-body">
+                                        <div class="table-responsive">
+                                            <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Contact</th>
+                                                        <th>Status</th>
+                                                        <th>Begin Call</th>
+                                                        <th>Call Back</th>
+                                                        <th>Aging Agent</th>
+                                                        <th>Level</th>
+                                                        <th>Aging Data</th>
+                                                        <th>Project Name</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        if (item.CallStatus.Equals("Closing"))
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="@Url.Action("callclose/" + item.ContactId, "Home")"><span class='badge badge-success'> <i class='fa fa-book'></i> &nbsp; View</span></a>
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.ContactName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.CallStatus)<span> , </span>@Html.DisplayFor(modelItem => item.SubStatus)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.BeginCall)
+                                                                </td>
+                                                                <td>
+                                                                    @if (item.CallBack.Equals(item.BeginCall))
+                                                                    {
+                                                                        <span>-</span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.DisplayFor(modelItem => item.CallBack)
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.AgingAgent)<span> Day</span>
+                                                                </td>
+                                                                <td>
+                                                                    Platinum
+                                                                </td>
+                                                               <td>
+                                                                    @Html.DisplayFor(modelItem => item.AgingData)<span> Day</span>
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.CustomerName)<span> - </span>@Html.DisplayFor(modelItem => item.CustProName)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Reach)<span>x</span>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .widget-body -->
+                                </div>
+                            </div>
+
+                        </div><!-- .widget -->
+                    </div><!-- END column -->
+                    <!-- Ajax dataTable -->
+                </div><!-- .row -->
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+</body>

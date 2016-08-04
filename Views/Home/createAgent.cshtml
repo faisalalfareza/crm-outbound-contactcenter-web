@@ -1,0 +1,243 @@
+﻿@{
+    ViewBag.submenu = "Create Agent";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <form action="@Url.Action("addAgent", "Home")" method="post" id="createAgent" onsubmit="return validation()">
+                            <div class="widget">
+                                <div class="widget-body">
+
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Username</label>
+                                            <input type="email" name="Email" class="form-control input-sm" id="UName" placeholder="entry username or full name" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Name</label>
+                                            <input type="text" name="Username" class="form-control input-sm" id="UName" placeholder="entry username or full name" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+
+                                       
+                                       
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Team Leader</label>
+                                            <select class="form-control input-sm" name="UserManager">
+                                                @foreach (var item in ViewBag.Manager)
+                                                {
+                                                    <option value="@item.UserName">@item.UserName</option>
+                                                }
+                                            </select>
+                                            <div id="ManagerError"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Level or Skill</label>
+                                            <input type="text" name="UserSkill" class="form-control input-sm" id="USkill" placeholder="used ( , ) to separate skill">
+                                            <div id="SkillError"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button type="button" id="buttonProject" data-toggle="modal" data-target="#project" class="btn btn-info btn-raised btn-sm"><i class="fa fa-plus-circle"></i> &nbsp; Assign to Project</button>
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Customer
+                                                    </th>
+                                                    <th>
+                                                        Customer Project
+                                                    </th>
+                                                    <th>
+                                                        Expired Date
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="widget-footer">
+                                    <br />
+                                    <button type="button" class="btn btn-success btn-raised btn-sm submit" data-toggle="modal" data-target="#agent" disabled><i class="fa fa-check-circle-o"></i> &nbsp; Finish</button>
+                                    <div class="modal fade" id="agent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    Confirm Create
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger btn-ok" onclick="create()">Create</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div><!-- .widget -->
+                        </form>
+                    </div>
+                </div><!-- END column -->
+                <!-- Modal - Create Agent -->
+                <div class="modal fade" id="project" role="dialog" style="background: rgba(38, 194, 129, .2)">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Assign to Project</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-striped" id="custProject">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Customer
+                                            </th>
+                                            <th>
+                                                Customer Project
+                                            </th>
+                                            <th>
+                                                Expired Date
+                                            </th>
+                                            <th>
+                                                #
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int j = 0;
+                                            foreach (var item in ViewBag.custProject)
+                                            {
+                                                <tr>
+                                                    <td>@item.CustomerName</td>
+                                                    <input type="hidden" value="@item.CustProId" name="CustProId" />
+                                                    <td>@item.CustProName</td>
+                                                    <td>@item.CustProExpired</td>
+                                                    <td><button type="button" class="btn btn-info btn-raised btn-sm add-custProject"><i class="fa fa-plus-circle"></i> &nbsp; Add</button></td>
+                                                </tr>
+                                                j++;
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-success btn-raised btn-sm" data-dismiss="modal">Finish</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+</body>
+
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    //Generate Password for Agent
+    function randomString() {
+        var chars = "vsn16";
+        var string_length = 5;
+        var randomstring = '';
+        for (var i = 0; i < string_length; i++) {
+            var rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum, rnum + 1);
+        }
+        document.getElementById("getPass").value = randomstring;
+    }
+
+    $(document).ready(function () {
+
+        $("#createAgent").on('click', '.remove', function (e) {
+            var button = $(this).closest('tr').clone();
+            var lastTd = button.find('td:last');
+            lastTd.html("<button type='button' class='btn btn-info btn-raised btn-sm add-custProject'><i class='fa fa-plus-circle'></i> &nbsp; Add</button>");
+
+            var $tableBody = $("#custProject tbody").append(button);
+            $(this).closest('tr').remove();
+            var whichtr = $(this).closest("tr");
+            whichtr.remove();
+        });
+
+        //1. Add new row
+        $("#custProject").on('click', '.add-custProject', function (e) {
+            e.preventDefault();
+            var button = $(this).closest('tr').clone();
+            var lastTd = button.find('td:last');
+            lastTd.html("<button type='button' class='btn btn-info btn-raised btn-sm remove'>Remove</button>");
+
+            var $tableBody = $("#createAgent tbody").append(button);
+            $(this).closest('tr').remove();
+        });
+    });
+
+    $(document).on("click", ".project", function () {
+        var id = $(this).attr("data-id");
+        var name = $(this).attr("data-name");
+        var pass = $(this).attr("data-pass");
+        var team = $(this).attr("data-team");
+        var skill = $(this).attr("data-skill");
+        var status = $(this).attr("data-status");
+
+        $("#UserId").prop("value", id);
+        $("#UserName").prop("value", name);
+        $("#UserPass").prop("value", pass);
+        $("#UserManager").prop("value", team);
+        $("#UserSkill").prop("value", skill);
+        $("#UserStatus").prop("value", status);
+    });
+
+    noConflict(document).ready(function () {
+        //Validation on Create Agent
+        var form = document.getElementById("crmAgent");
+        var name = document.getElementById("UName");
+        var level = document.getElementById("USkill");
+        var form1 = document.getElementById("agent");
+
+        name.onkeyup = function () { validation() };
+        level.onkeyup = function () { validation() };
+
+        function validation() {
+            if (name.value && level.value != "") {
+                $('.submit').prop('disabled', false);
+                form.onsubmit = function () { return true };
+                form1.onsubmit = function () { return true };
+            }
+            else {
+                $('.submit').prop('disabled', true);
+                form.onsubmit = function () { return false };
+                form1.onsubmit = function () { return false };
+            }
+        }
+
+        $("#agent").click(function () {
+            $("#myModal").modal();
+        });
+    });
+</script>

@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.submenu = "Update User";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <form id="editUser" action="@Url.Action("editUser", "Home")" method="post">
+                            <div class="widget">
+                                <div class="widget-body">
+                                    <div id="ErrorMessage"></div>
+                                    <div class="col-sm-6">
+                                        <input type="hidden" name="UserId" value="@ViewBag.User.UserId" />
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Username</label>
+                                            <input type="email" name="Email" class="form-control input-sm" id="UName" placeholder="entry username or full name" value="@ViewBag.User.Email" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Name</label>
+                                            <input type="text" name="Username" class="form-control input-sm" id="UName" placeholder="entry username or full name" value="@ViewBag.User.UserName" autofocus>
+                                            <div id="NameError"></div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="control-label" for="RoleId">Role</label>
+                                            <select id="RoleId" name="RoleId" class="form-control input-sm" title="Select Role for User">
+                                                <optgroup label="Level or role">
+                                                    @foreach (var item in ViewBag.Role)
+                                                    {
+                                                        <option value="@item.RoleId">@item.Rolename</option>
+                                                    }
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">Level or Skill</label>
+                                            <input type="text" name="UserSkill" class="form-control input-sm" id="USkill" placeholder="used ( , ) to separate skill" value="@ViewBag.User.UserSkill">
+                                            <div id="SkillError"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="inputSmall">User Status</label>
+                                            <select class="form-control input-sm" name="UserStatus">
+                                                <option value="1" @(ViewBag.User.UserStatus == 1 ? "selected" : "")>Active</option>
+                                                <option value="0" @(ViewBag.User.UserStatus == 0 ? "selected" : "")>Inactive</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="widget-footer">
+                                    <br />
+                                    <a class="btn btn-success btn-raised btn-sm submit" data-toggle="modal" data-target="#UpdateUser"><i class="fa fa-check-circle-o"></i> &nbsp; Finish</a>
+                                    <div class="modal fade" id="UpdateUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    Confirm Update
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-danger btn-ok" onclick="create()">Update</button>
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- .widget -->
+                        </form>
+                    </div>
+                </div><!-- END column -->
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+
+    </main>
+    <!--========== END app main -->
+</body>
+
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<script>
+    //JQuery No Conflict
+    var noConflict = jQuery.noConflict();
+
+    //Edit User
+    noConflict(document).on("click", ".project", function () {
+        var id = $(this).attr("data-id");
+        var name = $(this).attr("data-name");
+        var pass = $(this).attr("data-pass");
+        var team = $(this).attr("data-team");
+        var skill = $(this).attr("data-skill");
+        var status = $(this).attr("data-status");
+
+        $("#UserId").prop("value", id);
+        $("#UserName").prop("value", name);
+        $("#UserPass").prop("value", pass);
+        $("#UserManager").prop("value", team);
+        $("#UserSkill").prop("value", skill);
+        $("#UserStatus").prop("value", status);
+    });
+        $("#UpdateUser").click(function () {
+            $("#myModal").modal();
+        });
+</script>

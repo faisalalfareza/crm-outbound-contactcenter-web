@@ -1,0 +1,173 @@
+
+/* Global Stylesheet */
+body {font-family: "Calibri Light"; font-size:15px; font-weight:100 }
+table {font-size:13px;}
+.btn {border:0; outline:0; text-transform:none; }
+.outline-blue{border-color:dodgerblue;width:89%}
+.outline-blue:focus{border-color:dodgerblue;width:89%}
+.modal-dialog { border-radius:0px; border:0; outline:0; }
+.modal-content { border-radius:0px; border:0; outline:0; }
+.modal-footer { border:0; outline:0; }
+.edit-modal { cursor:pointer }
+.fill button {width:100%}
+.widget-scale {-webkit-transform:scale(1.0); -moz-transform:scale(1.0); -o-transform:scale(1.0); transform:scale(1.0); -webkit-transition: all 0.5s; -moz-transition: all 0.5s; transition: all 0.5s;}
+.widget-scale:hover {box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.25); -webkit-transform:scale(1.1); -moz-transform:scale(1.1); -o-transform:scale(1.1); transform:scale(1.1); -webkit-transition: all 0.5s; -moz-transition: all 0.5s; transition: all 0.5s; cursor:pointer}
+.form-group.submitMaster { padding-top:15% }
+
+.scale {-webkit-transform:scale(1.0); -moz-transform:scale(1.0); -o-transform:scale(1.0); transform:scale(1.0); -webkit-transition: all 0.5s; -moz-transition: all 0.5s; transition: all 0.5s;}
+.scale:hover {box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.25); -webkit-transform:scale(1.1); -moz-transform:scale(1.1); -o-transform:scale(1.1); transform:scale(1.1); -webkit-transition: all 0.5s; -moz-transition: all 0.5s; transition: all 0.5s; cursor:pointer}
+.panel-title {text-transform: none; font-size:12px; font-family: "Calibri Light"}
+.panel-body button {float: right; margin-top: -5%;}
+.panel-body .btn-group, .panel-body .form-group { margin-top: -5px; }
+
+.panel-body form .form-group { margin-top: -5px; padding-bottom:-5 }
+.panel-body form .form-group input { color: #aaa; }
+.panel-body form .form-group button { margin-top: -30px; float:right; border-radius:360px; padding-top:15px;padding-bottom:15px;padding-left:15px;padding-right:15px; }
+.panel-body form button { float: right; margin-top: 0%; }
+
+/*.panel-body table {width:100%; }
+.panel-body table tr td, .panel-body table tr th {padding-top:5px; text-align:center }
+.panel-body table tr td a {margin-top: 5%; padding-bottom:-10px; color:#aaa; }
+.panel-body table tr td button {margin-top: 5%; padding-bottom:-10px; color:#aaa; }*/
+.panel-body .big table tr td {text-align:left; 10px; padding-left:20px; padding-top:6px; color:#aaa; font-size:13px; }
+
+.dial-header { text-align:center; }
+.callResult {color: white; font-weight:100; font-size:50px; font-family: "Candara"; }
+.dial-header h1 {color: white; font-weight:100; font-size:50px; font-family: "Candara"; margin-top:-5%}
+@media (min-width: 768px) { .dial-header h1 {color: white; font-weight:100; font-size:50px; font-family: "Candara"; margin-top:-2% }}
+.dial-header h3 {color: white; font-weight:bold; font-family: "Candara";}
+.dial-button { text-align: center; margin-top: -10%; }
+@media (min-width: 768px) { .dial-button { text-align: center; margin-top: -20%; float:right }}
+.dial-button a { visibility:hidden; -webkit-transform:scale(0.8); -moz-transform:scale(0.8); -o-transform:scale(0.8); transform:scale(0.8); -webkit-transition: all 0.5s; -moz-transition: all 0.5s; transition: all 0.5s; border-radius: 360px; padding-top:35px;padding-bottom:35px;padding-left:35px;padding-right:35px; }
+.dial-button a:hover { -webkit-transform:scale(0.9); -moz-transform:scale(0.9); -o-transform:scale(0.9); transform:scale(0.9); -webkit-transition: all 0.5s; -moz-transition: all 0.5s; transition: all 0.5s; border-radius: 360px; padding-top:35px;padding-bottom:35px;padding-left:35px;padding-right:35px; }
+.dial-footer { text-align:left; }form-control
+.dial-footer h3 {color: white; font-weight:bold; font-family: "Candara"; margin-top:-10%; }
+@media (min-width: 768px) { .dial-footer h3 {color: white; font-weight:bold; font-family: "Candara"; margin-top:2%; }}
+
+/* remove the original arrow */
+.selectstyle {
+  padding-bottom: 1%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  /* no standardized syntax available, no ie-friendly solution available */
+}
+
+/* Duration Counter - Call */
+.col-sm-6 {padding-bottom:12px}
+.col-sm-6 button { margin-top: -10px; float:right }
+.widget-body.dial { background: rgba(82, 179, 217,.7); -webkit-transition: all 1.5s;-moz-transition: all 1.5s; transition: all 1.5s; }
+
+
+/* Create Agent Validation - MasterAgent */
+#NameError,#PassError,#ManagerError,#SkillError,#StatusError,#NumError { font-weight:100; font-family:"Calibri Light"; font-size:12px }
+
+/* File Select - Upload */
+.fileUpload {position: relative; overflow: hidden; }
+.fileUpload span i {color:white;}
+.fileUpload input.upload {position: absolute;top: 0;right: 0;margin: 0;padding: 0;font-size: 20px;cursor: pointer;opacity: 0;filter: alpha(opacity=0);}
+
+/* File Select & Drag - Upload */
+#uploadform .form-group #GroupId { margin-top: 5% }
+#uploadform .form-group #withdraw { margin-top: 0%; }
+    #uploadform .form-group #filedrag {
+      /*display: none;*/
+      font-weight: bold;
+      text-align: center;
+      padding: 2em 0;
+      color: #555;
+      transition: all 0.5s;
+      border: 2px dashed #52B3D9;
+      background: white ;
+      border-radius: 7px;
+      cursor: default;
+      z-index:16;
+    }
+
+      #uploadform .form-group #filedrag:hover  {
+        z-index:17;
+        color: #2C3E50;
+        border-color: #52B3D9;
+        background: #C5EFF7;
+        border-style: solid;
+        transition: all 0.5s;
+        box-shadow: inset 0 3px 4px;
+      }
+
+      .collumnNumber { width:93% }  
+
+
+.panel-table .panel-body{
+  padding:0;
+}
+
+.panel-table .panel-body .table-bordered{
+  border-style: none;
+  margin:0;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr > th:first-of-type {
+    text-align:center;
+    width: 100px;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr > th:last-of-type,
+.panel-table .panel-body .table-bordered > tbody > tr > td:last-of-type {
+  border-right: 0px;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr > th:first-of-type,
+.panel-table .panel-body .table-bordered > tbody > tr > td:first-of-type {
+  border-left: 0px;
+}
+
+.panel-table .panel-body .table-bordered > tbody > tr:first-of-type > td{
+  border-bottom: 0px;
+}
+
+.panel-table .panel-body .table-bordered > thead > tr:first-of-type > th{
+  border-top: 0px;
+}
+
+.panel-table .panel-footer .pagination{
+  margin:0; 
+}
+
+/*
+used to vertically center elements, may need modification if you're not using default sizes.
+*/
+.panel-table .panel-footer .col{
+ line-height: 34px;
+ height: 34px;
+}
+
+.panel-table .panel-heading .col h3{
+ line-height: 30px;
+ height: 30px;
+}
+
+.panel-table .panel-body .table-bordered > tbody > tr > td{
+  line-height: 34px;
+}
+
+.button {text-align:center; padding-bottom:5px;}
+.parameterButton {text-align:center; padding-bottom:5px;}
+/* Btn Outline Only */
+btn-outline { color: inherit; background-color:transparent; }
+.btn-primary.btn-outline {background-color:transparent; color: #428bca;} 
+.btn-success.btn-outline {background-color:transparent; color: #5cb85c;}
+.btn-info.btn-outline {background-color:transparent; color: #5bc0de;}
+.btn-warning.btn-outline {background-color:transparent; color: #f0ad4e;}
+.btn-danger.btn-outline {background-color:transparent; color: #d9534f;}
+
+.btn-primary.btn-outline:focus { background-color:transparent; color: 428bca;}
+.btn-success.btn-outline:focus { background-color:transparent; color: 5cb85c;}
+.btn-info.btn-outline:focus { background-color:transparent; color: 5bc0de;}
+.btn-warning.btn-outline:focus { background-color:transparent; color: f0ad4e;}
+.btn-danger.btn-outline:focus { background-color:transparent; color: d9534f; }
+
+.btn-primary.btn-outline:hover { background-color:transparent; color: 428bca;}
+.btn-success.btn-outline:hover { background-color:transparent; color: 5cb85c;}
+.btn-info.btn-outline:hover { background-color:transparent; color: 5bc0de;}
+.btn-warning.btn-outline:hover { background-color:transparent; color: f0ad4e;}
+.btn-danger.btn-outline:hover { background-color:transparent; color: d9534f; }

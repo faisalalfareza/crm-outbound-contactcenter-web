@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBDemoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DBDemoModelStoreContainer">
+    <EntitySet Name="Employee" EntityType="DBDemoModel.Store.Employee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TblProject" EntityType="DBDemoModel.Store.TblProject" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="NIP" Type="varchar" MaxLength="20" />
+    <Property Name="Nama" Type="varchar" MaxLength="50" />
+    <Property Name="NoKTP" Type="varchar" MaxLength="50" />
+    <Property Name="Alamat" Type="varchar" MaxLength="150" />
+    <Property Name="Kota" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TblProject">
+    <Key>
+      <PropertyRef Name="ProjectId" />
+    </Key>
+    <Property Name="ProjectId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProjectCode" Type="varchar" MaxLength="20" />
+    <Property Name="ProjectDesc" Type="varchar" MaxLength="50" />
+    <Property Name="Customer" Type="varchar" MaxLength="50" />
+    <Property Name="ServiceType" Type="varchar" MaxLength="20" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,39 @@
+﻿@model MVC_CRUD.Models.AuthModels.Login
+@{
+    ViewBag.Title = "CRM Outbond Contact Center";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="simple-page">
+    <div class="simple-page-wrap">
+        <div class="simple-page-logo animated swing">
+            <a>
+                <span><i class="fa fa-gg"></i></span>
+                <span>CRM OutBond Contact Center</span>
+            </a>
+        </div><!-- logo -->
+        <div class="simple-page-form animated flipInY" id="login-form">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <br />
+                <div class="form-group has-info">
+                    @Html.LabelFor(m => m.UserName, new { @class="control-label" })
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-sm", placeholder = "entry your username" })
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </div>
+                <div class="form-group has-info">
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control input-sm", placeholder = "entry your password" })
+                    @Html.ValidationMessageFor(m => m.Password)
+                </div>
+                <input type="submit" class="btn btn-primary btn-raised btn-sm" value="Sign In">
+            }
+        </div><!-- .simple-page-wrap -->
+    </div>
+    <!-- Include Page Foot -->
+    @RenderPage("~/Views/Gates/Foot.cshtml")
+</body>

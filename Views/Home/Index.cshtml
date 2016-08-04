@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "CRM Outbond Contact Center";
+}
+
+    <!-- Start App Main -->
+    <div class="tab-content">
+        <!-- crm agent view -->
+        <div role="tabpanel" id="crmAgent" class="tab-pane fade in active">
+            @RenderPage("~/Views/Home/crmAgent.cshtml")
+        </div>
+        <!-- crm agent view -->
+        <div role="tabpanel" id="crmNewcall" class="tab-pane fade">
+            @RenderPage("~/Views/Home/crmNewcall.cshtml")
+        </div>
+        <!-- master agent view -->
+        <div role="tabpanel" id="masterAgent" class="tab-pane fade">
+            @RenderPage("~/Views/Home/masterAgent.cshtml")
+        </div>
+        <!-- upload view -->
+        <div role="tabpanel" id="upload" class="tab-pane fade">
+            @RenderPage("~/Views/Home/upload.cshtml")
+        </div>
+    </div>
+    <!-- End App Main -->
+

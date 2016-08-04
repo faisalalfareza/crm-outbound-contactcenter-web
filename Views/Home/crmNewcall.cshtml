@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MVC_CRUD.Models.contactCenterModels.HistoryCall>
+@{
+    ViewBag.submenu = "New Call";
+}
+<!-- Include Page Header -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-md-12">
+                        <div class="widget">
+                            <header class="widget-header">
+                                <h4 class="widget-title"> List Contact - Contact Center </h4>
+                            </header><!-- .widget-header -->
+                            <hr class="widget-separator">
+                            <div class="widget-body">
+                                <div class="table-responsive">
+                                    <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Contact</th>
+                                                <th>Aging Data</th>
+                                                <th>Level</th>
+                                                <th>Project Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <a href="@Url.Action("call/"+item.ContactId, "Home")"><span class='badge badge-primary'><i class='fa fa-phone'></i> Dial</span></a>
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.ContactName)
+                                                    </td>
+                                                  
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.AgingData)<span> Day</span>
+                                                    </td>
+                                                    <td>
+                                                        Platinum
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CustomerName)<span> - </span>@Html.DisplayFor(modelItem => item.CustProName)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div><!-- END column -->
+                    <!-- Ajax dataTable -->
+                </div><!-- .row -->
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+    </main>
+    <!--========== END app main -->
+</body>

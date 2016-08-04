@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_CRM_CCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TR_Contact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerContactId" Type="varchar" MaxLength="50" />
+    <Property Name="ContactName" Type="varchar" MaxLength="50" />
+    <Property Name="ContactStatus" Type="int" />
+    <Property Name="ContactPhone" Type="varchar" MaxLength="50" />
+    <Property Name="BranchId" Type="varchar" MaxLength="50" />
+    <Property Name="BranchFullname" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="AgreementNo" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Usia" Type="int" />
+    <Property Name="KTP_Adress" Type="varchar" MaxLength="100" />
+    <Property Name="KTP_RT" Type="char" MaxLength="10" />
+    <Property Name="KTP_RW" Type="char" MaxLength="10" />
+    <Property Name="KTP_Kelurahan" Type="varchar" MaxLength="50" />
+    <Property Name="KTP_Kecamatan" Type="varchar" MaxLength="50" />
+    <Property Name="KTP_City" Type="varchar" MaxLength="50" />
+    <Property Name="KTP_Zipcode" Type="int" />
+    <Property Name="Residence_Adress" Type="varchar" MaxLength="100" />
+    <Property Name="Residence_Kelurahan" Type="varchar" MaxLength="50" />
+    <Property Name="Residence_Kecamatan" Type="varchar" MaxLength="50" />
+    <Property Name="Residence_City" Type="varchar" MaxLength="50" />
+    <Property Name="Residence_Zipcode" Type="int" />
+    <Property Name="Jenis_Pekerjaan" Type="varchar" MaxLength="50" />
+    <Property Name="MonthlyFixedIncome" Type="int" />
+    <Property Name="InstallmentAmount" Type="int" />
+    <Property Name="Status_Rumah" Type="varchar" MaxLength="50" />
+    <Property Name="JumlahTanggungan" Type="int" />
+    <Property Name="DownPayment" Type="int" />
+    <Property Name="GoLiveDate" Type="date" />
+    <Property Name="TglSelesaiAngsuran" Type="date" />
+    <Property Name="Tenor" Type="int" />
+    <Property Name="Odmax_Day_Final" Type="int" />
+    <Property Name="LastPayment" Type="date" />
+    <Property Name="Payment" Type="int" />
+    <Property Name="CallStatus" Type="varchar" MaxLength="50" />
+    <Property Name="SubStatus" Type="varchar" MaxLength="50" />
+    <Property Name="Remarks" Type="varchar" MaxLength="50" />
+    <Property Name="Param1" Type="varchar" MaxLength="50" />
+    <Property Name="Param2" Type="varchar" MaxLength="50" />
+    <Property Name="Param3" Type="varchar" MaxLength="50" />
+    <Property Name="Param4" Type="varchar" MaxLength="50" />
+    <Property Name="Param5" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="date" />
+    <Property Name="CustProId" Type="int" />
+    <Property Name="ExpiredDate" Type="date" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="TR_Customer">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+    <Property Name="CustomerDesc" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TR_Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="Rolename" Type="varchar" MaxLength="50" />
+    <Property Name="RoleDesc" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TR_TargetSetting">
+    <Key>
+      <PropertyRef Name="TargetId" />
+    </Key>
+    <Property Name="TargetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TargetName" Type="varchar" MaxLength="50" />
+    <Property Name="TargetFrom" Type="date" />
+    <Property Name="TargetTo" Type="date" />
+    <Property Name="TargetData" Type="int" />
+    <Property Name="TargetAmount" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Advance" Type="int" />
+    <Property Name="Intermediate" Type="int" />
+    <Property Name="Beginner" Type="int" />
+    <Property Name="CustProId" Type="int" />
+    <Property Name="Created_by" Type="varchar" MaxLength="50" />
+    <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="TR_User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="UserManager" Type="varchar" MaxLength="50" />
+    <Property Name="UserStatus" Type="int" />
+    <Property Name="CreatedOn" Type="date" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="UserPass" Type="varchar" MaxLength="50" />
+    <Property Name="UserSkill" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TT_CallHistory">
+    <Key>
+      <PropertyRef Name="CallLogId" />
+    </Key>
+    <Property Name="CallLogId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CallDuration" Type="varchar" MaxLength="50" />
+    <Property Name="CallStatus" Type="varchar" MaxLength="50" />
+    <Property Name="SubStatus" Type="varchar" MaxLength="50" />
+    <Property Name="Remarks" Type="text" />
+    <Property Name="CallDate" Type="datetime" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="ContactId" Type="int" />
+  </EntityType>
+  <EntityType Name="TT_CallResult">
+    <Key>
+      <PropertyRef Name="ResultId" />
+    </Key>
+    <Property Name="ResultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Param1" Type="text" />
+    <Property Name="Param2" Type="text" />
+    <Property Name="Param3" Type="text" />
+    <Property Name="Param4" Type="text" />
+    <Property Name="Param5" Type="text" />
+    <Property Name="CallLogId" Type="int" />
+    <Property Name="ContactId" Type="int" />
+  </EntityType>
+  <EntityType Name="TT_CustomerProject">
+    <Key>
+      <PropertyRef Name="CustProId" />
+    </Key>
+    <Property Name="CustProId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CustProName" Type="varchar" MaxLength="50" />
+    <Property Name="status" Type="int" />
+    <Property Name="CustProExpired" Type="date" />
+    <Property Name="CreatedOn" Type="date" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="Param1" Type="text" />
+    <Property Name="Param2" Type="text" />
+    <Property Name="Param3" Type="text" />
+    <Property Name="Param4" Type="text" />
+    <Property Name="Param5" Type="text" />
+    <Property Name="CustomerId" Type="int" />
+    <Property Name="r_closing" Type="int" />
+    <Property Name="r_promise" Type="int" />
+    <Property Name="r_prospect" Type="int" />
+    <Property Name="r_contact" Type="int" />
+    <Property Name="r_connect" Type="int" />
+    <Property Name="r_not_connect" Type="int" />
+  </EntityType>
+  <EntityType Name="TT_UserProject">
+    <Key>
+      <PropertyRef Name="UserProId" />
+    </Key>
+    <Property Name="UserProId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedOn" Type="date" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CustProId" Type="int" />
+  </EntityType>
+  <EntityContainer Name="DB_CRM_CCModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Contact" EntityType="Self.TR_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Customer" EntityType="Self.TR_Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_Role" EntityType="Self.TR_Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_TargetSetting" EntityType="Self.TR_TargetSetting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TR_User" EntityType="Self.TR_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TT_CallHistory" EntityType="Self.TT_CallHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TT_CallResult" EntityType="Self.TT_CallResult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TT_CustomerProject" EntityType="Self.TT_CustomerProject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TT_UserProject" EntityType="Self.TT_UserProject" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
