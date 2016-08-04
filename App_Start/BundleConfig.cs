@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Optimization;
 
 namespace MVC_CRUD
@@ -6,8 +7,21 @@ namespace MVC_CRUD
     public class BundleConfig
     {
         // For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
+        public static void AddDefaultIgnorePatterns(IgnoreList ignoreList)
+        {
+            if (ignoreList == null)
+                throw new ArgumentNullException("ignoreList");
+            ignoreList.Ignore("*.intellisense.js");
+            ignoreList.Ignore("*-vsdoc.js");
+            ignoreList.Ignore("*.debug.js", OptimizationMode.WhenEnabled);
+            //ignoreList.Ignore("*.min.js", OptimizationMode.WhenDisabled);
+            //ignoreList.Ignore("*.min.css", OptimizationMode.WhenDisabled);
+        }
+
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.IgnoreList.Clear();
+            AddDefaultIgnorePatterns(bundles.IgnoreList);
             /* Global */
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                 "~/Content/themes/base/jquery.ui.core.css",
