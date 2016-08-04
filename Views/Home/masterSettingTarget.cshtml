@@ -5,7 +5,7 @@
 
 <!-- Include Page Head -->
 @RenderPage("~/Views/Gates/Head.cshtml")
-@*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
+<script src="~/Scripts/jquery-1.7.1.js"></script>
 
 <body class="sb-left">
     @RenderPage("~/Views/Gates/Header.cshtml")
@@ -41,8 +41,8 @@
                                                 <tr>
                                                     <td>
                                                         <div class="btn-group">
-                                                            <a class="edit-modal" data-toggle="modal" data-target="#editSettingTarget" data-Id="@item.TargetId" data-Name="@item.TargetName" data-From="@item.TargetFrom" data-To="@item.TargetTo" data-Data="@item.TargetData" data-AmountPaid="@item.TargetAmountPaid" data-CustProName="@item.CustProName" data-Advance="@item.Advance" data-Beginner="@item.Beginner" data-Intermediate="@item.Intermediate"><span class='badge badge-warning'><i class="fa fa-edit"></i></span></a>
-                                                            <a class="formDelete" href="#" data-href="@Url.Action("deleteSettingTarget/" + item.TargetId, "Home")" data-id="@item.CustProId" data-name="@item.CustProName" data-toggle="modal" data-target="#delete"><span class='badge badge-danger'><i class="fa fa-trash-o"></i></span></a>
+                                                            <a class="edit-modal" data-toggle="modal" data-target="#editSettingTarget" data-id="@item.TargetId" data-name="@item.TargetName" data-from="@item.TargetFrom" data-to="@item.TargetTo" data-data="@item.TargetData" data-amountpaid="@item.TargetAmountPaid" data-custproname="@item.CustProName" data-advance="@item.Advance" data-beginner="@item.Beginner" data-intermediate="@item.Intermediate"><span class='badge badge-warning'><i class="fa fa-edit"></i></span></a>
+                                                            <a class="formDelete" href="#" data-href="@Url.Action("deleteSettingTarget/" + item.TargetId, "Home")" data-id="@item.CustProId" data-name="@item.TargetName" data-toggle="modal" data-target="#delete"><span class='badge badge-danger'><i class="fa fa-trash-o"></i></span></a>
                                                         </div>
                                                     </td>
                                                     <td>
@@ -88,6 +88,7 @@
                         </div>
                     </div>
                 </div>
+
                 <!-- Modal - Create Agent -->
                 <div class="modal fade" id="createCust" role="dialog" style="background: rgba(38, 194, 129, .2)">
                     <div class="modal-dialog">
@@ -97,23 +98,23 @@
                             <div class="modal-header">
                                 <h4 class="modal-title col-sm-8"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Form Input</h4>
                             </div>
-                            <form id="formCreate" action="@Url.Action("createSettingTarget", "Home")" method="post" name="Customer" onsubmit="return validation()">
+                            <form id="formCreate" action="@Url.Action("createSettingTarget", "Home")" method="post" name="Customer" onsubmit="return validateForm()">
                                 <div class="modal-body">
                                     <div id="ErrorMessage"></div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label class="control-label" for="inputSmall">Input Target Name</label>
-                                            <input type="text" name="TargetName" class="form-control input-sm" id="TName" placeholder="entry target name" autofocus>
+                                            <input type="text" name="TargetName" class="form-control input-sm" id="inputSmall" placeholder="entry target name" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputSmall">Input Target All</label>
-                                            <input type="number" name="TargetAmountPaid" class="form-control input-sm" id="TTall" placeholder="entry target all" autofocus>
+                                            <input type="number" name="TargetAmountPaid" class="form-control input-sm" id="inputSmall" placeholder="entry target all" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="from">From</label>
-                                            <div class="input-group date" id="TFrom" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
+                                            <div class="input-group date" id="from" data-date-format="dd-mm-yyyy" data-link-field="dtp_input1" data-link-format="yyyy-mm-dd">
                                                 <input type="text" id="TagetFrom" name="TargetFrom" class="form-control" value="" required />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -135,13 +136,13 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="inputSmall">Input Target Data</label>
-                                            <input type="number" name="TargetData" class="form-control input-sm" id="TData" placeholder="entry target data" autofocus>
+                                            <input type="number" name="TargetData" class="form-control input-sm" id="inputSmall" placeholder="entry target data" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label" for="to">To</label>
                                             <div class="input-group date" id="to" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                <input type="text" id="TTo" class="form-control" name="TargetTo" value="" required />
+                                                <input type="text" id="TargetTo" class="form-control" name="TargetTo" value="" required />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -156,24 +157,24 @@
                                     <div class="col-sm-12">
                                         <div class="form-group col-md-6">
                                             <label class="control-label" for="inputSmall">Advance</label>
-                                            <input type="number" name="Advance" class="form-control input-sm" id="Advance" placeholder="entry target for advance agent (%)" autofocus>
+                                            <input type="number" name="Advance" class="form-control input-sm" id="inputSmall" placeholder="entry target for advance agent (%)" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="control-label" for="inputSmall">Intermediate</label>
-                                            <input type="number" name="Intermediate" class="form-control input-sm" id="Inter" placeholder="entry target for intermediate agent (%)" autofocus>
+                                            <input type="number" name="Intermediate" class="form-control input-sm" id="inputSmall" placeholder="entry target for intermediate agent (%)" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="form-group col-md-6">
                                             <label class="control-label" for="inputSmall">Beginner</label>
-                                            <input type="number" name="Beginner" class="form-control input-sm" id="Beginner" placeholder="entry target for beginner agent (%)" autofocus>
+                                            <input type="number" name="Beginner" class="form-control input-sm" id="inputSmall" placeholder="entry target for beginner agent(%)" autofocus>
                                             <div id="NameError"></div>
                                         </div>
                                     </div>
                                     <div class="widget-footer">
-                                        <button type="button" class="btn btn-success btn-raised btn-sm" data-toggle="modal" data-target="#inputTarget" disabled><i class="fa fa-check-circle-o"></i> &nbsp; Submit</button>
+                                        <button type="button" class="btn btn-success btn-raised btn-sm" data-toggle="modal" data-target="#inputTarget"><i class="fa fa-check-circle-o"></i> &nbsp; Submit</button>
 
                                         <div class="modal fade" id="inputTarget" tabindex="-1" role="dialog">
                                             <div class="modal-dialog modal-sm">
@@ -187,14 +188,14 @@
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-danger btn-ok">Create</button>
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <button type="reset" class="btn btn-default btn-raised btn-sm">Or Reset</button>
                                         <button type="button" class="btn btn-default btn-raised btn-sm" data-dismiss="modal">Close</button>
-                                    </div
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -211,7 +212,7 @@
                             <div class="modal-header">
                                 <h4 class="modal-title col-sm-8"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Form Edit</h4>
                             </div>
-                            <form id="formCreate" action="@Url.Action("editSettingTarget", "Home")" method="post" name="Customer" onsubmit="return validateForm()">
+                            <form action="@Url.Action("editSettingTarget", "Home")" method="post" name="Customer" onsubmit="return validateForm()">
                                 <div class="modal-body">
                                     <div id="ErrorMessage"></div>
                                     <div class="col-sm-6">
@@ -288,19 +289,20 @@
                                         </div>
                                     </div>
                                     <div class="widget-footer">
-                                        <div class="modal fade" id="cc" tabindex="-1" role="dialog">
+                                        <br />
+                                        <button type="button" class="btn btn-success btn-raised btn-sm submit edit-modal" data-toggle="modal" data-target="#update"><i class="fa fa-check-circle-o"></i> &nbsp; Finish</button>
+                                        <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-sm">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         Confirm Update
                                                     </div>
                                                     <div class="modal-body">
-                                                        <p>Are you sure ?</p>
+                                                        Are you sure ?
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="submit" class="btn btn-danger btn-ok">Update</button>
                                                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -322,6 +324,7 @@
         @RenderPage("~/Views/Gates/Foot.cshtml")
 
     </main>
+
     <!--========== END app main -->
 
 </body>
@@ -351,63 +354,21 @@
     });
 
     $(document).ready(function () {
-        $("#CreateCust").click(function () {
-            $("#myModal").modal();
-        });
         $(".selectpicker").selectpicker({
             style: "btn-primary btn-outline btn-sm",
         });
-    });
-$(document).ready(function () {
-        noConflict(document).ready(function () {
 
-            //Validation on Add Agent
-            var form = document.getElementById("formST");
-            var form1 = document.getElementById("inputTarget");
-            var name = document.getElementById("TName");
-            var ttall = document.getElementById("TTall");
-            var tfrom = document.getElementById("TFrom");
-            var custId = document.getElementById("CustomerId");
-            var tdata = document.getElementById("TData");
-            var tto = document.getElementById("TTo");
-            var uf = document.getElementById("Advance");
-            var inter = document.getElementById("Inter");
-            var begin = document.getElementById("Beginner");
-
-
-            name.onkeyup = function () { validation() };
-            ttall.onkeyup = function () { validation() };
-            tfrom.onkeyup = function () { validation() };
-            custId.onkeyup = function () { validation() };
-            tdata.onkeyup = function () { validation() };
-            tto.onkeyup = function () { validation() };
-            uf.onkeyup = function () { validation() };
-            inter.onkeyup = function () { validation() };
-            begin.onkeyup = function () { validation() };
+        $("#CreateCust").click(function () {
+            $("#myModal").modal();
         });
+
+        noConflict(document).on("click", ".formDelete", function () {
+            var href = $(this).attr("data-href");
+            var mail = $(this).attr("data-name");
+
+            $("#delete .modal-body").html("Are you sure delete " + mail + " ?");
+            var a = $("#delete .modal-footer a");
+            a.attr("href", href);
+        })
     });
-            function validation() {
-                if (name.value && ttall.value && tfrom.value && custId.value && tdata.value&& tto.value && uf.value&& inter.value&& begin.value != "") {
-                    $('.submit').prop('disabled', false);
-                    form.onsubmit = function () { return true };
-                    form1.onsubmit = function () { return true };
-                }
-                else {
-                    $('.submit').prop('disabled', true);
-                    form.onsubmit = function () { return false };
-                    form1.onsubmit = function () { return false };
-                }
-            }
-            $("#inputTarget").click(function () {
-                $("#myModal").modal();
-            });
-            noConflict(document).on("click", ".formDelete", function () {
-                var href = $(this).attr("data-href");
-                var mail = $(this).attr("data-name");
-
-                $("#delete .modal-body").html("Are you sure delete " + mail + " ?");
-                var a = $("#delete .modal-footer a");
-                a.attr("href", href);
-            })
-
 </script>

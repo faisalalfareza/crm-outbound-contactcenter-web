@@ -4,7 +4,7 @@
 
 <!-- Include Page Head -->
 @RenderPage("~/Views/Gates/Head.cshtml")
-@*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
+<script src="~/Scripts/jquery-1.7.1.js"></script>
 
 <script>
     function dialCallPost() {
@@ -331,7 +331,7 @@
             if (time['detik'] < 10) {
                 time['detik'] = "0" + time['detik'];
             }
-            //jika detik lebih dari 10
+                //jika detik lebih dari 10
             else {
                 //jika detik sama dengan 60
                 if (time['detik'] == 60) {
@@ -341,7 +341,7 @@
                     if (time['menit'] < 10) {
                         time['menit'] = "0" + time['menit'];
                     }
-                    //jika menit lebih dari 10
+                        //jika menit lebih dari 10
                     else {
                         //jika menit sama dengan 60
                         if (time['menit'] == 60) {
@@ -351,7 +351,7 @@
                             if (time['jam'] < 10) {
                                 time['jam'] = "0" + time['jam'];
                             }
-                            //jika jam lebih dari 10
+                                //jika jam lebih dari 10
                             else {
                                 time['jam'];
                             }

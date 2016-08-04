@@ -1,5 +1,4 @@
-﻿@model IEnumerable<MVC_CRUD.Models.contactCenterModels.HistoryCall>
-@{
+﻿@{
     ViewBag.submenu = "Call Status";
 }
 
@@ -42,45 +41,42 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach (var item in Model)
+                                                    @foreach (var item in ViewBag.suspect)
                                                     {
-                                                        if (!(item.CallStatus.Equals("Closing")))
-                                                        {
-                                                            <tr>
-                                                                <td>
-                                                                    <a href="@Url.Action("callView/" + item.ContactId, "Home")"><span class='badge badge-info'> <i class='fa fa-book'></i> &nbsp; View</span></a>
-                                                                </td>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="@Url.Action("callView/" + item.ContactId, "Home")"><span class='badge badge-info'> <i class='fa fa-book'></i> &nbsp; View</span></a>
+                                                            </td>
 
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.ContactName)
-                                                                </td>
-                                                               <td>
-                                                                    @Html.DisplayFor(modelItem => item.CallStatus)<span> , </span>@Html.DisplayFor(modelItem => item.SubStatus)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.BeginCall)
-                                                                </td>
-                                                                <td>
-                                                                    @if (item.CallBack.Equals(item.BeginCall))
-                                                                    {
-                                                                        <span>-</span>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        @Html.DisplayFor(modelItem => item.CallBack)
-                                                                    }
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.AgingData)<span> Day</span>
-                                                                </td>
-                                                                <td>
-                                                                    Platinum
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.Reach)<span>x</span>
-                                                                </td>
-                                                            </tr>
-                                                        }
+                                                            <td>
+                                                                @item.ContactName
+                                                            </td>
+                                                            <td>
+                                                                @item.CallStatus<span> , </span>@item.SubStatus
+                                                            </td>
+                                                            <td>
+                                                                @item.BeginCall
+                                                            </td>
+                                                            <td>
+                                                                @if (item.CallBack.Equals(item.BeginCall))
+                                                                {
+                                                                    <span>-</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @item.CallBack
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                @item.AgingData<span> Day</span>
+                                                            </td>
+                                                            <td>
+                                                                Platinum
+                                                            </td>
+                                                            <td>
+                                                                @item.Reach<span>x</span>
+                                                            </td>
+                                                        </tr>
                                                     }
                                                 </tbody>
                                             </table>
@@ -105,44 +101,41 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach (var item in Model)
+                                                    @foreach (var item in ViewBag.closing)
                                                     {
-                                                        if (item.CallStatus.Equals("Closing"))
-                                                        {
-                                                            <tr>
-                                                                <td>
-                                                                    <a href="@Url.Action("callclose/" + item.ContactId, "Home")"><span class='badge badge-success'> <i class='fa fa-book'></i> &nbsp; View</span></a>
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.ContactName)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.CallStatus)<span> , </span>@Html.DisplayFor(modelItem => item.SubStatus)
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.BeginCall)
-                                                                </td>
-                                                                <td>
-                                                                    @if (item.CallBack.Equals(item.BeginCall))
-                                                                    {
-                                                                        <span>-</span>
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        @Html.DisplayFor(modelItem => item.CallBack)
-                                                                    }
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.AgingData)<span> Day</span>
-                                                                </td>
-                                                                <td>
-                                                                    Platinum
-                                                                </td>
-                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.Reach)<span>x</span>
-                                                                </td>
-                                                            </tr>
-                                                        }
+                                                        <tr>
+                                                            <td>
+                                                                <a href="@Url.Action("callclose/" + item.ContactId, "Home")"><span class='badge badge-success'> <i class='fa fa-book'></i> &nbsp; View</span></a>
+                                                            </td>
+                                                            <td>
+                                                                @item.ContactName
+                                                            </td>
+                                                            <td>
+                                                                @item.CallStatus<span> , </span>@item.SubStatus
+                                                            </td>
+                                                            <td>
+                                                                @item.BeginCall
+                                                            </td>
+                                                            <td>
+                                                                @if (item.CallBack.Equals(item.BeginCall))
+                                                                {
+                                                                    <span>-</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @item.CallBack
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                @item.AgingData<span> Day</span>
+                                                            </td>
+                                                            <td>
+                                                                Platinum
+                                                            </td>
+                                                            <td>
+                                                                @item.Reach<span>x</span>
+                                                            </td>
+                                                        </tr>
                                                     }
                                                 </tbody>
                                             </table>

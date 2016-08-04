@@ -94,20 +94,20 @@ namespace MVC_CRUD.Controllers
             if (Session["UserId"] != null && Session["RoleId"].ToString() == "4")
             {
                 IEnumerable<contactCenterModels.HistoryDetail>
-                    historydetail = (from callH in db.TT_CallHistory
-                                     join contact in db.TR_Contact on callH.ContactId equals contact.ContactId
-                                     join agent in db.TR_User on callH.UserId equals agent.UserId
-                                     where contact.ContactId.Equals(id)
-                                     select new contactCenterModels.HistoryDetail()
-                                     {
-                                         CallDate = callH.CallDate,
-                                         ContactPhone = contact.ContactPhone,
-                                         CallStatus = callH.CallStatus,
-                                         SubStatus = callH.SubStatus,
-                                         Remarks = callH.Remarks,
-                                         AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), callH.CallDate),//1,//,
-                                         UserName = agent.UserName
-                                     }).OrderByDescending(x => x.CallDate);
+                historydetail = (from callH in db.TT_CallHistory
+                                 join contact in db.TR_Contact on callH.ContactId equals contact.ContactId
+                                 join agent in db.TR_User on callH.UserId equals agent.UserId
+                                 where contact.ContactId.Equals(id)
+                                 select new contactCenterModels.HistoryDetail()
+                                 {
+                                     CallDate = callH.CallDate,
+                                     ContactPhone = contact.ContactPhone,
+                                     CallStatus = callH.CallStatus,
+                                     SubStatus = callH.SubStatus,
+                                     Remarks = callH.Remarks,
+                                     AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), callH.CallDate),//1,//,
+                                     UserName = agent.UserName
+                                 }).OrderByDescending(x => x.CallDate);
                 TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
 
                 TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
@@ -550,10 +550,8 @@ namespace MVC_CRUD.Controllers
         }
 
         [HttpPost]
-        // GET: ExportData
         public ActionResult ExportToExcel(int GroupId, String callstatus, DateTime DateTo, DateTime DateFrom)
         {
-
             var data = new List<TR_Contact>();
             if (callstatus == "notselected")
             {
@@ -566,14 +564,13 @@ namespace MVC_CRUD.Controllers
 
             foreach (var item in data)
             {
-                item.ContactStatus = 1;
-                item.UserId = 0;
+                item.ContactStatus = 6;
+              //  item.UserId = 0;
 
                 var history = db.TT_CallHistory.Where(x => x.ContactId == item.ContactId).ToList();
                 foreach (var item1 in history)
                 {
                     db.TT_CallHistory.Remove(item1);
-
                 }
             }
             db.SaveChanges();
@@ -762,7 +759,7 @@ namespace MVC_CRUD.Controllers
             user.RoleId = RoleId;
             user.UserName = Username;
             user.Email = Email;
-            user.UserPass = UserPass;
+            //user.UserPass = UserPass;
             user.UserSkill = UserSkill;
             user.UserStatus = UserStatus;
 
@@ -788,36 +785,63 @@ namespace MVC_CRUD.Controllers
         {
             if (Session["UserId"] != null && Session["RoleId"].ToString() == "2")
             {
-                String UserName = Session["UserName"].ToString();
+                string UserName = Session["UserName"].ToString();
                 int[] UserId = (from user in db.TR_User
                                 where user.UserManager == UserName
                                 select user.UserId).ToArray();
-                var result = from contact in db.TR_Contact
-                             join callH in (from call in db.TT_CallHistory
-                                            group call by call.ContactId into grouping
-                                            select new
-                                            {
-                                                ContactId = grouping.Key,
-                                                BeginCall = grouping.Min(prod => prod.CallDate),
-                                                CallBack = grouping.Max(prod => prod.CallDate)
-                                            }) on contact.ContactId equals callH.ContactId
-                             join manager in db.TR_User on contact.UserId equals manager.UserId
-                             where UserId.Contains((int)contact.UserId)
-                             select new contactCenterModels.HistoryCall()
-                             {
-                                 ContactName = contact.ContactName,
-                                 ContactId = contact.ContactId,
-                                 CustomerContactId = contact.CustomerContactId,
-                                 CallStatus = contact.CallStatus,
-                                 SubStatus = contact.SubStatus,
-                                 BeginCall = callH.BeginCall,
-                                 CallBack = callH.CallBack,
-                                 AgingData = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now),
-                                 Reach = (from h in db.TT_CallHistory
-                                          where h.ContactId == contact.ContactId
-                                          select h).Count()
-                             };
-                return View(result);
+                var closing = from contact in db.TR_Contact
+                              join callH in (from call in db.TT_CallHistory
+                                             group call by call.ContactId into grouping
+                                             select new
+                                             {
+                                                 ContactId = grouping.Key,
+                                                 BeginCall = grouping.Min(prod => prod.CallDate),
+                                                 CallBack = grouping.Max(prod => prod.CallDate)
+                                             }) on contact.ContactId equals callH.ContactId
+                              join manager in db.TR_User on contact.UserId equals manager.UserId
+                              where UserId.Contains((int)contact.UserId) && contact.ContactStatus == 3
+                              select new HistoryCall()
+                              {
+                                  ContactName = contact.ContactName,
+                                  ContactId = contact.ContactId,
+                                  CustomerContactId = contact.CustomerContactId,
+                                  CallStatus = contact.CallStatus,
+                                  SubStatus = contact.SubStatus,
+                                  BeginCall = callH.BeginCall,
+                                  CallBack = callH.CallBack,
+                                  AgingData = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now),
+                                  Reach = (from h in db.TT_CallHistory
+                                           where h.ContactId == contact.ContactId
+                                           select h).Count()
+                              };
+                var suspect = from contact in db.TR_Contact
+                              join callH in (from call in db.TT_CallHistory
+                                             group call by call.ContactId into grouping
+                                             select new
+                                             {
+                                                 ContactId = grouping.Key,
+                                                 BeginCall = grouping.Min(prod => prod.CallDate),
+                                                 CallBack = grouping.Max(prod => prod.CallDate)
+                                             }) on contact.ContactId equals callH.ContactId
+                              join manager in db.TR_User on contact.UserId equals manager.UserId
+                              where UserId.Contains((int)contact.UserId) && contact.ContactStatus == 4
+                              select new HistoryCall()
+                              {
+                                  ContactName = contact.ContactName,
+                                  ContactId = contact.ContactId,
+                                  CustomerContactId = contact.CustomerContactId,
+                                  CallStatus = contact.CallStatus,
+                                  SubStatus = contact.SubStatus,
+                                  BeginCall = callH.BeginCall,
+                                  CallBack = callH.CallBack,
+                                  AgingData = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now),
+                                  Reach = (from h in db.TT_CallHistory
+                                           where h.ContactId == contact.ContactId
+                                           select h).Count()
+                              };
+                ViewBag.closing = closing.ToList();
+                ViewBag.suspect = suspect.ToList();
+                return View();
             } else {
                 return RedirectToAction("Login", "Auth");
             }
@@ -1448,28 +1472,30 @@ namespace MVC_CRUD.Controllers
             return Json(hasil);
         }
         /* Master Expired*/
+        /* Master Expired*/
         public ActionResult masterExpired()
         {
             if (Session["UserId"] != null && Session["RoleId"].ToString() == "3")
             {
                 ViewBag.CustomerName = db.TR_Customer.ToList();
                 var result = (from CustP in db.TT_CustomerProject
-                              join cust in db.TR_Customer on CustP.CustomerId equals cust.CustomerId
-                              where CustP.status == 0
-                              select new contactCenterModels.Customer()
-                              {
-                                  CustProId = CustP.CustProId,
-                                  CustProName = CustP.CustProName,
-                                  CustProExpired = CustP.CustProExpired,
-                                  CustomerName = cust.CustomerName,
-                                  Param1 = CustP.Param1,
-                                  Param2 = CustP.Param2,
-                                  Param3 = CustP.Param3,
-                                  Param4 = CustP.Param4,
-                                  Param5 = CustP.Param5
-                              }).ToList();
+                                join cust in db.TR_Customer on CustP.CustomerId equals cust.CustomerId
+                                where CustP.status == 0
+                                select new contactCenterModels.Customer()
+                                {
+                                    CustProId = CustP.CustProId,
+                                    CustProName = CustP.CustProName,
+                                    CustProExpired = CustP.CustProExpired,
+                                    CustomerName = cust.CustomerName,
+                                    Param1 = CustP.Param1,
+                                    Param2 = CustP.Param2,
+                                    Param3 = CustP.Param3,
+                                    Param4 = CustP.Param4,
+                                    Param5 = CustP.Param5
+                                }).ToList();
                 return View(result);
-            } else {
+            }
+            else {
                 return RedirectToAction("Login", "Auth");
             }
         }
@@ -1477,7 +1503,8 @@ namespace MVC_CRUD.Controllers
         public ActionResult withdrawExpired()
         {
             if (Session["UserId"] != null && Session["RoleId"].ToString() == "3")
-            {                String UserName = Session["UserName"].ToString();
+            {
+                String UserName = Session["UserName"].ToString();
                 int[] UserId = (from user in db.TR_User
                                 where user.UserManager == UserName
                                 select user.UserId).ToArray();
@@ -1491,7 +1518,7 @@ namespace MVC_CRUD.Controllers
                                }).Distinct().ToList();
                 ViewBag.GroupExp = new SelectList(db.TT_CustomerProject.Where(x => x.status == 0), "CustProId", "CustProName");
                 return View();
-            } else { 
+            } else {
                 return RedirectToAction("Login", "Auth");
             }
         }
@@ -1512,7 +1539,7 @@ namespace MVC_CRUD.Controllers
             foreach (var item in data)
             {
                 item.ContactStatus = 1;
-                item.UserId = 0;
+          //   item.UserId =0;
                 var history = db.TT_CallHistory.Where(x => x.ContactId == item.ContactId).ToList();
                 foreach (var item1 in history)
                 {

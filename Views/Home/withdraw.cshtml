@@ -116,11 +116,16 @@
 </body>
 
 <script>
-    $(document).ready(function () {
+  $(document).ready(function () {
         $(".selectpicker").selectpicker({
             style: "btn-primary btn-outline btn-sm",
         });
         selectDefault();
+        $("#sub").click(function () {
+            $("#CreateUser").fadeOut();
+            $(".modal-backdrop").fadeOut();
+        });
+
     });
     function selectDefault(formdata) {
         var formdata = new FormData()
@@ -145,4 +150,5 @@
             }
         });
     }
+
 </script>
