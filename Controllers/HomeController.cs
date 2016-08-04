@@ -21,140 +21,145 @@ namespace MVC_CRUD.Controllers
         DB_CRM_CCEntities db = new DB_CRM_CCEntities();
         public ActionResult crmAgent()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "4")
             {
+                int UserId = Convert.ToInt32(Session["UserId"].ToString());
+                var result = (from contact in db.TR_Contact.Where(p=> p.UserId == UserId)
+                             join callH in (from call in db.TT_CallHistory
+                                            group call by call.ContactId into grouping
+                                            select new
+                                            {
+                                                ContactId = grouping.Key,
+                                                BeginCall = grouping.Min(prod => prod.CallDate),
+                                                CallBack = grouping.Max(prod => prod.CallDate)
+                                            }) on contact.ContactId equals callH.ContactId
+                             join custP in db.TT_CustomerProject on contact.CustProId equals custP.CustProId
+                             join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
+                             //where contact.UserId == UserId
+                             select new contactCenterModels.HistoryCall
+                             {
+                                 ContactName = contact.ContactName,
+                                 ContactId = contact.ContactId,
+                                 CustomerName = contact.CustomerName,
+                                 CustProName = custP.CustProName,
+                                 CustomerContactId = contact.CustomerContactId,
+                                 CallStatus = contact.CallStatus,
+                                 SubStatus = contact.SubStatus,
+                                 BeginCall = callH.BeginCall,
+                                 CallBack = callH.CallBack,
+                                 AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now),
+                                 AgingData = SqlFunctions.DateDiff("d", contact.CreatedOn, DateTime.Now),
+                                 Reach = (from h in db.TT_CallHistory
+                                          where h.ContactId == contact.ContactId
+                                          select h).Count()
+                             }).ToList();
+
+                ViewBag.closing = db.TT_CallHistory.Count(h => h.CallStatus.Equals("Closing") && h.UserId == UserId);
+                ViewBag.prospect = db.TT_CallHistory.Count(h => h.CallStatus.Equals("Prospect") && h.UserId == UserId);
+                ViewBag.notprospect = db.TT_CallHistory.Count(h => h.CallStatus != "Closing" && h.CallStatus != "Prospect" && h.UserId == UserId);
+                ViewBag.newdata = db.TR_Contact.Count(h => h.ContactStatus == 1 && h.UserId == UserId);
+                return View(result);
+            }
+            else {
                 return RedirectToAction("Login", "Auth");
             }
-            int UserId = Convert.ToInt32(Session["UserId"].ToString());
-            var result = (from contact in db.TR_Contact.Where(p=> p.UserId == UserId)
-                         join callH in (from call in db.TT_CallHistory
-                                        group call by call.ContactId into grouping
-                                        select new
-                                        {
-                                            ContactId = grouping.Key,
-                                            BeginCall = grouping.Min(prod => prod.CallDate),
-                                            CallBack = grouping.Max(prod => prod.CallDate)
-                                        }) on contact.ContactId equals callH.ContactId
-                         join custP in db.TT_CustomerProject on contact.CustProId equals custP.CustProId
-                         join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
-                         //where contact.UserId == UserId
-                         select new contactCenterModels.HistoryCall
-                         {
-                             ContactName = contact.ContactName,
-                             ContactId = contact.ContactId,
-                             CustomerName = contact.CustomerName,
-                             CustProName = custP.CustProName,
-                             CustomerContactId = contact.CustomerContactId,
-                             CallStatus = contact.CallStatus,
-                             SubStatus = contact.SubStatus,
-                             BeginCall = callH.BeginCall,
-                             CallBack = callH.CallBack,
-                             AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now),
-                             AgingData = SqlFunctions.DateDiff("d", contact.CreatedOn, DateTime.Now),
-                             Reach = (from h in db.TT_CallHistory
-                                      where h.ContactId == contact.ContactId
-                                      select h).Count()
-                         }).ToList();
-
-            ViewBag.closing = db.TT_CallHistory.Count(h => h.CallStatus.Equals("Closing") && h.UserId == UserId);
-            ViewBag.prospect = db.TT_CallHistory.Count(h => h.CallStatus.Equals("Prospect") && h.UserId == UserId);
-            ViewBag.notprospect = db.TT_CallHistory.Count(h => h.CallStatus != "Closing" && h.CallStatus != "Prospect" && h.UserId == UserId);
-            ViewBag.newdata = db.TR_Contact.Count(h => h.ContactStatus == 1 && h.UserId == UserId);
-            return View(result);
         }
 
         public ActionResult crmNewcall()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "4")
             {
+                int UserId = Convert.ToInt32(Session["UserId"].ToString());
+                var result = (from contact in db.TR_Contact
+                              join custP in db.TT_CustomerProject on contact.CustProId equals custP.CustProId
+                              join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
+                              where contact.ContactStatus == 1 && contact.UserId == UserId
+                              select new contactCenterModels.HistoryCall()
+                              {
+                                  ContactName = contact.ContactName,
+                                  ContactId = contact.ContactId,
+                                  CustomerContactId = contact.CustomerContactId,
+                                  CustomerName = cust.CustomerName,
+                                  CustProName = custP.CustProName,
+                                  AgingData = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now)
+                              }).ToList();
+                return View(result);
+            } else {
                 return RedirectToAction("Login", "Auth");
             }
-            int UserId = Convert.ToInt32(Session["UserId"].ToString());
-            var result = (from contact in db.TR_Contact
-                          join custP in db.TT_CustomerProject on contact.CustProId equals custP.CustProId
-                          join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
-                          where contact.ContactStatus == 1 && contact.UserId == UserId
-                          select new contactCenterModels.HistoryCall()
-                          {
-                              ContactName = contact.ContactName,
-                              ContactId = contact.ContactId,
-                              CustomerContactId = contact.CustomerContactId,
-                              CustomerName = cust.CustomerName,
-                              CustProName = custP.CustProName,
-                              AgingData = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now)
-                          }).ToList();
-            return View(result);
         }
 
         public ActionResult call(int id)
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "4")
             {
+                IEnumerable<contactCenterModels.HistoryDetail>
+                    historydetail = (from callH in db.TT_CallHistory
+                                     join contact in db.TR_Contact on callH.ContactId equals contact.ContactId
+                                     join agent in db.TR_User on callH.UserId equals agent.UserId
+                                     where contact.ContactId.Equals(id)
+                                     select new contactCenterModels.HistoryDetail()
+                                     {
+                                         CallDate = callH.CallDate,
+                                         ContactPhone = contact.ContactPhone,
+                                         CallStatus = callH.CallStatus,
+                                         SubStatus = callH.SubStatus,
+                                         Remarks = callH.Remarks,
+                                         AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), callH.CallDate),//1,//,
+                                         UserName = agent.UserName
+                                     }).OrderByDescending(x => x.CallDate);
+                TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
+
+                TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
+                String CustomerName = (from h in db.TR_Customer
+                                       where h.CustomerId == paramProject.CustomerId
+                                       select h.CustomerName).FirstOrDefault();
+                ViewBag.call = call;
+
+                ViewBag.historydetail = historydetail.ToList();
+                ViewBag.param = paramProject;
+                ViewBag.CustomerName = CustomerName + " - " + paramProject.CustProName;
+                return View();
+            } else {
                 return RedirectToAction("Login", "Auth");
             }
-            IEnumerable<contactCenterModels.HistoryDetail>
-                historydetail = (from callH in db.TT_CallHistory
-                                 join contact in db.TR_Contact on callH.ContactId equals contact.ContactId
-                                 join agent in db.TR_User on callH.UserId equals agent.UserId
-                                 where contact.ContactId.Equals(id)
-                                 select new contactCenterModels.HistoryDetail()
-                                 {
-                                     CallDate = callH.CallDate,
-                                     ContactPhone = contact.ContactPhone,
-                                     CallStatus = callH.CallStatus,
-                                     SubStatus = callH.SubStatus,
-                                     Remarks = callH.Remarks,
-                                     AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), callH.CallDate),//1,//,
-                                     UserName = agent.UserName
-                                 }).OrderByDescending(x => x.CallDate);
-            TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
-
-            TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
-            String CustomerName = (from h in db.TR_Customer
-                                   where h.CustomerId == paramProject.CustomerId
-                                   select h.CustomerName).FirstOrDefault();
-            ViewBag.call = call;
-
-            ViewBag.historydetail = historydetail.ToList();
-            ViewBag.param = paramProject;
-            ViewBag.CustomerName = CustomerName + " - " + paramProject.CustProName;
-            return View();
         }
 
         public ActionResult callclose(int id)
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && (Session["RoleId"].ToString() == "4"  || Session["RoleId"].ToString() == "2"))
             {
-                return RedirectToAction("Login", "Auth");
-            }
-            IEnumerable<contactCenterModels.HistoryDetail>
-                historydetail = (from callH in db.TT_CallHistory
-                                 join contact in db.TR_Contact on callH.ContactId equals contact.ContactId
-                                 join agent in db.TR_User on callH.UserId equals agent.UserId
-                                 where contact.ContactId.Equals(id)
-                                 select new contactCenterModels.HistoryDetail()
-                                 {
-                                     CallDate = callH.CallDate,
-                                     ContactPhone = contact.ContactPhone,
-                                     CallStatus = callH.CallStatus,
-                                     SubStatus = callH.SubStatus,
-                                     Remarks = callH.Remarks,
-                                     AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), callH.CallDate),//1,//,
-                                     UserName = agent.UserName
-                                 }).OrderByDescending(x => x.CallDate);
-            TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
-            TT_CallHistory callhis = db.TT_CallHistory.Where(p => p.ContactId == (id)).FirstOrDefault();
+                IEnumerable<contactCenterModels.HistoryDetail>
+                    historydetail = (from callH in db.TT_CallHistory
+                                     join contact in db.TR_Contact on callH.ContactId equals contact.ContactId
+                                     join agent in db.TR_User on callH.UserId equals agent.UserId
+                                     where contact.ContactId.Equals(id)
+                                     select new contactCenterModels.HistoryDetail()
+                                     {
+                                         CallDate = callH.CallDate,
+                                         ContactPhone = contact.ContactPhone,
+                                         CallStatus = callH.CallStatus,
+                                         SubStatus = callH.SubStatus,
+                                         Remarks = callH.Remarks,
+                                         AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), callH.CallDate),//1,//,
+                                         UserName = agent.UserName
+                                     }).OrderByDescending(x => x.CallDate);
+                TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
+                TT_CallHistory callhis = db.TT_CallHistory.Where(p => p.ContactId == (id)).FirstOrDefault();
 
-            TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
-            String CustomerName = (from h in db.TR_Customer
-                                   where h.CustomerId == paramProject.CustomerId
-                                   select h.CustomerName).FirstOrDefault();
-            ViewBag.call = call;
-            ViewBag.callhis = callhis;
-            ViewBag.historydetail = historydetail.ToList();
-            ViewBag.param = paramProject;
-            ViewBag.CustomerName = CustomerName + " - " + paramProject.CustProName;
-            return View();
+                TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
+                String CustomerName = (from h in db.TR_Customer
+                                       where h.CustomerId == paramProject.CustomerId
+                                       select h.CustomerName).FirstOrDefault();
+                ViewBag.call = call;
+                ViewBag.callhis = callhis;
+                ViewBag.historydetail = historydetail.ToList();
+                ViewBag.param = paramProject;
+                ViewBag.CustomerName = CustomerName + " - " + paramProject.CustProName;
+                return View();
+            } else {
+                 return RedirectToAction("Login", "Auth");
+            }
         }
 
         [HttpPost]
@@ -388,24 +393,25 @@ namespace MVC_CRUD.Controllers
 
         public ActionResult withdraw()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && (Session["RoleId"].ToString() == "3" || Session["RoleId"].ToString() == "2"))
             {
+                String UserName = Session["UserName"].ToString();
+                int[] UserId = (from user in db.TR_User
+                                where user.UserManager == UserName
+                                select user.UserId).ToArray();
+                var custPro = (from uPro in db.TT_UserProject
+                               join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
+                               where UserId.Contains((int)uPro.UserId) && custP.status == 1
+                               select new CustomerProject
+                               {
+                                   CustProId = custP.CustProId,
+                                   CustProName = custP.CustProName
+                               }).Distinct().ToList();
+                ViewBag.GroupId = new SelectList(custPro, "CustProId", "CustProName");
+                return View();
+            } else {
                 return RedirectToAction("Login", "Auth");
             }
-            String UserName = Session["UserName"].ToString();
-            int[] UserId = (from user in db.TR_User
-                            where user.UserManager == UserName
-                            select user.UserId).ToArray();
-            var custPro = (from uPro in db.TT_UserProject
-                           join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
-                           where UserId.Contains((int)uPro.UserId) && custP.status == 1
-                           select new CustomerProject
-                           {
-                               CustProId = custP.CustProId,
-                               CustProName = custP.CustProName
-                           }).Distinct().ToList();
-            ViewBag.GroupId = new SelectList(custPro, "CustProId", "CustProName");
-            return View();
         }
 
         public ActionResult createAgent()
@@ -522,6 +528,7 @@ namespace MVC_CRUD.Controllers
         // GET: ExportData
         public ActionResult ExportToExcel(int GroupId, String callstatus, DateTime DateTo, DateTime DateFrom)
         {
+
             var data = new List<TR_Contact>();
             if (callstatus == "notselected")
             {
@@ -670,7 +677,7 @@ namespace MVC_CRUD.Controllers
 
         public ActionResult createUser()
         {
-            if (Session["RoleId"] != null && Session["RoleId"].ToString() == "1")
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "1")
             {
                 ViewBag.Manager = db.TR_User.Where(x => x.RoleId == 1).ToList();
                 ViewBag.CustProject = db.TT_CustomerProject.ToList();
@@ -747,67 +754,65 @@ namespace MVC_CRUD.Controllers
 
         public ActionResult callStatus()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "2")
             {
+                String UserName = Session["UserName"].ToString();
+                int[] UserId = (from user in db.TR_User
+                                where user.UserManager == UserName
+                                select user.UserId).ToArray();
+                var result = from contact in db.TR_Contact
+                             join callH in (from call in db.TT_CallHistory
+                                            group call by call.ContactId into grouping
+                                            select new
+                                            {
+                                                ContactId = grouping.Key,
+                                                BeginCall = grouping.Min(prod => prod.CallDate),
+                                                CallBack = grouping.Max(prod => prod.CallDate)
+                                            }) on contact.ContactId equals callH.ContactId
+                             join manager in db.TR_User on contact.UserId equals manager.UserId
+                             where UserId.Contains((int)contact.UserId)
+                             select new contactCenterModels.HistoryCall()
+                             {
+                                 ContactName = contact.ContactName,
+                                 ContactId = contact.ContactId,
+                                 CustomerContactId = contact.CustomerContactId,
+                                 CallStatus = contact.CallStatus,
+                                 SubStatus = contact.SubStatus,
+                                 BeginCall = callH.BeginCall,
+                                 CallBack = callH.CallBack,
+                                 AgingData = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now),
+                                 Reach = (from h in db.TT_CallHistory
+                                          where h.ContactId == contact.ContactId
+                                          select h).Count()
+                             };
+                return View(result);
+            } else {
                 return RedirectToAction("Login", "Auth");
             }
-            String UserName = Session["UserName"].ToString();
-            int[] UserId = (from user in db.TR_User
-                            where user.UserManager == UserName
-                            select user.UserId).ToArray();
-            var result = from contact in db.TR_Contact
-                         join callH in (from call in db.TT_CallHistory
-                                        group call by call.ContactId into grouping
-                                        select new
-                                        {
-                                            ContactId = grouping.Key,
-                                            BeginCall = grouping.Min(prod => prod.CallDate),
-                                            CallBack = grouping.Max(prod => prod.CallDate)
-                                        }) on contact.ContactId equals callH.ContactId
-                         join manager in db.TR_User on contact.UserId equals manager.UserId
-                         where UserId.Contains((int)contact.UserId)
-                         select new contactCenterModels.HistoryCall()
-                         {
-                             ContactName = contact.ContactName,
-                             ContactId = contact.ContactId,
-                             CustomerContactId = contact.CustomerContactId,
-                             CallStatus = contact.CallStatus,
-                             SubStatus = contact.SubStatus,
-                             BeginCall = callH.BeginCall,
-                             CallBack = callH.CallBack,
-                             AgingData = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now),
-                             Reach = (from h in db.TT_CallHistory
-                                      where h.ContactId == contact.ContactId
-                                      select h).Count()
-                         };
-            return View(result);
         }
 
 
         public ActionResult report(int? CustProId, String Periode)
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "2")
             {
+                String UserName = Session["UserName"].ToString();
+                int[] UserId = (from user in db.TR_User
+                                where user.UserManager == UserName
+                                select user.UserId).ToArray();
+                ViewBag.CustProId = (from uPro in db.TT_UserProject
+                                     join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
+                                     where UserId.Contains((int)uPro.UserId)
+                                     select new CustomerProject
+                                     {
+                                         CustProId = custP.CustProId,
+                                         CustProName = custP.CustProName
+                                     }).Distinct().ToList();
+                return View();
+            } else {
                 return RedirectToAction("Login", "Auth");
             }
-            String UserName = Session["UserName"].ToString();
-            int[] UserId = (from user in db.TR_User
-                            where user.UserManager == UserName
-                            select user.UserId).ToArray();
-            ViewBag.CustProId = (from uPro in db.TT_UserProject
-                                 join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
-                                 where UserId.Contains((int)uPro.UserId)
-                                 select new CustomerProject
-                                 {
-                                     CustProId = custP.CustProId,
-                                     CustProName = custP.CustProName
-                                 }).Distinct().ToList();
-            return View();
         }
-
-
-
-
 
         public ActionResult changePassword(int? UserId, String UserPass)
         {
@@ -1261,38 +1266,39 @@ namespace MVC_CRUD.Controllers
         }
         public ActionResult callView(int id)
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "2")
             {
+                IEnumerable<contactCenterModels.HistoryDetail>
+                      historydetail = (from callH in db.TT_CallHistory
+                                       join contact in db.TR_Contact on callH.ContactId equals contact.ContactId
+                                       join agent in db.TR_User on callH.UserId equals agent.UserId
+                                       where contact.ContactId.Equals(id)
+                                       select new contactCenterModels.HistoryDetail()
+                                       {
+                                           CallDate = callH.CallDate,
+                                           ContactPhone = contact.ContactPhone,
+                                           CallStatus = callH.CallStatus,
+                                           SubStatus = callH.SubStatus,
+                                           Remarks = callH.Remarks,
+                                           AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), callH.CallDate),//1,//,
+                                           UserName = agent.UserName
+                                       }).OrderByDescending(x => x.CallDate);
+                TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
+                TT_CallHistory callhis = db.TT_CallHistory.Where(p => p.ContactId == (id)).FirstOrDefault();
+
+                TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
+                String CustomerName = (from h in db.TR_Customer
+                                       where h.CustomerId == paramProject.CustomerId
+                                       select h.CustomerName).FirstOrDefault();
+                ViewBag.call = call;
+                ViewBag.callhis = callhis;
+                ViewBag.historydetail = historydetail.ToList();
+                ViewBag.param = paramProject;
+                ViewBag.CustomerName = CustomerName + " - " + paramProject.CustProName;
+                return View();
+            } else {   
                 return RedirectToAction("Login", "Auth");
             }
-            IEnumerable<contactCenterModels.HistoryDetail>
-                  historydetail = (from callH in db.TT_CallHistory
-                                   join contact in db.TR_Contact on callH.ContactId equals contact.ContactId
-                                   join agent in db.TR_User on callH.UserId equals agent.UserId
-                                   where contact.ContactId.Equals(id)
-                                   select new contactCenterModels.HistoryDetail()
-                                   {
-                                       CallDate = callH.CallDate,
-                                       ContactPhone = contact.ContactPhone,
-                                       CallStatus = callH.CallStatus,
-                                       SubStatus = callH.SubStatus,
-                                       Remarks = callH.Remarks,
-                                       AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), callH.CallDate),//1,//,
-                                       UserName = agent.UserName
-                                   }).OrderByDescending(x => x.CallDate);
-            TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
-            TT_CallHistory callhis = db.TT_CallHistory.Where(p => p.ContactId == (id)).FirstOrDefault();
-
-            TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
-            String CustomerName = (from h in db.TR_Customer
-                                   where h.CustomerId == paramProject.CustomerId
-                                   select h.CustomerName).FirstOrDefault();
-            ViewBag.call = call;
-            ViewBag.callhis = callhis;
-            ViewBag.historydetail = historydetail.ToList();
-            ViewBag.param = paramProject;
-            ViewBag.CustomerName = CustomerName + " - " + paramProject.CustProName;
-            return View();
         }
 
         [HttpPost]
@@ -1405,50 +1411,50 @@ namespace MVC_CRUD.Controllers
         /* Master Expired*/
         public ActionResult masterExpired()
         {
-            if (Session["UserId"] == null)
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "3")
             {
+                ViewBag.CustomerName = db.TR_Customer.ToList();
+                var result = (from CustP in db.TT_CustomerProject
+                              join cust in db.TR_Customer on CustP.CustomerId equals cust.CustomerId
+                              where CustP.status == 0
+                              select new contactCenterModels.Customer()
+                              {
+                                  CustProId = CustP.CustProId,
+                                  CustProName = CustP.CustProName,
+                                  CustProExpired = CustP.CustProExpired,
+                                  CustomerName = cust.CustomerName,
+                                  Param1 = CustP.Param1,
+                                  Param2 = CustP.Param2,
+                                  Param3 = CustP.Param3,
+                                  Param4 = CustP.Param4,
+                                  Param5 = CustP.Param5
+                              }).ToList();
+                return View(result);
+            } else {
                 return RedirectToAction("Login", "Auth");
             }
-
-            ViewBag.CustomerName = db.TR_Customer.ToList();
-            var result = (from CustP in db.TT_CustomerProject
-                          join cust in db.TR_Customer on CustP.CustomerId equals cust.CustomerId
-                          where CustP.status == 0
-                          select new contactCenterModels.Customer()
-                          {
-                              CustProId = CustP.CustProId,
-                              CustProName = CustP.CustProName,
-                              CustProExpired = CustP.CustProExpired,
-                              CustomerName = cust.CustomerName,
-                              Param1 = CustP.Param1,
-                              Param2 = CustP.Param2,
-                              Param3 = CustP.Param3,
-                              Param4 = CustP.Param4,
-                              Param5 = CustP.Param5
-                          }).ToList();
-            return View(result);
         }
 
         public ActionResult withdrawExpired()
         {
-            if (Session["UserId"] == null)
-            {
+            if (Session["UserId"] != null && Session["RoleId"].ToString() == "3")
+            {                String UserName = Session["UserName"].ToString();
+                int[] UserId = (from user in db.TR_User
+                                where user.UserManager == UserName
+                                select user.UserId).ToArray();
+                var custPro = (from uPro in db.TT_UserProject
+                               join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
+                               where UserId.Contains((int)uPro.UserId)
+                               select new CustomerProject
+                               {
+                                   CustProId = custP.CustProId,
+                                   CustProName = custP.CustProName
+                               }).Distinct().ToList();
+                ViewBag.GroupExp = new SelectList(db.TT_CustomerProject.Where(x => x.status == 0), "CustProId", "CustProName");
+                return View();
+            } else { 
                 return RedirectToAction("Login", "Auth");
             }
-            String UserName = Session["UserName"].ToString();
-            int[] UserId = (from user in db.TR_User
-                            where user.UserManager == UserName
-                            select user.UserId).ToArray();
-            var custPro = (from uPro in db.TT_UserProject
-                           join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
-                           where UserId.Contains((int)uPro.UserId)
-                           select new CustomerProject
-                           {
-                               CustProId = custP.CustProId,
-                               CustProName = custP.CustProName
-                           }).Distinct().ToList();
-            ViewBag.GroupExp = new SelectList(db.TT_CustomerProject.Where(x => x.status == 0), "CustProId", "CustProName");
-            return View();
         }
 
         [HttpPost]

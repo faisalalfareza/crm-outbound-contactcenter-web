@@ -1,6 +1,6 @@
 ﻿@model MVC_CRUD.Models.AuthModels.Login
 @{
-    ViewBag.Title = "CRM Outbond Contact Center";
+    ViewBag.Title = "CRM Outbound Contact Center";
 }
 
 <!-- Include Page Head -->
@@ -8,13 +8,13 @@
 
 <body class="simple-page">
     <div class="simple-page-wrap">
-        <div class="simple-page-logo animated swing">
+        <div class="simple-page-logo">
             <a>
                 <span><i class="fa fa-gg"></i></span>
-                <span>CRM OutBond Contact Center</span>
+                <span>CRM Outbound Contact Center</span>
             </a>
         </div><!-- logo -->
-        <div class="simple-page-form animated flipInY" id="login-form">
+        <div class="simple-page-form" id="login-form">
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
