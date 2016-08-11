@@ -370,6 +370,13 @@ namespace MVC_CRUD.Controllers
                 tabelCustPro.CreatedOn = DateTime.Now;
                 tabelCustPro.status = DateTime.Now >= tabelCustPro.CustProExpired ? 0 : 1;
                 tabelCustPro.CreatedBy = Convert.ToString(Session["UserName"]);
+
+                tabelCustPro.Param1 = tabelCustPro.Param1 == "" ? null : tabelCustPro.Param1;
+                tabelCustPro.Param2 = tabelCustPro.Param2 == "" ? null : tabelCustPro.Param2;
+                tabelCustPro.Param3 = tabelCustPro.Param3 == "" ? null : tabelCustPro.Param3;
+                tabelCustPro.Param4 = tabelCustPro.Param4 == "" ? null : tabelCustPro.Param4;
+                tabelCustPro.Param5 = tabelCustPro.Param5 == "" ? null : tabelCustPro.Param5;
+
                 db.TT_CustomerProject.Add(tabelCustPro);
                 db.SaveChanges();
                 return RedirectToAction("masterCustomerProject");
@@ -387,11 +394,11 @@ namespace MVC_CRUD.Controllers
                 dtCustPro.CustProName = CustProName;
                 dtCustPro.CustProExpired = CustProExpired;
                 dtCustPro.status = DateTime.Now >= CustProExpired ? 0 : 1;
-                dtCustPro.Param1 = Param1;
-                dtCustPro.Param2 = Param2;
-                dtCustPro.Param3 = Param3;
-                dtCustPro.Param4 = Param4;
-                dtCustPro.Param5 = Param5;
+                dtCustPro.Param1 = Param1 == "" ? null : Param1;
+                dtCustPro.Param2 = Param2 == "" ? null : Param2;
+                dtCustPro.Param3 = Param3 == "" ? null : Param3;
+                dtCustPro.Param4 = Param4 == "" ? null : Param4;
+                dtCustPro.Param5 = Param5 == "" ? null : Param5;
                 db.SaveChanges();
             }
             return RedirectToAction("masterCustomerProject");
@@ -564,6 +571,7 @@ namespace MVC_CRUD.Controllers
                 user.UserStatus = 1;
                 user.CreatedOn = DateTime.Now;
                 user.CreatedBy = Convert.ToString(Session["UserName"]);
+                user.IsVerified = false;
                 db.TR_User.Add(user);
                 db.SaveChanges();
 
@@ -815,6 +823,7 @@ namespace MVC_CRUD.Controllers
                 user.UserStatus = 1;
                 user.CreatedOn = DateTime.Now;
                 user.CreatedBy = Convert.ToString(Session["UserName"]);
+                user.IsVerified = false;
                 db.TR_User.Add(user);
 
                 db.SaveChanges();
