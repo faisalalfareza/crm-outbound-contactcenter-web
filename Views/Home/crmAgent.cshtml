@@ -105,15 +105,15 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Contact</th>
-                                                        <th>Status</th>
-                                                        <th>Begin Call</th>
-                                                        <th>Call Back</th>
-                                                        <th>Aging Agent</th>
-                                                        <th>Level</th>
-                                                        <th>Aging Data</th>
-                                                        <th>Project Name</th>
-                                                        <th></th>
+                                                        <th style="width:140px">Contact</th>
+                                                        <th style="width:160px">Status</th>
+                                                        <th style="width:140px">Begin Call</th>
+                                                        <th style="width:140px">Call Back</th>
+                                                        <th style="width:100px">Aging Agent</th>
+                                                        <th style="width:80px">Level</th>
+                                                        <th style="width:100px">Aging Data</th>
+                                                        <th style="width:120px">Project Name</th>
+                                                        <th style="width:30px"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -133,7 +133,7 @@
                                                                     @Html.DisplayFor(modelItem => item.CallStatus)<span> , </span>@Html.DisplayFor(modelItem => item.SubStatus)
                                                                 </td>
                                                                <td>
-                                                                    @Html.DisplayFor(modelItem => item.BeginCall)
+                                                                    @Html.ValueFor(modelItem => item.BeginCall, "{0:dd-MMM-yy HH:mm}")
                                                                 </td>
                                                                 <td>
                                                                     @if (item.CallBack.Equals(item.BeginCall))
@@ -142,7 +142,7 @@
                                                                     }
                                                                     else
                                                                     {
-                                                                        @Html.DisplayFor(modelItem => item.CallBack)  
+                                                                        @Html.ValueFor(modelItem => item.CallBack, "{0:dd-MMM-yy HH:mm}")
                                                                     }
                                                                 </td>
                                                                 <td>
@@ -176,15 +176,15 @@
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Contact</th>
-                                                        <th>Status</th>
-                                                        <th>Begin Call</th>
-                                                        <th>Call Back</th>
-                                                        <th>Aging Agent</th>
-                                                        <th>Level</th>
-                                                        <th>Aging Data</th>
-                                                        <th>Project Name</th>
-                                                        <th></th>
+                                                        <th style="width:150px">Contact</th>
+                                                        <th style="width:160px">Status</th>
+                                                        <th style="width:140px">Begin Call</th>
+                                                        <th style="width:140px">Call Back</th>
+                                                        <th style="width:100px">Aging Agent</th>
+                                                        <th style="width:80px">Level</th>
+                                                        <th style="width:100px">Aging Data</th>
+                                                        <th style="width:120px">Project Name</th>
+                                                        <th style="width:30px"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -203,7 +203,7 @@
                                                                     @Html.DisplayFor(modelItem => item.CallStatus)<span> , </span>@Html.DisplayFor(modelItem => item.SubStatus)
                                                                 </td>
                                                                 <td>
-                                                                    @Html.DisplayFor(modelItem => item.BeginCall)
+                                                                    @Html.ValueFor(modelItem => item.BeginCall, "{0:dd-MMM-yy HH:mm}")
                                                                 </td>
                                                                 <td>
                                                                     @if (item.CallBack.Equals(item.BeginCall))
@@ -212,7 +212,7 @@
                                                                     }
                                                                     else
                                                                     {
-                                                                        @Html.DisplayFor(modelItem => item.CallBack)
+                                                                        @Html.ValueFor(modelItem => item.CallBack, "{0:dd-MMM-yy HH:mm}")
                                                                     }
                                                                 </td>
                                                                 <td>

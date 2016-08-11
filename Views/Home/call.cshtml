@@ -7,40 +7,67 @@
 <script src="~/Scripts/jquery-1.7.1.js"></script>
 
 <script>
+
     function dialCallPost() {
-        ended();
+        var valid = 0;
 
-        var formdata = new FormData();
-        var other_data = $('#formInteraction').serializeArray();
-        $.each(other_data, function (key, input) {
-            formdata.append(input.name, input.value);
-        });
-        other_data = $('#formDuration').serializeArray();
-        $.each(other_data, function (key, input) {
-            formdata.append(input.name, input.value);
-        });
-        other_data = $('#formParameter').serializeArray();
-        $.each(other_data, function (key, input) {
-            formdata.append(input.name, input.value);
-        });
+        var selected = document.getElementById("status");
+        if (selected.value == "Closing") {
+            var inputSmall1 = document.getElementById("inputSmall1") == undefined ? "1" : document.getElementById("inputSmall1").value;
+            var inputSmall2 = document.getElementById("inputSmall2") == undefined ? "1" : document.getElementById("inputSmall2").value;
+            var inputSmall3 = document.getElementById("inputSmall3") == undefined ? "1" : document.getElementById("inputSmall3").value;
+            var inputSmall4 = document.getElementById("inputSmall4") == undefined ? "1" : document.getElementById("inputSmall4").value;
+            var inputSmall5 = document.getElementById("inputSmall5") == undefined ? "1" : document.getElementById("inputSmall5").value;
 
-        $.ajax({
-            url: '@Url.Action("dialCallPost", "Home")',
-            type: 'POST',
-            data: formdata,
-            contentType: false,
-            processData: false,
-            async: true,
-            success: function (json) {
-                if (json.isRedirect) {
-                    window.location.href = json.redirectUrl;
-                    alert('Success!');
-                }
-            },
-            error: function (error) {
-                alert('error');
+            if (inputSmall1 && inputSmall2 && inputSmall3 != ""
+                && inputSmall4 != "" && inputSmall5 != "") {
+
+                valid = 1;
             }
-        });
+            else {
+                valid = 0;
+            }
+        } else {
+            valid = 1;
+        }
+
+
+        if (valid == 1) {
+            ended();
+            var formdata = new FormData();
+            var other_data = $('#formInteraction').serializeArray();
+            $.each(other_data, function (key, input) {
+                formdata.append(input.name, input.value);
+            });
+            other_data = $('#formDuration').serializeArray();
+            $.each(other_data, function (key, input) {
+                formdata.append(input.name, input.value);
+            });
+            other_data = $('#formParameter').serializeArray();
+            $.each(other_data, function (key, input) {
+                formdata.append(input.name, input.value);
+            });
+
+            $.ajax({
+                url: '@Url.Action("dialCallPost", "Home")',
+                type: 'POST',
+                data: formdata,
+                contentType: false,
+                processData: false,
+                async: true,
+                success: function (json) {
+                    if (json.isRedirect) {
+                        window.location.href = json.redirectUrl;
+                        alert('Success!');
+                    }
+                },
+                error: function (error) {
+                    alert('error');
+                }
+            });
+        } else {
+            alert('Invalid Customer Parameter');
+        }
     }
 </script>
 
@@ -72,22 +99,28 @@
                                         <tr valign="center">
                                             <td>Mobile Phone</td>
 
-                                            <td>@ViewBag.call.ContactPhone</td>
-                                            <td><a class="badge badge-info nmrDial" readonly><i class="fa fa-phone-square text-white"></i></a></td>
+                                            <td><label id="lblMobilePhone">@ViewBag.call.ContactPhone</label> </td>
+                                            <td><a class="badge badge-info nmrDial" readonly>
+                                                <i class="fa fa-phone-square text-white"></i>
+                                                </a></td>
 
                                         </tr>
                                         <tr valign="center">
 
                                             <td>Home Phone</td>
-                                            <td>-</td>
-                                            <td><a onclick="" class="badge badge-info nmrDial"><i class="fa fa-phone-square text-white"></i></a></td>
+                                            <td><label id="lblHomePhone">@ViewBag.call.HomePhone</label></td>
+                                            <td><a onclick="" class="badge badge-info nmrDial">
+                                                <i class="fa fa-check text-white" onclick="ShowUpdatePhone(2, 'Home Phone', '@ViewBag.call.HomePhone')"></i>
+                                                </a></td>
 
                                         </tr>
                                         <tr valign="center">
 
                                             <td>Other Phone</td>
-                                            <td>-</td>
-                                            <td><a onclick="" class="badge badge-info nmrDial"><i class="fa fa-phone-square text-white"></a></td>
+                                            <td><label id="lblOtherPhone">@ViewBag.call.OtherPhone</label></td>
+                                            <td><a onclick="" class="badge badge-info nmrDial">
+                                                    <i class="fa fa-check text-white" onclick="ShowUpdatePhone(3, 'Other Phone', '@ViewBag.call.OtherPhone')"></i>
+                                                    </a></td>
 
                                         </tr>
                                     </tbody>
@@ -123,7 +156,7 @@
                                                 </select>
                                             </div>
                                             <div class="form-group has-info">
-                                                <input type="text" name="Remarks" class="form-control input-sm" id="remark" placeholder="Your Remarks .." readonly>
+                                                <input type="text" name="Remarks" maxlength="250" class="form-control input-sm" id="remark" placeholder="Your Remarks .." readonly>
                                             </div>
                                         </form>
                                     </div>
@@ -145,7 +178,7 @@
                                 <div id="collapse1" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <div class="big">
-                                            <table align="center">
+                                            <table align="left">
                                                 <tbody>
                                                     <tr>
                                                         <td>
@@ -168,7 +201,16 @@
                                                             Birth Date
                                                         </td>
                                                         <td>
-                                                            @Convert.ToDateTime(@ViewBag.call.BirthDate).ToShortDateString()
+
+                                                            @if (@ViewBag.call.BirthDate != null)
+                                                            {
+                                                                @Convert.ToDateTime(@ViewBag.call.BirthDate).ToString("dd MMM yyyy")
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>-</span>
+                                                            }
+
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -192,7 +234,7 @@
                                                             Level
                                                         </td>
                                                         <td>
-                                                            Gold
+                                                            Platinum
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -203,6 +245,12 @@
                                                             @ViewBag.CustomerName
                                                         </td>
                                                     </tr>
+
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -222,22 +270,43 @@
                                 <div id="collapse3" class="panel-collapse collapse in">
                                     <div class="panel-body">
                                         <form id="formParameter">
-                                            <div class="form-group">
-                                                <input type="text" name="Param1" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param1">
-                                            </div>
+                                            @if (ViewBag.param.Param1 != null)
+                                            {
+                                                <div class="form-group">
+                                                    <input type="text" name="Param1" class="form-control input-sm" id="inputSmall1" placeholder="Entry @ViewBag.param.Param1">
+                                                </div>
+                                            }
+                                            
                                             <input type="hidden" name="id" value="@ViewBag.call.ContactId" />
+                                            
+                                            @if (ViewBag.param.Param2 != null)
+                                            {
                                             <div class="form-group">
-                                                <input type="text" name="Param2" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param2">
+                                                <input type="text" name="Param2" class="form-control input-sm" id="inputSmall2" placeholder="Entry @ViewBag.param.Param2">
                                             </div>
+                                            }
+
+                                            @if (ViewBag.param.Param3 != null)
+                                            {
                                             <div class="form-group">
-                                                <input type="text" name="Param3" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param3">
+                                                <input type="text" name="Param3" class="form-control input-sm" id="inputSmall3" placeholder="Entry @ViewBag.param.Param3">
                                             </div>
+                                            }
+
+                                            @if (ViewBag.param.Param4 != null)
+                                            {
                                             <div class="form-group">
-                                                <input type="text" name="Param4" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param4">
+                                                <input type="text" name="Param4" class="form-control input-sm" id="inputSmall4" placeholder="Entry @ViewBag.param.Param4">
                                             </div>
+                                            }
+
+                                            @if (ViewBag.param.Param5 != null)
+                                            {
                                             <div class="form-group">
-                                                <input type="text" name="Param5" class="form-control input-sm" id="inputSmall" placeholder="Entry @ViewBag.param.Param5">
+                                                <input type="text" name="Param5" class="form-control input-sm" id="inputSmall5" placeholder="Entry @ViewBag.param.Param5">
                                             </div>
+                                            }
+
                                         </form>
                                     </div>
                                 </div>
@@ -262,13 +331,13 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>Date Time</th>
-                                        <th>Phone Number</th>
-                                        <th>Call Status</th>
-                                        <th>Sub Status</th>
+                                        <th style="width:140px">Date Time</th>
+                                        <th style="width:150px">Phone Number</th>
+                                        <th style="width:120px">Call Status</th>
+                                        <th style="width:150px">Sub Status</th>
                                         <th>Remarks</th>
-                                        <th>Aging Agent</th>
-                                        <th>agent</th>
+                                        <th style="width:100px">Aging Agent</th>
+                                        <th style="width:120px">Agent</th>
                                     </tr>
                                     @foreach (var item in ViewBag.historydetail)
                                     {
@@ -290,6 +359,32 @@
                 </div>
             </section><!-- .app-content -->
         </div><!-- .wrap -->
+
+        <div class="modal fade" id="mdEditPhone" role="dialog" style="background: rgba(38, 194, 129, .2)">
+            <div class="modal-dialog" style="width:400px">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><button class="btn btn-success btn-raised"><i class="fa fa-plus-circle"></i></button> &nbsp; Change Phone Number</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="control-label" for="inputSmall"><label id="lblPhone"></label></label>
+                                <input type="text" id="txtEditPhone" value="" name="txtEditPhone" class="form-control input-sm" autofocus>
+                                <input type="hidden" id="hdPhoneType" />
+                                <div id="NameError"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success btn-raised btn-sm" onclick="UpdatePhone()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        f
         <!-- Include Page Footer -->
         @RenderPage("~/Views/Gates/Footer.cshtml")
         <!-- Include Page Foot -->
@@ -370,7 +465,41 @@
             document.getElementById("jam").innerHTML = time['jam'];
 
         }, 1000);
-        enableDropdown();
+        //enableDropdown();
+    }
+
+    function ShowUpdatePhone(PhoneType, PhoneTypeValue, PhoneNumber)
+    {
+        $('#mdEditPhone').modal('show');
+
+        document.getElementById("lblPhone").innerHTML = PhoneTypeValue;
+        txtEditPhone.value = PhoneNumber;
+        hdPhoneType.value = PhoneType;
+    }
+
+    function UpdatePhone()
+    {
+        var ContactId = @ViewBag.call.ContactId;
+        var param = {
+            ContactId: ContactId,
+            PhoneType :hdPhoneType.value,
+            PhoneNumber: txtEditPhone.value 
+        };
+
+        $.post('@Url.Action("UpdateContactPhone", "Home")', param, function (result) {
+            if(hdPhoneType.value == 1)
+            {
+                lblMobilePhone.innerHTML = txtEditPhone.value;
+            } else if(hdPhoneType.value == 2)
+            {
+                lblHomePhone.innerHTML = txtEditPhone.value;
+            } else if(hdPhoneType.value == 3)
+            {
+                lblOtherPhone.innerHTML = txtEditPhone.value;
+            }
+        });
+
+        $('#mdEditPhone').modal('hide');
     }
 
 </script>

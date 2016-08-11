@@ -16,13 +16,14 @@ namespace MVC_CRUD.Models
     {
         public int UserId { get; set; }
         public string UserName { get; set; }
-        public string UserManager { get; set; }
+        public string Email { get; set; }
         public Nullable<int> UserStatus { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public string CreatedBy { get; set; }
         public Nullable<int> RoleId { get; set; }
         public string UserPass { get; set; }
         public string UserSkill { get; set; }
-        public string Email { get; set; }
+        public Nullable<int> UserManagerId { get; set; }
+        public Nullable<bool> IsVerified { get; set; }
     }
 }

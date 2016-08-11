@@ -12,60 +12,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TR_Contact">
-      <EntityTypeMapping TypeName="DB_CRM_CCModel.TR_Contact">
-        <MappingFragment StoreEntitySet="TR_Contact">
-          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-          <ScalarProperty Name="CustomerContactId" ColumnName="CustomerContactId" />
-          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-          <ScalarProperty Name="ContactStatus" ColumnName="ContactStatus" />
-          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-          <ScalarProperty Name="BranchFullname" ColumnName="BranchFullname" />
-          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-          <ScalarProperty Name="AgreementNo" ColumnName="AgreementNo" />
-          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-          <ScalarProperty Name="Usia" ColumnName="Usia" />
-          <ScalarProperty Name="KTP_Adress" ColumnName="KTP_Adress" />
-          <ScalarProperty Name="KTP_RT" ColumnName="KTP_RT" />
-          <ScalarProperty Name="KTP_RW" ColumnName="KTP_RW" />
-          <ScalarProperty Name="KTP_Kelurahan" ColumnName="KTP_Kelurahan" />
-          <ScalarProperty Name="KTP_Kecamatan" ColumnName="KTP_Kecamatan" />
-          <ScalarProperty Name="KTP_City" ColumnName="KTP_City" />
-          <ScalarProperty Name="KTP_Zipcode" ColumnName="KTP_Zipcode" />
-          <ScalarProperty Name="Residence_Adress" ColumnName="Residence_Adress" />
-          <ScalarProperty Name="Residence_Kelurahan" ColumnName="Residence_Kelurahan" />
-          <ScalarProperty Name="Residence_Kecamatan" ColumnName="Residence_Kecamatan" />
-          <ScalarProperty Name="Residence_City" ColumnName="Residence_City" />
-          <ScalarProperty Name="Residence_Zipcode" ColumnName="Residence_Zipcode" />
-          <ScalarProperty Name="Jenis_Pekerjaan" ColumnName="Jenis_Pekerjaan" />
-          <ScalarProperty Name="MonthlyFixedIncome" ColumnName="MonthlyFixedIncome" />
-          <ScalarProperty Name="InstallmentAmount" ColumnName="InstallmentAmount" />
-          <ScalarProperty Name="Status_Rumah" ColumnName="Status_Rumah" />
-          <ScalarProperty Name="JumlahTanggungan" ColumnName="JumlahTanggungan" />
-          <ScalarProperty Name="DownPayment" ColumnName="DownPayment" />
-          <ScalarProperty Name="GoLiveDate" ColumnName="GoLiveDate" />
-          <ScalarProperty Name="TglSelesaiAngsuran" ColumnName="TglSelesaiAngsuran" />
-          <ScalarProperty Name="Tenor" ColumnName="Tenor" />
-          <ScalarProperty Name="Odmax_Day_Final" ColumnName="Odmax_Day_Final" />
-          <ScalarProperty Name="LastPayment" ColumnName="LastPayment" />
-          <ScalarProperty Name="Payment" ColumnName="Payment" />
-          <ScalarProperty Name="CallStatus" ColumnName="CallStatus" />
-          <ScalarProperty Name="SubStatus" ColumnName="SubStatus" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="Param1" ColumnName="Param1" />
-          <ScalarProperty Name="Param2" ColumnName="Param2" />
-          <ScalarProperty Name="Param3" ColumnName="Param3" />
-          <ScalarProperty Name="Param4" ColumnName="Param4" />
-          <ScalarProperty Name="Param5" ColumnName="Param5" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="CustProId" ColumnName="CustProId" />
-          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TR_Customer">
       <EntityTypeMapping TypeName="DB_CRM_CCModel.TR_Customer">
         <MappingFragment StoreEntitySet="TR_Customer">
@@ -99,37 +45,6 @@
           <ScalarProperty Name="CustProId" ColumnName="CustProId" />
           <ScalarProperty Name="Created_by" ColumnName="Created_by" />
           <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TR_User">
-      <EntityTypeMapping TypeName="DB_CRM_CCModel.TR_User">
-        <MappingFragment StoreEntitySet="TR_User">
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="UserManager" ColumnName="UserManager" />
-          <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-          <ScalarProperty Name="UserPass" ColumnName="UserPass" />
-          <ScalarProperty Name="UserSkill" ColumnName="UserSkill" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TT_CallHistory">
-      <EntityTypeMapping TypeName="DB_CRM_CCModel.TT_CallHistory">
-        <MappingFragment StoreEntitySet="TT_CallHistory">
-          <ScalarProperty Name="CallLogId" ColumnName="CallLogId" />
-          <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
-          <ScalarProperty Name="CallStatus" ColumnName="CallStatus" />
-          <ScalarProperty Name="SubStatus" ColumnName="SubStatus" />
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-          <ScalarProperty Name="CallDate" ColumnName="CallDate" />
-          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -179,6 +94,94 @@
           <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="CustProId" ColumnName="CustProId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TT_CallHistory">
+      <EntityTypeMapping TypeName="DB_CRM_CCModel.TT_CallHistory">
+        <MappingFragment StoreEntitySet="TT_CallHistory">
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="CallDate" ColumnName="CallDate" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SubStatus" ColumnName="SubStatus" />
+          <ScalarProperty Name="CallStatus" ColumnName="CallStatus" />
+          <ScalarProperty Name="CallDuration" ColumnName="CallDuration" />
+          <ScalarProperty Name="CallLogId" ColumnName="CallLogId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_Contact">
+      <EntityTypeMapping TypeName="DB_CRM_CCModel.TR_Contact">
+        <MappingFragment StoreEntitySet="TR_Contact">
+          <ScalarProperty Name="OtherPhone" ColumnName="OtherPhone" />
+          <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+          <ScalarProperty Name="CustProId" ColumnName="CustProId" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="Param5" ColumnName="Param5" />
+          <ScalarProperty Name="Param4" ColumnName="Param4" />
+          <ScalarProperty Name="Param3" ColumnName="Param3" />
+          <ScalarProperty Name="Param2" ColumnName="Param2" />
+          <ScalarProperty Name="Param1" ColumnName="Param1" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="SubStatus" ColumnName="SubStatus" />
+          <ScalarProperty Name="CallStatus" ColumnName="CallStatus" />
+          <ScalarProperty Name="Payment" ColumnName="Payment" />
+          <ScalarProperty Name="LastPayment" ColumnName="LastPayment" />
+          <ScalarProperty Name="Odmax_Day_Final" ColumnName="Odmax_Day_Final" />
+          <ScalarProperty Name="Tenor" ColumnName="Tenor" />
+          <ScalarProperty Name="TglSelesaiAngsuran" ColumnName="TglSelesaiAngsuran" />
+          <ScalarProperty Name="GoLiveDate" ColumnName="GoLiveDate" />
+          <ScalarProperty Name="DownPayment" ColumnName="DownPayment" />
+          <ScalarProperty Name="JumlahTanggungan" ColumnName="JumlahTanggungan" />
+          <ScalarProperty Name="Status_Rumah" ColumnName="Status_Rumah" />
+          <ScalarProperty Name="InstallmentAmount" ColumnName="InstallmentAmount" />
+          <ScalarProperty Name="MonthlyFixedIncome" ColumnName="MonthlyFixedIncome" />
+          <ScalarProperty Name="Jenis_Pekerjaan" ColumnName="Jenis_Pekerjaan" />
+          <ScalarProperty Name="Residence_Zipcode" ColumnName="Residence_Zipcode" />
+          <ScalarProperty Name="Residence_City" ColumnName="Residence_City" />
+          <ScalarProperty Name="Residence_Kecamatan" ColumnName="Residence_Kecamatan" />
+          <ScalarProperty Name="Residence_Kelurahan" ColumnName="Residence_Kelurahan" />
+          <ScalarProperty Name="Residence_Adress" ColumnName="Residence_Adress" />
+          <ScalarProperty Name="KTP_Zipcode" ColumnName="KTP_Zipcode" />
+          <ScalarProperty Name="KTP_City" ColumnName="KTP_City" />
+          <ScalarProperty Name="KTP_Kecamatan" ColumnName="KTP_Kecamatan" />
+          <ScalarProperty Name="KTP_Kelurahan" ColumnName="KTP_Kelurahan" />
+          <ScalarProperty Name="KTP_RW" ColumnName="KTP_RW" />
+          <ScalarProperty Name="KTP_RT" ColumnName="KTP_RT" />
+          <ScalarProperty Name="KTP_Adress" ColumnName="KTP_Adress" />
+          <ScalarProperty Name="Usia" ColumnName="Usia" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="AgreementNo" ColumnName="AgreementNo" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="BranchFullname" ColumnName="BranchFullname" />
+          <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+          <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+          <ScalarProperty Name="ContactStatus" ColumnName="ContactStatus" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="CustomerContactId" ColumnName="CustomerContactId" />
+          <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TR_User">
+      <EntityTypeMapping TypeName="DB_CRM_CCModel.TR_User">
+        <MappingFragment StoreEntitySet="TR_User">
+          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+          <ScalarProperty Name="UserManagerId" ColumnName="UserManagerId" />
+          <ScalarProperty Name="UserSkill" ColumnName="UserSkill" />
+          <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

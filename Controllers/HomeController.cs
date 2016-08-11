@@ -13,6 +13,7 @@ using static MVC_CRUD.Models.contactCenterModels;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace MVC_CRUD.Controllers
 {
@@ -54,10 +55,16 @@ namespace MVC_CRUD.Controllers
                                           select h).Count()
                              }).ToList();
 
-                ViewBag.closing = db.TT_CallHistory.Count(h => h.CallStatus.Equals("Closing") && h.UserId == UserId);
-                ViewBag.prospect = db.TT_CallHistory.Count(h => h.CallStatus.Equals("Prospect") && h.UserId == UserId);
-                ViewBag.notprospect = db.TT_CallHistory.Count(h => h.CallStatus != "Closing" && h.CallStatus != "Prospect" && h.UserId == UserId);
+                //ViewBag.closing = db.TT_CallHistory.Count(h => h.CallStatus.Equals("Closing") && h.UserId == UserId);
+                //ViewBag.prospect = db.TT_CallHistory.Count(h => h.CallStatus.Equals("Prospect") && h.UserId == UserId);
+                //ViewBag.notprospect = db.TT_CallHistory.Count(h => h.CallStatus != "Closing" && h.CallStatus != "Prospect" && h.UserId == UserId);
+                //ViewBag.newdata = db.TR_Contact.Count(h => h.ContactStatus == 1 && h.UserId == UserId);
+
+                ViewBag.closing = db.TR_Contact.Count(h => h.CallStatus.Equals("Closing") && h.UserId == UserId);
+                ViewBag.prospect = db.TR_Contact.Count(h => h.CallStatus.Equals("Prospect") && h.UserId == UserId);
+                ViewBag.notprospect = db.TR_Contact.Count(h => h.CallStatus != "Closing" && h.CallStatus != "Prospect" && h.UserId == UserId);
                 ViewBag.newdata = db.TR_Contact.Count(h => h.ContactStatus == 1 && h.UserId == UserId);
+
                 return View(result);
             }
             else {
@@ -240,6 +247,7 @@ namespace MVC_CRUD.Controllers
                 IEnumerable<contactCenterModels.User>
                 user = (from User in db.TR_User
                         join Role in db.TR_Role on User.RoleId equals Role.RoleId
+                        join mgr in db.TR_User on User.UserManagerId equals mgr.UserId
                         where Role.RoleId == 4
                         select new contactCenterModels.User
                         {
@@ -247,7 +255,7 @@ namespace MVC_CRUD.Controllers
                             UserName = User.UserName,
                             Email = User.Email,
                             Role = Role.Rolename,
-                            Team = User.UserManager,
+                            Team = mgr.UserName,
                             Level = User.UserSkill,
                             Active = User.UserStatus == 1 ? "Active" : "Inactive"
                         }).ToList();
@@ -407,8 +415,9 @@ namespace MVC_CRUD.Controllers
             if (Session["UserId"] != null && (Session["RoleId"].ToString() == "3" || Session["RoleId"].ToString() == "2"))
             {
                 String UserName = Session["UserName"].ToString();
+                int UserIds = Convert.ToInt32(Session["UserId"].ToString());
                 int[] UserId = (from user in db.TR_User
-                                where user.UserManager == UserName
+                                where user.UserManagerId == UserIds
                                 select user.UserId).ToArray();
                 var custPro = (from uPro in db.TT_UserProject
                                join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
@@ -417,13 +426,59 @@ namespace MVC_CRUD.Controllers
                                {
                                    CustProId = custP.CustProId,
                                    CustProName = custP.CustProName
-                               }).Distinct().ToList();
+                               }).Distinct().ToList().OrderBy(p=> p.CustomerName);
                 ViewBag.GroupId = new SelectList(custPro, "CustProId", "CustProName");
                 return View();
             } else {
                 return RedirectToAction("Login", "Auth");
             }
         }
+
+        public int GetTotalWithdraw(int CustProId, string From, string To, string Status)
+        {
+            DateTime DateFroms = DateTime.Parse(From);
+            DateTime DateTos = DateTime.Parse(To);
+            int UserId = Convert.ToInt32(Session["UserId"]);
+
+            var data = new List<TR_Contact>();
+            if (Status == "notselected")
+            {
+                data = (from c in db.TR_Contact.Where(x => x.CustProId == CustProId && x.CreatedOn >= DateFroms && x.CreatedOn <= DateTos && x.ContactStatus != 6)
+                        join u in db.TR_User on c.UserId equals u.UserId
+                        where u.UserManagerId == UserId
+                        select c).ToList();
+            }
+            else
+            {
+                data = (from c in db.TR_Contact.Where(x => x.CustProId == CustProId && x.CreatedOn >= DateFroms && x.CreatedOn <= DateTos && x.ContactStatus != 6 && x.CallStatus == Status)
+                        join u in db.TR_User on c.UserId equals u.UserId
+                        where u.UserManagerId == UserId
+                        select c).ToList();
+            }
+
+            return data.Count();
+        }
+
+        public int GetTotalWithdrawExp(int CustProId, string From, string To, string Status)
+        {
+            DateTime DateFroms = DateTime.Parse(From);
+            DateTime DateTos = DateTime.Parse(To);
+           
+            var data = new List<TR_Contact>();
+            if (Status == "notselected")
+            {
+                data = (from c in db.TR_Contact.Where(x => x.CustProId == CustProId && x.CreatedOn >= DateFroms && x.CreatedOn <= DateTos && x.ContactStatus != 6)
+                        select c).ToList();
+            }
+            else
+            {
+                data = (from c in db.TR_Contact.Where(x => x.CustProId == CustProId && x.CreatedOn >= DateFroms && x.CreatedOn <= DateTos && x.ContactStatus != 6 && x.CallStatus == Status)
+                        select c).ToList();
+            }
+
+            return data.Count();
+        }
+
 
         public ActionResult createAgent()
         {
@@ -490,76 +545,103 @@ namespace MVC_CRUD.Controllers
         }
 
         [HttpPost]
-        public ActionResult addAgent(String Email, String RoleId, String UserManager, String UserSkill, ICollection<int> CustProId)
+        public ActionResult addAgent(String Email, String RoleId, int UserManager, String UserSkill, ICollection<int> CustProId)
         {
             String UserPass = Helper.EncodePassword("Password1!", "th1siScRmc0nT4Ctc3nTeR!!!");
             String alias = Email.Substring(0, Email.IndexOf('@')).Replace('.', ' ');
 
-            TR_User user = new TR_User();
-            user.RoleId = 4;
-            user.Email = Email;
-            user.UserName = alias;
-            user.UserPass = UserPass;
-            user.UserManager = UserManager;
-            user.UserSkill = UserSkill;
-            user.UserStatus = 1;
-            user.CreatedOn = DateTime.Now;
-            user.CreatedBy = Convert.ToString(Session["UserName"]);
-            db.TR_User.Add(user);
-            db.SaveChanges();
+            var dtUser = db.TR_User.Where(p => p.Email == Email);
 
-            if (CustProId != null)
-                foreach (var i in CustProId)
-                {
-                    TT_UserProject userProject = new TT_UserProject();
-                    userProject.CustProId = i;
-                    userProject.CreatedBy = Convert.ToString(Session["UserName"]);
-                    userProject.UserId = user.UserId;
-                    userProject.CreatedOn = DateTime.Now;
-                    db.TT_UserProject.Add(userProject);
-                    db.SaveChanges();
-                }
+            if (dtUser.Count() < 1)
+            {
+                TR_User user = new TR_User();
+                user.RoleId = 4;
+                user.Email = Email;
+                user.UserName = alias;
+                user.UserPass = UserPass;
+                user.UserManagerId = UserManager;
+                user.UserSkill = UserSkill;
+                user.UserStatus = 1;
+                user.CreatedOn = DateTime.Now;
+                user.CreatedBy = Convert.ToString(Session["UserName"]);
+                db.TR_User.Add(user);
+                db.SaveChanges();
 
-            return RedirectToAction("masterAgent");
+                if (CustProId != null)
+                    foreach (var i in CustProId)
+                    {
+                        TT_UserProject userProject = new TT_UserProject();
+                        userProject.CustProId = i;
+                        userProject.CreatedBy = Convert.ToString(Session["UserName"]);
+                        userProject.UserId = user.UserId;
+                        userProject.CreatedOn = DateTime.Now;
+                        db.TT_UserProject.Add(userProject);
+                        db.SaveChanges();
+                    }
+
+                return RedirectToAction("masterAgent");
+            }
+            else {
+                return RedirectToAction("createAgent");
+            }
         }
 
         [HttpPost]
-        public ActionResult editAgent(int UserId, String Email, String UserManager, String UserSkill, int UserStatus)
+        public ActionResult editAgent(int UserId, String Email, int UserManager, String UserSkill, int UserStatus)
         {
             String alias = Email.Substring(0, Email.IndexOf('@')).Replace('.', ' ');
 
-            TR_User user = db.TR_User.Where(x => x.UserId == UserId).FirstOrDefault();
-            user.UserName = alias;
-            user.Email = Email;
-            user.UserManager = UserManager;
-            user.UserSkill = UserSkill;
-            user.UserStatus = UserStatus;
-            db.SaveChanges();
+            var dtUser = db.TR_User.Where(p => p.Email == Email && p.UserId != UserId);
 
-            if (UserStatus == 0)
+            if (dtUser.Count() < 1)
             {
-                var Contact = db.TR_Contact.Where(x => x.UserId == UserId).ToList();
-                foreach (var i in Contact)
-                {
-                    i.UserId = 0;
-                    i.ContactStatus = 0;
-                }
+                TR_User user = db.TR_User.Where(x => x.UserId == UserId).FirstOrDefault();
+                user.UserName = alias;
+                user.Email = Email;
+                user.UserManagerId = UserManager;
+                user.UserSkill = UserSkill;
+                user.UserStatus = UserStatus;
                 db.SaveChanges();
+
+                if (UserStatus == 0)
+                {
+                    var Contact = db.TR_Contact.Where(x => x.UserId == UserId).ToList();
+                    foreach (var i in Contact)
+                    {
+                        i.UserId = 0;
+                        i.ContactStatus = 0;
+                    }
+                    db.SaveChanges();
+                }
+
+                return RedirectToAction("masterAgent");
             }
-            return RedirectToAction("masterAgent");
+            else {
+                return RedirectToAction("updateAgent/"+ UserId);
+            }  
         }
 
         [HttpPost]
-        public ActionResult ExportToExcel(int GroupId, String callstatus, DateTime DateTo, DateTime DateFrom)
+        public ActionResult ExportToExcel(int GroupId, String callstatus, String DateFrom, String DateTo)
         {
+            DateTime DateFroms = DateTime.Parse(DateFrom);
+            DateTime DateTos = DateTime.Parse(DateTo);
+            int UserId = Convert.ToInt32(Session["UserId"]);
+
             var data = new List<TR_Contact>();
             if (callstatus == "notselected")
             {
-                data = db.TR_Contact.Where(x => x.CustProId == GroupId && x.CreatedOn >= DateFrom && x.CreatedOn <= DateTo).ToList();
+                data = (from c in db.TR_Contact.Where(x => x.CustProId == GroupId && x.CreatedOn >= DateFroms && x.CreatedOn <= DateTos && x.ContactStatus != 6)
+                        join u in db.TR_User on c.UserId equals u.UserId
+                        where u.UserManagerId == UserId
+                        select c).ToList();
             }
             else
             {
-                data = db.TR_Contact.Where(x => x.CustProId == GroupId && x.CallStatus == callstatus && x.CreatedOn >= DateFrom && x.CreatedOn <= DateTo).ToList();
+                data = (from c in db.TR_Contact.Where(x => x.CustProId == GroupId && x.CreatedOn >= DateFroms && x.CreatedOn <= DateTos && x.ContactStatus != 6 && x.CallStatus == callstatus)
+                        join u in db.TR_User on c.UserId equals u.UserId
+                        where u.UserManagerId == UserId
+                        select c).ToList();
             }
 
             foreach (var item in data)
@@ -676,6 +758,7 @@ namespace MVC_CRUD.Controllers
             {
                 IEnumerable<contactCenterModels.User>
                 user = (from User in db.TR_User.Where(x => x.RoleId != 1 && x.RoleId != 4)
+                        from mgr in db.TR_User.Where(x=> x.UserId == User.UserManagerId).DefaultIfEmpty()
                         join Role in db.TR_Role on User.RoleId equals Role.RoleId
                         select new contactCenterModels.User
                         {
@@ -683,7 +766,7 @@ namespace MVC_CRUD.Controllers
                             Email = User.Email,
                             UserName = User.UserName,
                             Role = Role.Rolename,
-                            Team = User.UserManager,
+                            Team = mgr.UserName,
                             Level = User.UserSkill,
                             Active = User.UserStatus == 1 ? "Active" : "Inactive"
                         }).ToList();
@@ -719,19 +802,28 @@ namespace MVC_CRUD.Controllers
             String UserPass = Helper.EncodePassword("Password1!", "th1siScRmc0nT4Ctc3nTeR!!!");
             // String alias = Email.Substring(0, Email.IndexOf('@')).Replace('.', ' ');
 
-            TR_User user = new TR_User();
-            user.RoleId = RoleId;
-            user.Email = Email;
-            user.UserName = Username;
-            user.UserPass = UserPass;
-            user.UserSkill = UserSkill;
-            user.UserStatus = 1;
-            user.CreatedOn = DateTime.Now;
-            user.CreatedBy = Convert.ToString(Session["UserName"]);
-            db.TR_User.Add(user);
+            var dtUser = db.TR_User.Where(p => p.Email == Email);
 
-            db.SaveChanges();
-            return RedirectToAction("masterUser");
+            if (dtUser.Count() < 1)
+            {
+                TR_User user = new TR_User();
+                user.RoleId = RoleId;
+                user.Email = Email;
+                user.UserName = Username;
+                user.UserPass = UserPass;
+                user.UserSkill = UserSkill;
+                user.UserStatus = 1;
+                user.CreatedOn = DateTime.Now;
+                user.CreatedBy = Convert.ToString(Session["UserName"]);
+                db.TR_User.Add(user);
+
+                db.SaveChanges();
+                return RedirectToAction("masterUser");
+            }
+            else {
+                return RedirectToAction("createUser");
+            }
+            
         }
 
         public ActionResult updateUser(int? id)
@@ -755,16 +847,26 @@ namespace MVC_CRUD.Controllers
         {
             //UserPass = Helper.EncodePassword(UserPass, "th1siScRmc0nT4Ctc3nTeR!!!");
             //String alias = Email.Substring(0, Email.IndexOf('@')).Replace('.', ' ');
-            TR_User user = db.TR_User.Where(x => x.UserId == UserId).FirstOrDefault();
-            user.RoleId = RoleId;
-            user.UserName = Username;
-            user.Email = Email;
-            //user.UserPass = UserPass;
-            user.UserSkill = UserSkill;
-            user.UserStatus = UserStatus;
 
-            db.SaveChanges();
-            return RedirectToAction("masterUser");
+            var dtUser = db.TR_User.Where(p => p.Email == Email && p.UserId != UserId);
+
+            if (dtUser.Count() < 1)
+            {
+                TR_User user = db.TR_User.Where(x => x.UserId == UserId).FirstOrDefault();
+                user.RoleId = RoleId;
+                user.UserName = Username;
+                user.Email = Email;
+                //user.UserPass = UserPass;
+                user.UserSkill = UserSkill;
+                user.UserStatus = UserStatus;
+
+                db.SaveChanges();
+                return RedirectToAction("masterUser");
+            }
+            else {
+                return RedirectToAction("updateUser/" + UserId);
+            }
+            
         }
 
         public ActionResult deleteUser(int id)
@@ -786,8 +888,10 @@ namespace MVC_CRUD.Controllers
             if (Session["UserId"] != null && Session["RoleId"].ToString() == "2")
             {
                 string UserName = Session["UserName"].ToString();
+                int UserIds = Convert.ToInt32(Session["UserId"].ToString());
+
                 int[] UserId = (from user in db.TR_User
-                                where user.UserManager == UserName
+                                where user.UserManagerId == UserIds
                                 select user.UserId).ToArray();
                 var closing = from contact in db.TR_Contact
                               join callH in (from call in db.TT_CallHistory
@@ -853,17 +957,20 @@ namespace MVC_CRUD.Controllers
             if (Session["UserId"] != null && Session["RoleId"].ToString() == "2")
             {
                 String UserName = Session["UserName"].ToString();
+                int UserIds = Convert.ToInt32(Session["UserId"].ToString());
+
                 int[] UserId = (from user in db.TR_User
-                                where user.UserManager == UserName
+                                where user.UserManagerId == UserIds
                                 select user.UserId).ToArray();
                 ViewBag.CustProId = (from uPro in db.TT_UserProject
                                      join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
                                      where UserId.Contains((int)uPro.UserId)
+                                     && custP.status == 1
                                      select new CustomerProject
                                      {
                                          CustProId = custP.CustProId,
                                          CustProName = custP.CustProName
-                                     }).Distinct().ToList();
+                                     }).Distinct().ToList().OrderBy(p => p.CustomerName);
                 return View();
             } else {
                 return RedirectToAction("Login", "Auth");
@@ -913,11 +1020,7 @@ namespace MVC_CRUD.Controllers
             using (SqlConnection dbconnection = connection)
             {
                 dbconnection.Open();
-
-
-
-
-
+                
                 //membuka koneksi database
 
                 //mengambil data resource dari tabel TR_User
@@ -925,9 +1028,7 @@ namespace MVC_CRUD.Controllers
                                     from TR_TargetSetting a, 
                             (
                                                 select count(UserId) as UserId
-
                                                 from TT_UserProject
-
                                                 where CustProId = @CustProId
                             )b
                                     where a.CustProId = @CustProId )";
@@ -937,7 +1038,7 @@ namespace MVC_CRUD.Controllers
                     target = Convert.ToInt32(cmd.ExecuteScalar());
                 }
 
-                query = "SELECT a.UserId, b.UserName FROM TT_UserProject a join TR_User b on a.UserId = b.UserId WHERE CustProId = " + CustProId + "AND UserManager = '" + Session["UserName"] + "'";
+                query = "SELECT a.UserId, b.UserName FROM TT_UserProject a join TR_User b on a.UserId = b.UserId WHERE CustProId = " + CustProId + "AND UserManagerId = '" + Session["UserId"] + "'";
                 using (SqlDataAdapter cmd = new SqlDataAdapter(query, dbconnection))
                 {
                     DataSet User = new DataSet("UserId");
@@ -949,7 +1050,6 @@ namespace MVC_CRUD.Controllers
 
                     for (int i = 0; i < tblUser.Rows.Count; i++)
                     {
-
                         string query2 = @" SELECT a.UserId ,
                                   SUM(CONVERT(INT, jamDuration)) as Jam ,
                                   SUM(CONVERT(INT, MenitDuration)) as Menit ,
@@ -985,7 +1085,6 @@ namespace MVC_CRUD.Controllers
                             var data = new contactCenterModels.Productivity();
 
                             command.Parameters.AddWithValue("@User", tblUser.Rows[i][0].ToString());
-
                             command.Parameters.AddWithValue("@StartDate", StartDate);
                             command.Parameters.AddWithValue("@EndDate", EndDate);
                             SqlDataReader reader = command.ExecuteReader();
@@ -1077,7 +1176,7 @@ namespace MVC_CRUD.Controllers
                             {
                                 data.Periode = Periode;
                                 data.UserName = tblUser.Rows[i][1].ToString();
-                                data.Achievment = 0;
+                                data.Achievment = "0";
                                 data.Target = target;
                                 data.Closing = 0;
                                 data.Prospect = 0;
@@ -1093,13 +1192,261 @@ namespace MVC_CRUD.Controllers
                                 {
                                     data.Periode = Periode;
                                     data.UserName = reader["UserName"].ToString();
-                                    data.Achievment = Convert.ToInt32(reader["Achievement"].ToString());
+                                    //data.Achievment = Convert.ToInt32(reader["Achievement"].ToString());
                                     data.Target = target;
                                     data.Closing = Convert.ToInt32(reader["Closing"].ToString());
                                     data.Prospect = Convert.ToInt32(reader["Prospect"].ToString());
                                     data.Contacted = Convert.ToInt32(reader["Contacted"].ToString());
                                     data.Connected = Convert.ToInt32(reader["Connected"].ToString());
                                     data.NotConnected = Convert.ToInt32(reader["NotConnected"].ToString()); ;
+                                    result.Add(data);
+                                    //Console.WriteLine((i + 1) + ". | " + reader["UserId"].ToString() + " | " + reader["UserName"].ToString() + " | " + reader["Achievement"].ToString() + "% | " + target + " | " + reader["Closing"].ToString() + " | " + reader["Prospect"].ToString() + " | " + reader["Promising"].ToString() + " | " + reader["Contacted"].ToString() + " | " + reader["Connected"].ToString() + " | " + reader["NotConnected"].ToString() + " | " + reader["Total"].ToString());
+                                }
+                            }
+
+                            reader.Close();
+                        }
+                    }
+                }
+            }
+            var hasil = new
+            {
+                Performance = result.ToList(),
+                Productivity = productivity.ToList()
+            };
+
+            return Json(hasil, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult targetSet2(string From, string To, string ProjectId)
+        {
+            NameValueCollection nvc = Request.Form;
+            DateTime dtFrom = Convert.ToDateTime(nvc["DateFrom"]);
+            DateTime dtTo = Convert.ToDateTime(nvc["DateTo"]);
+            int CustProId = Convert.ToInt32(nvc["CustProId"]);
+            
+            int target = 0;
+
+            var result = new List<contactCenterModels.Performance>();
+            var productivity = new List<contactCenterModels.Productivity>();
+            DateTime dateNow = DateTime.Now;
+            String StartDate = dtFrom.ToString("yyyy-MM-dd");
+            String EndDate = dtTo.ToString("yyyy-MM-dd");
+
+            //Defined SQL CONNECTION
+            SqlConnection connection = new SqlConnection();
+            connection.ConnectionString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
+
+            using (SqlConnection dbconnection = connection)
+            {
+                dbconnection.Open();
+
+                //membuka koneksi database
+
+                //mengambil data resource dari tabel TR_User
+                String query = @"( select a.TargetData/b.UserId as Jumlah 
+                                    from TR_TargetSetting a, 
+                            (
+                                                select count(UserId) as UserId
+                                                from TT_UserProject
+                                                where CustProId = @CustProId
+                            )b
+                                    where a.CustProId = @CustProId )";
+                using (SqlCommand cmd = new SqlCommand(query, dbconnection))
+                {
+                    cmd.Parameters.AddWithValue("@CustProId", CustProId);
+                    target = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+
+                query = "SELECT a.UserId, b.UserName, b.UserSkill FROM TT_UserProject a join TR_User b on a.UserId = b.UserId WHERE CustProId = " + CustProId + "AND UserManagerId = '" + Session["UserId"] + "'";
+                using (SqlDataAdapter cmd = new SqlDataAdapter(query, dbconnection))
+                {
+                    DataSet User = new DataSet("UserId");
+                    cmd.FillSchema(User, SchemaType.Source, "TT_UserProject");
+                    cmd.Fill(User, "TT_UserProject");
+
+                    DataTable tblUser;
+                    tblUser = User.Tables["TT_UserProject"];
+
+                    for (int i = 0; i < tblUser.Rows.Count; i++)
+                    {
+                        string query2 = @" SELECT a.UserId ,
+                                  SUM(CONVERT(INT, jamDuration)) as Jam ,
+                                  SUM(CONVERT(INT, MenitDuration)) as Menit ,
+                                  SUM(CONVERT(INT, DetikDuration)) as Detik ,
+                                  COUNT(a.UserId) As Attempt,
+                                  b.jumlah as Utillization
+                                FROM(
+                                   SELECT TT_CallHistory.UserId,
+                                     TT_CallHistory.ContactId,
+                                     --COUNT(ContactId) as Utillization,
+                                     SUBSTRING(CallDuration, 1, 2)  AS jamDuration,
+                                     SUBSTRING(CallDuration, 4, 2) AS MenitDuration,
+                                     SUBSTRING(CallDuration, 7, 2)  AS DetikDuration
+                                   FROM TT_CallHistory
+                                    inner join TR_CONTACT ct
+										on ct.ContactId = TT_CallHistory.ContactId
+
+                                  where ct.CustProId = @CustProId and CallDate between @StartDate  AND @EndDate
+
+                                  ) a join
+                                  (
+                                    SELECT UserId, sum(1) as jumlah
+                                    FROM(
+                                    SELECT UserId, contactId
+                                    FROM TT_CallHistory
+                                    GROUP BY UserId, ContactId
+                                    )a
+                                GROUP BY UserId
+                                ) b on a.UserId = b.UserId
+                                Where a.UserId = @User
+                            GROUP BY a.UserId, b.jumlah";
+
+                        using (SqlCommand command = new SqlCommand(query2, dbconnection))
+                        {
+                            var data = new contactCenterModels.Productivity();
+
+                            command.Parameters.AddWithValue("@User", tblUser.Rows[i][0].ToString());
+                            command.Parameters.AddWithValue("@CustProId", CustProId);
+                            command.Parameters.AddWithValue("@StartDate", StartDate);
+                            command.Parameters.AddWithValue("@EndDate", EndDate);
+                            SqlDataReader reader = command.ExecuteReader();
+
+                            if (!reader.HasRows)
+                            {
+                                //data.Periode = Periode;
+                                data.UserName = tblUser.Rows[i][1].ToString();
+                                data.callAtemp = 0;
+                                data.Utillization = 0;
+                                data.talkTime = "00:00:00";
+                                productivity.Add(data);
+                                //Console.WriteLine((i + 1) + ". | " + tblUser.Rows[i][0].ToString() + " | " + tblUser.Rows[i][1].ToString() + "| 0% | " + target + "| 0 | 0 | 0 | 0 | 0 | 0 | 0");
+                            }
+                            else
+                            {
+                                while (reader.Read())
+                                {
+                                    //data.Periode = Periode;
+                                    data.UserName = tblUser.Rows[i][1].ToString();
+                                    data.callAtemp = Convert.ToInt32(reader["Attempt"].ToString());
+                                    data.Utillization = Convert.ToInt32(reader["Utillization"].ToString());
+                                   
+                                    int Detik = Convert.ToInt32(reader["Detik"].ToString());
+                                    int Menit = Convert.ToInt32(reader["Menit"].ToString());
+                                    int Jam = Convert.ToInt32(reader["Jam"].ToString());
+
+                                    Menit = Menit + (Detik / 60);
+                                    Detik = Detik % 60;
+                                    Jam = Jam + (Menit / 60);
+                                    Menit = Menit % 60;
+
+                                    data.talkTime = Jam + ":" + Menit + ":" + Detik;
+                                    productivity.Add(data);
+                                    //Console.WriteLine((i + 1) + ". | " + reader["UserId"].ToString() + " | " + reader["UserName"].ToString() + " | " + reader["Achievement"].ToString() + "% | " + target + " | " + reader["Closing"].ToString() + " | " + reader["Prospect"].ToString() + " | " + reader["Promising"].ToString() + " | " + reader["Contacted"].ToString() + " | " + reader["Connected"].ToString() + " | " + reader["NotConnected"].ToString() + " | " + reader["Total"].ToString());
+                                }
+                            }
+
+                            reader.Close();
+                        }
+
+
+                        String query1 = @"Select a.UserId ,
+                                            b.UserName ,
+                                            b.UserSkill,
+                                            --Closing*100/Convert(float, @Target) as Achievement ,
+
+                                            Closing/
+											CONVERT(FLOAT,
+											@Target * (
+											(CASE(UserSkill)
+											when 'Beginner' then ts.Beginner
+											when 'Intermediate' then ts.Intermediate
+											else ts.Advance
+											end)/Convert(Float,100)
+											)) * 100 Achievement,
+
+                                            @Target as Target ,
+                                            Closing ,
+                                            Prospect ,
+                                            Promising ,
+                                            Contacted ,
+                                            Connected ,
+                                            NotConnected ,
+                                            Total = Closing + Prospect + Promising + Contacted + Connected + NotConnected
+                                            from 
+                                            (
+                                            Select UserId ,CustProId,
+                                                Sum(Case when CallStatus='Closing' then 1 else 0 END) as Closing ,
+                                                Sum(Case when CallStatus='Prospect' then 1 else 0 END) as Prospect ,
+                                                Sum(Case when CallStatus='Promising' then 1 else 0 END) as Promising ,
+                                                Sum(Case when CallStatus='Contacted' then 1 else 0 END) as Contacted ,
+                                                Sum(Case when CallStatus='Connected' then 1 else 0 END) as Connected ,
+                                                Sum(Case when CallStatus='Not Connected' then 1 else 0 END) as NotConnected
+                                            from ( 
+                                            select callh.UserId ,callh.CallStatus, ct.CustProId
+                                            from TT_CallHistory callh join
+                                                (
+                                                select ContactId, max(CallDate) as CallDate
+                                                from TT_CallHistory
+                                                group by ContactId
+                                                )a
+                                            on callh.CallDate=a.CallDate and callh.ContactId=a.ContactId
+                                            inner join TR_CONTACT ct
+                                            on ct.ContactId = callh.ContactId
+                                                        where ct.CustProId = @CustProId and callh.CallDate between @StartDate and @EndDate
+                                            )a
+                                                group by a.UserId, CustProId
+                                            )a join TR_User b on a.UserId=b.UserId
+                                            
+                                            inner join TR_TargetSetting ts
+												on ts.CustProId = a.CustProId
+												and ts.TargetFrom < GETDATE() and ts.TargetTo >= GETDATE()
+                                            WHERE a.UserId=@User";
+
+                        using (SqlCommand command = new SqlCommand(query1, dbconnection))
+                        {
+                            var data = new contactCenterModels.Performance();
+
+                            command.Parameters.AddWithValue("@User", tblUser.Rows[i][0].ToString());
+                            command.Parameters.AddWithValue("@Target", target);
+                            command.Parameters.AddWithValue("@CustProId", CustProId);
+                            command.Parameters.AddWithValue("@StartDate", StartDate);
+                            command.Parameters.AddWithValue("@EndDate", EndDate);
+                            SqlDataReader reader = command.ExecuteReader();
+
+                            if (!reader.HasRows)
+                            {
+                                //data.Periode = Periode;
+                                data.UserName = tblUser.Rows[i][1].ToString();
+                                //data.Achievment = 0;
+                                data.Target = target;
+                                data.Closing = 0;
+                                data.Prospect = 0;
+                                data.Contacted = 0;
+                                data.Connected = 0;
+                                data.NotConnected = 0;
+                                data.Achievment = "0";
+                                data.Image = "../Asset/images/poorly.png";
+                                data.UserSkill = tblUser.Rows[i][2].ToString();
+                                result.Add(data);
+                                //Console.WriteLine((i + 1) + ". | " + tblUser.Rows[i][0].ToString() + " | " + tblUser.Rows[i][1].ToString() + "| 0% | " + target + "| 0 | 0 | 0 | 0 | 0 | 0 | 0");
+                            }
+                            else
+                            {
+                                while (reader.Read())
+                                {
+                                    //data.Periode = Periode;
+                                    data.UserName = reader["UserName"].ToString();
+                                    data.Achievment = String.Format("{0:0.##}", Convert.ToDouble(reader["Achievement"].ToString()));
+                                    data.Target = target;
+                                    data.Closing = Convert.ToInt32(reader["Closing"].ToString());
+                                    data.Prospect = Convert.ToInt32(reader["Prospect"].ToString());
+                                    data.Contacted = Convert.ToInt32(reader["Contacted"].ToString());
+                                    data.Connected = Convert.ToInt32(reader["Connected"].ToString());
+                                    data.NotConnected = Convert.ToInt32(reader["NotConnected"].ToString());
+                                    data.UserSkill = reader["UserSkill"].ToString();
+                                    data.Image = (Convert.ToDouble(reader["Achievement"].ToString())) > 95 ? "../Asset/images/very-good.png" : "../Asset/images/poorly.png";
                                     result.Add(data);
                                     //Console.WriteLine((i + 1) + ". | " + reader["UserId"].ToString() + " | " + reader["UserName"].ToString() + " | " + reader["Achievement"].ToString() + "% | " + target + " | " + reader["Closing"].ToString() + " | " + reader["Prospect"].ToString() + " | " + reader["Promising"].ToString() + " | " + reader["Contacted"].ToString() + " | " + reader["Connected"].ToString() + " | " + reader["NotConnected"].ToString() + " | " + reader["Total"].ToString());
                                 }
@@ -1124,131 +1471,6 @@ namespace MVC_CRUD.Controllers
 
         }
 
-        //        [HttpPost]
-        //        public JsonResult productivity()
-        //        {
-        //            NameValueCollection nvc = Request.Form;
-        //            String Periode = Convert.ToString(nvc["Periode"]);
-        //            int CustProId = Convert.ToInt32(nvc["CustProId"]);
-
-        //            var result = new List<contactCenterModels.Productivity>();
-        //            // deklarasi periode 
-        //            DateTime dateNow = DateTime.Now;
-        //            String StartDate = DateTime.Now.ToString("yyyy-MM-dd"), EndDate = StartDate;
-        //            if (Periode.Equals("Daily"))
-        //            {
-        //                EndDate = dateNow.AddDays(1).ToString("yyyy-MM-dd");
-        //            }
-        //            else if (Periode.Equals("Weekly"))
-        //            {
-        //                EndDate = dateNow.AddDays(7).ToString("yyyy-MM-dd");
-        //            }
-        //            else if (Periode.Equals("Monthly"))
-        //            {
-        //                EndDate = dateNow.AddDays(30).ToString("yyyy-MM-dd");
-        //            }
-        //            //Defined SQL CONNECTION
-        //            SqlConnection connection = new SqlConnection();
-        //            connection.ConnectionString = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
-
-        //            using (SqlConnection dbconnection = connection)
-        //            {
-        //                //membuka koneksi database
-        //                dbconnection.Open();
-        //                //mengambil data resource dari tabel TR_User
-        //                String query = @"( select a.TargetDate/b.UserId as Jumlah 
-        //                                    from TR_TargetSetting a, 
-        //                            (
-        //                                                select count(UserId) as UserId
-
-        //                                                from TT_UserProject
-
-        //                                                where CustProId = @CustProId
-        //                            )b
-        //                                    where a.CustProId = @CustProId )";
-        //                using (SqlCommand cmd = new SqlCommand(query, dbconnection))
-        //                {
-        //                    cmd.Parameters.AddWithValue("@CustProId", CustProId);
-
-        //                }
-        //                // ntuk mengetahui agetn di bawahnya
-        //                query = "SELECT a.UserId, b.UserName FROM TT_UserProject a join TR_User b on a.UserId = b.UserId WHERE CustProId = " + CustProId + "AND UserManager = '" + Session["UserName"] + "'";
-        //                using (SqlDataAdapter cmd = new SqlDataAdapter(query, dbconnection))
-        //                {
-        //                    DataSet User = new DataSet("UserId");
-        //                    cmd.FillSchema(User, SchemaType.Source, "TT_UserProject");
-        //                    cmd.Fill(User, "TT_UserProject");
-
-        //                    DataTable tblUser;
-        //                    tblUser = User.Tables["TT_UserProject"];
-
-        //                    for (int i = 0; i < tblUser.Rows.Count; i++)
-        //                    {
-        //                        String query1 = @"SELECT a.UserId ,
-        //  SUM(CONVERT(INT, jamDuration)) as jam ,
-        //  SUM(CONVERT(INT, MenitDuration)) as Menit ,
-        //  SUM(CONVERT(INT, DetikDuration)) as Detik ,
-        //  COUNT(a.UserId) As Attempt ,
-        //  b.jumlah as Utillization
-        //FROM (
-        //   SELECT UserId,
-        //     ContactId,
-        //     --COUNT (ContactId) as Utillization ,
-        //     SUBSTRING (CallDuration,1,2)  AS jamDuration,
-        //     SUBSTRING (CallDuration,4,2) AS MenitDuration, 
-        //     SUBSTRING (CallDuration,7,2)  AS DetikDuration 
-        //   FROM TT_CallHistory
-        //  ) a join
-        //  (
-        //   SELECT UserId ,sum(1) as jumlah
-        //   FROM (
-        //     SELECT UserId, contactId
-        //     FROM TT_CallHistory
-        //     GROUP BY UserId, ContactId
-        //     )a
-        //   GROUP BY UserId
-        //  ) b on a.UserId = b.UserId
-        //GROUP BY a.UserId, b.jumlah";
-        //                        using (SqlCommand command = new SqlCommand(query1, dbconnection))
-        //                        {
-        //                            var data = new contactCenterModels.Productivity();
-
-        //                            command.Parameters.AddWithValue("@User", tblUser.Rows[i][0].ToString());
-        //                              command.Parameters.AddWithValue("@StartDate", StartDate);
-        //                            command.Parameters.AddWithValue("@EndDate", EndDate);
-        //                            SqlDataReader reader = command.ExecuteReader();
-
-        //                            if (!reader.HasRows)
-        //                            {
-        //                                data.Periode = Periode;
-        //                                data.UserName = tblUser.Rows[i][1].ToString();
-        //                                data.callAtemp = 0;
-        //                                data.Utillization = 0;
-        //                                data.talkTime = "00:00:00";
-        //                                result.Add(data);
-        //                                //Console.WriteLine((i + 1) + ". | " + tblUser.Rows[i][0].ToString() + " | " + tblUser.Rows[i][1].ToString() + "| 0% | " + target + "| 0 | 0 | 0 | 0 | 0 | 0 | 0");
-        //                            }
-        //                            else
-        //                            {
-        //                                while (reader.Read())
-        //                                {
-        //                                    data.Periode = Periode;
-        //                                    data.UserName = reader["UserName"].ToString();
-        //                                    data.callAtemp = Convert.ToInt32(reader["CallAttemp"].ToString());
-        //                                    data.Utillization = Convert.ToInt32(reader["Utillization"].ToString());
-        //                                    data.talkTime = Convert.ToInt32(reader["TalkTime"].ToString());
-        //                                    result.Add(data);
-        //                                    //Console.WriteLine((i + 1) + ". | " + reader["UserId"].ToString() + " | " + reader["UserName"].ToString() + " | " + reader["Achievement"].ToString() + "% | " + target + " | " + reader["Closing"].ToString() + " | " + reader["Prospect"].ToString() + " | " + reader["Promising"].ToString() + " | " + reader["Contacted"].ToString() + " | " + reader["Connected"].ToString() + " | " + reader["NotConnected"].ToString() + " | " + reader["Total"].ToString());
-        //                                }
-        //                            }
-
-        //                            reader.Close();
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //            return Json(result.ToList(), JsonRequestBehavior.AllowGet);
-        //        }
 
         public ActionResult MasterSettingTarget()
         {
@@ -1391,29 +1613,7 @@ namespace MVC_CRUD.Controllers
             String custProName = (from custPro in db.TT_CustomerProject
                                   where custPro.CustProId == custPro.CustProId
                                   select custPro.CustProName).FirstOrDefault();
-
-
-
-            //data.ContactStatus = 1;
-            //    data.UserId = 0;
-
-            //    var history = db.TT_CallHistory.Where(x => x.ContactId == data.ContactId).ToList();
-            //    foreach (var item1 in history)
-            //    {
-            //        db.TT_CallHistory.Remove(item1);
-
-            //    }
-
-            //db.SaveChanges();
-            //String custProName = (from custPro in db.TT_CustomerProject
-            //                      where custPro.CustProId == data.CustProId
-            //                      select custPro.CustProName).FirstOrDefault();
-
-
-
-
-
-
+            
             // set the data source
             GridView gridview = new GridView();
             gridview.DataSource = data;
@@ -1446,6 +1646,43 @@ namespace MVC_CRUD.Controllers
         }
 
         [HttpPost]
+        // GET: ExportDataContact
+        public int UpdateCallStatus(int? ContactId, int Status)
+        {
+            var data = new List<TR_Contact>();
+            if (ContactId != null)
+            {
+                data = db.TR_Contact.Where(x => x.ContactId == ContactId).ToList();
+            }
+
+            if (Status == 1) //Withdraw
+            {
+                foreach (var item in data)
+                {
+                    item.ContactStatus = 6;
+                    item.CallStatus = "Suspect";
+                    var history = db.TT_CallHistory.Where(x => x.ContactId == item.ContactId).ToList();
+                    foreach (var item1 in history)
+                    {
+                        db.TT_CallHistory.Remove(item1);
+                    }
+                }
+                db.SaveChanges();
+            }
+            else {
+                foreach (var item in data)
+                {
+                    item.ContactStatus = 0;
+                    item.CallStatus = "New";
+                    item.UserId = null;
+                }
+                db.SaveChanges();
+            }
+
+            return 1;
+        }
+
+        [HttpPost]
         public JsonResult selectFromTo()
         {
             //String status = "";
@@ -1456,10 +1693,10 @@ namespace MVC_CRUD.Controllers
 
             String from = Convert.ToDateTime((from contact in db.TR_Contact
                                               where contact.CustProId == id
-                                              select contact).Select(x => x.CreatedOn).Min()).ToString("dd-MM-yyyy");
+                                              select contact).Select(x => x.CreatedOn).Min()).ToString("dd-MMM-yyyy");
             String to = Convert.ToDateTime((from custP in db.TT_CustomerProject
                                             where custP.CustProId == id
-                                            select custP).Select(x => x.CustProExpired).Single()).ToString("dd-MM-yyyy");
+                                            select custP).Select(x => x.CustProExpired).Single()).ToString("dd-MMM-yyyy");
 
             System.Diagnostics.Debug.WriteLine(from + ", " + to);
 
@@ -1504,19 +1741,9 @@ namespace MVC_CRUD.Controllers
         {
             if (Session["UserId"] != null && Session["RoleId"].ToString() == "3")
             {
-                String UserName = Session["UserName"].ToString();
-                int[] UserId = (from user in db.TR_User
-                                where user.UserManager == UserName
-                                select user.UserId).ToArray();
-                var custPro = (from uPro in db.TT_UserProject
-                               join custP in db.TT_CustomerProject on uPro.CustProId equals custP.CustProId
-                               where UserId.Contains((int)uPro.UserId)
-                               select new CustomerProject
-                               {
-                                   CustProId = custP.CustProId,
-                                   CustProName = custP.CustProName
-                               }).Distinct().ToList();
-                ViewBag.GroupExp = new SelectList(db.TT_CustomerProject.Where(x => x.status == 0), "CustProId", "CustProName");
+
+                DateTime dtMaxExp = DateTime.Now.AddMonths(-6);
+                ViewBag.GroupExp = new SelectList(db.TT_CustomerProject.Where(x => x.status == 0 && x.CustProExpired > dtMaxExp).OrderBy(p=> p.CustProName), "CustProId", "CustProName");
                 return View();
             } else {
                 return RedirectToAction("Login", "Auth");
@@ -1530,16 +1757,15 @@ namespace MVC_CRUD.Controllers
             var data = new List<TR_Contact>();
             if (callstatus == "notselected")
             {
-                data = db.TR_Contact.Where(x => x.CustProId == GroupExp && x.CreatedOn >= DateFrom && x.CreatedOn <= DateTo).ToList();
+                data = db.TR_Contact.Where(x => x.CustProId == GroupExp && x.CreatedOn >= DateFrom && x.CreatedOn <= DateTo && x.ContactStatus != 6).ToList();
             }
             else
             {
-                data = db.TR_Contact.Where(x => x.CustProId == GroupExp && x.CallStatus == callstatus && x.CreatedOn >= DateFrom && x.CreatedOn <= DateTo).ToList();
+                data = db.TR_Contact.Where(x => x.CustProId == GroupExp && x.CallStatus == callstatus && x.CreatedOn >= DateFrom && x.CreatedOn <= DateTo && x.ContactStatus != 6).ToList();
             }
             foreach (var item in data)
             {
-                item.ContactStatus = 1;
-          //   item.UserId =0;
+                item.ContactStatus = 6;
                 var history = db.TT_CallHistory.Where(x => x.ContactId == item.ContactId).ToList();
                 foreach (var item1 in history)
                 {
@@ -1576,6 +1802,29 @@ namespace MVC_CRUD.Controllers
                 return RedirectToAction("withdrawExpired");
             }
 
+        }
+
+
+        [HttpPost]
+        public string UpdateContactPhone(int ContactId, int PhoneType, string PhoneNumber)
+        {
+            var dtContact = db.TR_Contact.Where(p => p.ContactId == ContactId).FirstOrDefault();
+
+            if (PhoneType == 1)
+            {
+                dtContact.ContactPhone = PhoneNumber;
+            }
+            else if (PhoneType == 2) {
+                dtContact.HomePhone = PhoneNumber;
+            }
+            else if (PhoneType == 3)
+            {
+                dtContact.OtherPhone = PhoneNumber;
+            }
+
+            db.SaveChanges();
+
+            return "ok";
         }
     }
 }

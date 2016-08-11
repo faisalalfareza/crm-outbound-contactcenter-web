@@ -6,26 +6,35 @@
 @RenderPage("~/Views/Gates/Head.cshtml")
 @*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
 <script>
-    function add(CustData)
-    {
+    function add2() {
+
+            var Custdata = new FormData();
+            var CustProId = $("#CustProId").val();
+            Custdata.append("CustProId", CustProId);
+            var DateFrom = $("#DateFrom").val();
+            Custdata.append("DateFrom", DateFrom);
+            var DateTo = $("#DateTo").val();
+            Custdata.append("DateTo", DateTo);
+
+            $("#byPerformance").find('tbody tr').remove();
+            $("#byProductivity").find('tbody tr').remove();
+
         $.ajax({
-            url: '@Url.Action("targetSet", "Home")',
+            url: '@Url.Action("targetSet2", "Home")',
             type: 'POST',
-            data: CustData,
+            data: Custdata,
             contentType: false,
             processData: false,
             async: true,
             success: function (data) {
-                if (data.Performance)
-                {
+                if (data.Performance) {
                     data.Performance.forEach(function (item) {
-                        $('#byPerformance').find('tbody').append('<tr><td>' + item.Periode + '</td><td>' + item.UserName + '</td><td>' + item.level + '</td><td>' + item.Achievement + ' %</td><td>' + item.Target + '</td><td>' + item.Closing + '</td><td>' + item.Prospect + '</td><td>' + item.Contacted + '</td><td>' + item.Connected + '</td><td>' + item.NotConnected + '</td></tr>')
+                        $('#byPerformance').find('tbody').append('<tr><td>' + item.UserName + '</td><td><image src="' + item.Image + '"/>&nbsp;' + item.Achievment + ' %</td><td>' + item.Target + '</td><td>' + item.Closing + '</td><td>' + item.Prospect + '</td><td>' + item.Contacted + '</td><td>' + item.Connected + '</td><td>' + item.NotConnected + '</td></tr>')
                     });
                 }
-                if (data.Productivity)
-                {
+                if (data.Productivity) {
                     data.Productivity.forEach(function (item) {
-                        $('#byProductivity').find('tbody').append('<tr><td>' + item.Periode + '</td><td>' + item.UserName + '</td><td>' + item.callAtemp + '</td><td>' + item.Utillization + '</td><td>' + item.talkTime + '</td><td>')
+                        $('#byProductivity').find('tbody').append('<tr><td>' + item.UserName + '</td><td>' + item.callAtemp + '</td><td>' + item.Utillization + '</td><td>' + item.talkTime + '</td></tr>')
                     });
                 }
             },
@@ -45,24 +54,70 @@
 
                 <div class="row">
                     <!-- DOM dataTable -->
-                    <div class="col-md-12">
-                        <select id="Periode" name="periode" class="selectpicker show-menu-arrow show-tick selectstyle" title="Select a periode" data-width="13%" data-style="btn-info">
-                            <optgroup label="Periode">
-                                <option value="Daily" selected>Daily</option>
-                                <option value="Weekly">Weekly</option>
-                                <option value="Monthly">Monthly</option>
-                                <option value="Yearly">Yearly</option>
-                            </optgroup>
-                        </select>
-                        <select id="CustProId" name="CustomerId" class="selectpicker show-menu-arrow show-tick selectstyle createSelect" data-width="15%" title="Select a Customer" data-style="btn-info">
-                            <optgroup label="Customer name">
-                                @foreach (var item in ViewBag.CustProId)
-                                {
-                                    <option value="@item.CustProId">@item.CustProName</option>
-                                }
-                            </optgroup>
-                        </select>
+                    
+                    <div class="col-sm-12">
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <select id="CustProId" name="CustomerId" class="selectpicker show-menu-arrow show-tick selectstyle createSelect" title="Select Project" data-style="btn-info">
+                                        <optgroup label="Project Name">
+                                            @foreach (var item in ViewBag.CustProId)
+                                            {
+                                                <option value="@item.CustProId">@item.CustProName</option>
+                                            }
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <label class="control-label" for="from">From</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="input-group date" id="from" data-date-format="dd-M-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <input type="text" id="DateFrom" name="DateFrom" class="form-control" required onchange="CheckDate()" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input type="hidden" id="dtp_input2" value="" />
+                                    </div>
+                                    <div id="ManagerError"></div>
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="col-sm-2">
+                                    <label class="control-label" for="to">To</label>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="input-group date" id="to" data-date="" data-date-format="dd-M-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <input type="text" id="DateTo" name="DateTo" class="form-control" required onchange="CheckDate()" />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        <input type="hidden" id="dtp_input2" value="" />
+                                    </div>
+                                    <div id="ManagerError"></div>
+                                </div>
+                            </div>
+                        </div>
+                      
+
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" class="btn btn-info btn-raised btn-sm submit" onclick="add2()"><i class="fa fa-paw"></i> &nbsp; Search</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                     <hr class="separator" />
 
                     <div class="widget">
@@ -79,9 +134,7 @@
                                         <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>Periode</th>
                                                     <th>Agent Name</th>
-                                                    <th>Level</th>
                                                     <th>Achievement</th>
                                                     <th>Target</th>
                                                     <th>Closing</th>
@@ -103,7 +156,6 @@
                                         <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
-                                                    <th>Periode</th>
                                                     <th>User</th>
                                                     <th>Call Attempt</th>
                                                     <th>Utillization</th>
@@ -131,29 +183,21 @@
     </main>
     <!--========== END app main -->
 </body>
-<script>
-    $(document).on("change", "#CustProId", function () {
-        var Custdata = new FormData();
-        var CustProId = $("#CustProId").val();
-        Custdata.append("CustProId", CustProId);
-        var Periode = $("#Periode").val();
-        Custdata.append("Periode", Periode);
-        $("#byPerformance").find('tbody tr').remove();
-        $("#byProductivity").find('tbody tr').remove();
 
-        add(Custdata);
-    });
-    $(document).on("change", "#Periode", function () {
-        var Custdata = new FormData();
-        var CustProId = $("#CustProId").val();
-        Custdata.append("CustProId", CustProId);
-        var Periode = $("#Periode").val();
-        Custdata.append("Periode", Periode);
-        $("#byPerformance").find('tbody tr').remove();
-        $("#byProductivity").find('tbody tr').remove();
+<script type="text/javascript">
+            
+            function CheckDate() {
+                if ($("#txtstart").val() != "" && $("#txtend").val() != "") {
 
-        add(Custdata);
-    });
+                    var from = new Date($("#DateFrom").val());
+                    var to = new Date($("#DateTo").val());
 
+                    var diffDays = parseInt((to - from) / (1000 * 60 * 60 * 24));
 
+                    if (diffDays > 30 || diffDays < 0) {
+                        DateFrom.value = "";
+                        DateTo.value = "";
+                    }
+                }
+            }
 </script>

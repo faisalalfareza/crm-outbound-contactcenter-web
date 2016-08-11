@@ -40,7 +40,7 @@
                                             <select class="form-control input-sm" name="UserManager">
                                                 @foreach (var item in ViewBag.Manager)
                                                 {
-                                                    <option value="@item.UserName">@item.UserName</option>
+                                                    <option value="@item.UserId">@item.UserName</option>
                                                 }
                                             </select>
                                             <div id="ManagerError"></div>
@@ -48,7 +48,14 @@
 
                                         <div class="form-group">
                                             <label class="control-label" for="inputSmall">Level or Skill</label>
-                                            <input type="text" name="UserSkill" class="form-control input-sm" id="USkill" placeholder="used ( , ) to separate skill">
+                                            @*<input type="text" name="UserSkill" class="form-control input-sm" id="USkill" placeholder="used ( , ) to separate skill">*@
+
+                                            <select id="USkill" name="UserSkill" class="form-control input-sm" title="Select Skill for User">
+                                                <option value="Beginner">Beginner</option>
+                                                <option value="Intermediate">Intermediate</option>
+                                                <option value="Advance">Advance</option>
+                                            </select>
+
                                             <div id="SkillError"></div>
                                         </div>
                                     </div>

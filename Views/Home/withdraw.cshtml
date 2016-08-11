@@ -50,7 +50,7 @@
                                                 <div class="form-group">
                                                     <div class="col-sm-12">
                                                         <label class="control-label" for="from">From</label>
-                                                        <div class="input-group date" id="from" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                        <div class="input-group date" id="from" data-date-format="dd-M-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                                             <input type="text" id="DateFrom" name="DateFrom" class="form-control" required />
                                                             <span class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -65,7 +65,7 @@
                                                 <div class="form-group">
                                                     <div class="col-sm-12">
                                                         <label class="control-label" for="to">To</label>
-                                                        <div class="input-group date" id="to" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                        <div class="input-group date" id="to" data-date="" data-date-format="dd-M-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                                             <input type="text" id="DateTo" name="DateTo" class="form-control" required />
                                                             <span class="input-group-addon">
                                                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -79,19 +79,19 @@
                                         </div>
 
                                         <div class="col-sm-7">
-                                            <button type="button" class="btn btn-info btn-raised btn-sm submit" data-toggle="modal" data-target="#CreateUser"><i class="fa fa-paw"></i> &nbsp; Finish</button>
+                                            <button type="button" class="btn btn-info btn-raised btn-sm submit" onclick="ShowConfirmation()"><i class="fa fa-paw"></i> &nbsp; Finish</button>
                                             <div class="modal fade" id="CreateUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            Confirm Withdraw
+                                                            <h3>Confirm Withdraw</h3>
                                                         </div>
                                                         <div class="modal-body">
-                                                            Are you sure ?
+                                                            <h4>Are you sure withdraw the <b><span id="spTotalWithdraw"></span></b> contact?</h4>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button type="submit" id="sub" class="btn btn-danger btn-ok">Withdraw</button>
-                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                            <button type="submit" id="sub" class="btn btn-danger btn-ok">Yes</button>
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -116,7 +116,7 @@
 </body>
 
 <script>
-  $(document).ready(function () {
+    $(document).ready(function () {
         $(".selectpicker").selectpicker({
             style: "btn-primary btn-outline btn-sm",
         });
@@ -127,6 +127,7 @@
         });
 
     });
+
     function selectDefault(formdata) {
         var formdata = new FormData()
         var GroupId = document.getElementById("GroupId");
@@ -148,6 +149,27 @@
             error: function (error) {
                 alert('error');
             }
+        });
+    }
+
+    function ShowConfirmation()
+    {
+        var CustProId = GroupId.options[GroupId.selectedIndex].value;
+        var from = document.getElementById("DateFrom").value;
+        var to = document.getElementById("DateTo").value;
+        var Status = document.getElementById("status").value;
+
+        var param = {
+            CustProId: CustProId,
+            From: from,
+            To: to,
+            Status: Status
+        };
+
+        $.post('@Url.Action("GetTotalWithdraw", "Home")', param, function (result) {
+            spTotalWithdraw.innerHTML = result;
+
+            $('#CreateUser').modal('show');
         });
     }
 

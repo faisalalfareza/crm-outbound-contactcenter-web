@@ -52,7 +52,7 @@
     <Property Name="Payment" Type="int" />
     <Property Name="CallStatus" Type="varchar" MaxLength="50" />
     <Property Name="SubStatus" Type="varchar" MaxLength="50" />
-    <Property Name="Remarks" Type="varchar" MaxLength="50" />
+    <Property Name="Remarks" Type="varchar" MaxLength="500" />
     <Property Name="Param1" Type="varchar" MaxLength="50" />
     <Property Name="Param2" Type="varchar" MaxLength="50" />
     <Property Name="Param3" Type="varchar" MaxLength="50" />
@@ -62,6 +62,8 @@
     <Property Name="CustProId" Type="int" />
     <Property Name="ExpiredDate" Type="date" />
     <Property Name="UserId" Type="int" />
+    <Property Name="HomePhone" Type="varchar" MaxLength="20" />
+    <Property Name="OtherPhone" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="TR_Customer">
     <Key>
@@ -103,13 +105,14 @@
     <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="varchar" MaxLength="50" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
-    <Property Name="UserManager" Type="varchar" MaxLength="50" />
     <Property Name="UserStatus" Type="int" />
     <Property Name="CreatedOn" Type="date" />
     <Property Name="CreatedBy" Type="varchar" MaxLength="50" />
     <Property Name="RoleId" Type="int" />
     <Property Name="UserPass" Type="varchar" MaxLength="50" />
     <Property Name="UserSkill" Type="varchar" MaxLength="50" />
+    <Property Name="UserManagerId" Type="int" />
+    <Property Name="IsVerified" Type="bit" />
   </EntityType>
   <EntityType Name="TT_CallHistory">
     <Key>
@@ -119,7 +122,7 @@
     <Property Name="CallDuration" Type="varchar" MaxLength="50" />
     <Property Name="CallStatus" Type="varchar" MaxLength="50" />
     <Property Name="SubStatus" Type="varchar" MaxLength="50" />
-    <Property Name="Remarks" Type="text" />
+    <Property Name="Remarks" Type="varchar" MaxLength="500" />
     <Property Name="CallDate" Type="datetime" />
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="UserId" Type="int" />

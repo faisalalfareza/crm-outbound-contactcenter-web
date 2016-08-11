@@ -62,5 +62,7 @@ namespace MVC_CRUD.Models
         public Nullable<int> CustProId { get; set; }
         public Nullable<System.DateTime> ExpiredDate { get; set; }
         public Nullable<int> UserId { get; set; }
+        public string HomePhone { get; set; }
+        public string OtherPhone { get; set; }
     }
 }

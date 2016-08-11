@@ -479,3 +479,9 @@ C:\Users\jessica.susanto\CRM_CC\bin\MVC_CRUD.dll
 C:\Users\jessica.susanto\CRM_CC\bin\MVC_CRUD.pdb
 C:\Users\jessica.susanto\CRM_CC\obj\Debug\crm.csprojResolveAssemblyReference.cache
 C:\Users\jessica.susanto\CRM_CC\obj\Debug\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\bin\MVC_CRUD.dll.config
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\bin\MVC_CRUD.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\bin\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\obj\Debug\MVC_CRUD.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\obj\Debug\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\obj\Debug\crm.csprojResolveAssemblyReference.cache

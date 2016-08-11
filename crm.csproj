@@ -213,6 +213,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthModels.cs" />
+    <Compile Include="Models\CaptchaText.cs" />
     <Compile Include="Models\contactCenterModels.cs" />
     <Compile Include="Models\Model1.Context.cs">
       <AutoGen>True</AutoGen>
@@ -262,7 +263,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Asset\images\5.png" />
     <Content Include="Asset\css\app.css" />
     <Content Include="Asset\css\bootstrap-datetimepicker.css" />
     <Content Include="Asset\css\bootstrap-datetimepicker.min.css" />
@@ -278,53 +278,11 @@
     <Content Include="Asset\css\ripples.min.css" />
     <Content Include="Asset\css\style.css" />
     <Content Include="Asset\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Asset\images\001.jpg" />
-    <Content Include="Asset\images\101.jpg" />
-    <Content Include="Asset\images\102.jpg" />
-    <Content Include="Asset\images\103.jpg" />
-    <Content Include="Asset\images\104.jpg" />
-    <Content Include="Asset\images\105.jpg" />
-    <Content Include="Asset\images\201.jpg" />
-    <Content Include="Asset\images\202.jpg" />
-    <Content Include="Asset\images\203.jpg" />
-    <Content Include="Asset\images\204.jpg" />
-    <Content Include="Asset\images\205.jpg" />
-    <Content Include="Asset\images\206.jpg" />
-    <Content Include="Asset\images\207.jpg" />
-    <Content Include="Asset\images\208.jpg" />
-    <Content Include="Asset\images\209.jpg" />
-    <Content Include="Asset\images\210.jpg" />
-    <Content Include="Asset\images\211.jpg" />
-    <Content Include="Asset\images\212.jpg" />
-    <Content Include="Asset\images\213.jpg" />
-    <Content Include="Asset\images\214.jpg" />
-    <Content Include="Asset\images\215.jpg" />
-    <Content Include="Asset\images\216.jpg" />
-    <Content Include="Asset\images\217.jpg" />
-    <Content Include="Asset\images\218.jpg" />
-    <Content Include="Asset\images\219.jpg" />
-    <Content Include="Asset\images\220.jpg" />
-    <Content Include="Asset\images\221.jpg" />
-    <Content Include="Asset\images\222.jpg" />
     <Content Include="Asset\images\logo.png" />
-    <Content Include="Asset\images\original\101.jpg" />
-    <Content Include="Asset\images\original\102.jpg" />
-    <Content Include="Asset\images\original\103.jpg" />
-    <Content Include="Asset\images\original\104.jpg" />
-    <Content Include="Asset\images\original\105.jpg" />
-    <Content Include="Asset\images\original\201.jpg" />
-    <Content Include="Asset\images\original\202.jpg" />
-    <Content Include="Asset\images\original\203.jpg" />
-    <Content Include="Asset\images\original\204.jpg" />
-    <Content Include="Asset\images\original\205.jpg" />
-    <Content Include="Asset\images\original\206.jpg" />
-    <Content Include="Asset\images\original\207.jpg" />
-    <Content Include="Asset\images\original\208.jpg" />
-    <Content Include="Asset\images\original\209.jpg" />
-    <Content Include="Asset\images\original\210.jpg" />
-    <Content Include="Asset\images\original\211.jpg" />
-    <Content Include="Asset\images\original\212.jpg" />
+    <Content Include="Asset\images\poorly.png" />
     <Content Include="Asset\images\under-construction.gif" />
+    <Content Include="Asset\images\very-good.png" />
+    <Content Include="Asset\images\Visionet.png" />
     <Content Include="Asset\images\visionet_logo.png" />
     <Content Include="Asset\js\app.js" />
     <Content Include="Asset\js\bootstrap-datetimepicker.id.js" />
@@ -698,10 +656,13 @@
     <Content Include="Views\Home\callView.cshtml" />
     <Content Include="Views\Home\masterExpired.cshtml" />
     <Content Include="Views\Home\withdrawExpired.cshtml" />
+    <Content Include="Views\Auth\Captcha.cshtml" />
+    <Content Include="Views\Auth\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Asset\images\index\" />
+    <Folder Include="Asset\images\original\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

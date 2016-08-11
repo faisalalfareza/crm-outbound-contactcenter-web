@@ -94,7 +94,7 @@ namespace crm.Controllers
                     string conn = ConfigurationManager.ConnectionStrings["dbconnection"].ConnectionString;
                     SqlConnection con = new SqlConnection(conn);
                     con.Open();
-
+                    
                     String customerName = "";
                     int customerId = 0;
                     String query = "select CustomerName, CustomerId from TR_Customer where CustomerId=(select CustomerId From TT_CustomerProject where CustProId=@CustProId)";
@@ -108,14 +108,7 @@ namespace crm.Controllers
                             customerId = (int)dr["CustomerId"];
                         }
                     }
-                    //String customerId;
-                    //query = "select CustomerId From TT_CustomerProject where CustProId=@CustProId";
-                    //using (SqlCommand cmd = new SqlCommand(query, con))
-                    //{
-                    //    cmd.Parameters.AddWithValue("@CustProId", CustomerProId);
-                    //    customerId = (String)cmd.ExecuteScalar();
-                    //}
-
+                  
                     query = "select top 0 * into #" + CustomerProId + " from TR_Contact";
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -130,10 +123,11 @@ namespace crm.Controllers
                         DateTime? date3 = ds.Tables[0].Rows[i][27].ToString() == "" ? null : (DateTime?) Convert.ToDateTime(ds.Tables[0].Rows[i][27].ToString());
                         DateTime? date4 = ds.Tables[0].Rows[i][30].ToString() == "" ? null : (DateTime?) Convert.ToDateTime(ds.Tables[0].Rows[i][30].ToString());
                         //query = "Insert into #" + CustomerProId + " Values('" + ds.Tables[0].Rows[i][2].ToString() + "','" + ds.Tables[0].Rows[i][4].ToString() + "','0','" + ds.Tables[0].Rows[i][25].ToString() + "','" + ds.Tables[0].Rows[i][0].ToString() + "','" + ds.Tables[0].Rows[i][1].ToString() + "','" + customerId + "','" + ds.Tables[0].Rows[i][3].ToString() + "','" + customerName + "','" + Convert.ToDateTime(ds.Tables[0].Rows[i][5].ToString()).ToString("MM/dd/yyyy") + "','" + Convert.ToInt64(ds.Tables[0].Rows[i][6].ToString().Substring(0, 2)) + "','" + ds.Tables[0].Rows[i][7].ToString() + "','" + ds.Tables[0].Rows[i][8].ToString() + "','" + ds.Tables[0].Rows[i][9].ToString() + "','" + ds.Tables[0].Rows[i][10].ToString() + "','" + ds.Tables[0].Rows[i][11].ToString() + "','" + ds.Tables[0].Rows[i][12].ToString() + "','" + Convert.ToInt64(ds.Tables[0].Rows[i][13].ToString()) + "','" + ds.Tables[0].Rows[i][14].ToString() + "','" + ds.Tables[0].Rows[i][15].ToString() + "','" + ds.Tables[0].Rows[i][16].ToString() + "','" + ds.Tables[0].Rows[i][17].ToString() + "','" + Convert.ToInt64(ds.Tables[0].Rows[i][18].ToString()) + "','" + ds.Tables[0].Rows[i][19].ToString() + "','" + Convert.ToInt64(ds.Tables[0].Rows[i][20].ToString()) + "','" + Convert.ToInt64(ds.Tables[0].Rows[i][21].ToString()) + "','" + ds.Tables[0].Rows[i][22].ToString() + "','" + Convert.ToInt64(ds.Tables[0].Rows[i][23].ToString()) + "','" + ds.Tables[0].Rows[i][24].ToString() + "', '" + Convert.ToDateTime(ds.Tables[0].Rows[i][26].ToString()).ToString("MM/dd/yyyy") + "', '" + Convert.ToDateTime(ds.Tables[0].Rows[i][27].ToString()).ToString("MM/dd/yyyy") + "','" + Convert.ToInt64(ds.Tables[0].Rows[i][28].ToString()) + "','" + Convert.ToInt64(ds.Tables[0].Rows[i][29].ToString()) + "','" + ds.TAbConvert.ToDateTime(ds.Tables[0].Rows[i][30].ToString()).ToString("MM/dd/yyyy") + "','" + ds.Tables[0].Rows[i][31].ToString() + "', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '" + DateTime.Now.ToString("MM/dd/yyyy") + "', " + CustomerProId + ", '" + DateTime.Now.AddDays(3).ToString("MM/dd/yyyy") + "', 0)";
+
                         query = "Insert into #" + CustomerProId + " Values('" + ds.Tables[0].Rows[i][2].ToString() + "','" + ds.Tables[0].Rows[i][4].ToString() + "','0','" + ds.Tables[0].Rows[i][25].ToString() + "','" + ds.Tables[0].Rows[i][0].ToString() + "','" + ds.Tables[0].Rows[i][1].ToString() + "','" + customerId + "','" + ds.Tables[0].Rows[i][3].ToString() + "','" + customerName + "','" + (!date1.HasValue ? null : date1.Value.ToString("MM/dd/yyyy")) + "','" + (ds.Tables[0].Rows[i][6].ToString().Length > 1 ? Convert.ToInt64(ds.Tables[0].Rows[i][6].ToString().Substring(0, 2)) : 0)
                             + "','" + ds.Tables[0].Rows[i][7].ToString() + "','" + ds.Tables[0].Rows[i][8].ToString() + "','" + ds.Tables[0].Rows[i][9].ToString() + "','" + ds.Tables[0].Rows[i][10].ToString() + "','" + ds.Tables[0].Rows[i][11].ToString() + "','" + ds.Tables[0].Rows[i][12].ToString() + "','" + (ds.Tables[0].Rows[i][13] == DBNull.Value ? 0 : Convert.ToInt64(ds.Tables[0].Rows[i][13].ToString())) + "','" + ds.Tables[0].Rows[i][14].ToString() + "','" + ds.Tables[0].Rows[i][15].ToString() + "','" + ds.Tables[0].Rows[i][16].ToString() + "','" + ds.Tables[0].Rows[i][17].ToString() + "','" + (ds.Tables[0].Rows[i][18] == DBNull.Value ? 0 : Convert.ToInt64(ds.Tables[0].Rows[i][18].ToString())) + "','" + ds.Tables[0].Rows[i][19].ToString()
                             + "','" + (ds.Tables[0].Rows[i][20] == DBNull.Value ? 0 : Convert.ToInt64(ds.Tables[0].Rows[i][20].ToString())) + "','" + (ds.Tables[0].Rows[i][21] == DBNull.Value ? 0 : Convert.ToInt64(ds.Tables[0].Rows[i][21].ToString())) + "','" + ds.Tables[0].Rows[i][22].ToString() + "','" + (ds.Tables[0].Rows[i][23] == DBNull.Value ? 0 : Convert.ToInt64(ds.Tables[0].Rows[i][23].ToString())) + "','" + ds.Tables[0].Rows[i][24].ToString() + "', '" + (!date2.HasValue ? null : date2.Value.ToString("MM/dd/yyyy")) + "', '" + (!date3.HasValue ? null : date3.Value.ToString("MM/dd/yyyy")) + "','" + (ds.Tables[0].Rows[i][28] == DBNull.Value ? 0 : Convert.ToInt64(ds.Tables[0].Rows[i][28].ToString())) + "','" + (ds.Tables[0].Rows[i][29] == DBNull.Value ? 0 : Convert.ToInt64(ds.Tables[0].Rows[i][29].ToString())) + "','" + (!date4.HasValue ? null : date4.Value.ToString("MM/dd/yyyy"))
-                            + "','" + ds.Tables[0].Rows[i][31].ToString() + "', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '" + DateTime.Now.ToString("MM/dd/yyyy") + "', " + CustomerProId + ", '" + DateTime.Now.AddDays(3).ToString("MM/dd/yyyy") + "', 0)";
+                            + "','" + ds.Tables[0].Rows[i][31].ToString() + "', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '" + DateTime.Now.ToString("MM/dd/yyyy") + "', " + CustomerProId + ", '" + DateTime.Now.AddDays(3).ToString("MM/dd/yyyy") + "', 0, '"+ ds.Tables[0].Rows[i][32].ToString() + "', '-')";
 
                         using (SqlCommand cmd = new SqlCommand(query, con))
                         {
@@ -142,7 +136,16 @@ namespace crm.Controllers
                     }
 
                     //Duplicate Check
-                    query = "MERGE TR_Contact t USING #" + CustomerProId + " s ON t.ContactPhone = s.ContactPhone AND t.CustProId = s.CustProId WHEN NOT MATCHED THEN Insert Values(s.CustomerContactId,s.ContactName,s.ContactStatus,s.ContactPhone,s.BranchId,s.BranchFullname,s.CustomerId,s.AgreementNo,s.CustomerName,s.BirthDate,s.Usia,s.KTP_Adress,s.KTP_RT,s.KTP_RW,s.KTP_Kelurahan,s.KTP_Kecamatan,s.KTP_City,s.KTP_Zipcode,s.Residence_Adress,s.Residence_Kelurahan,s.Residence_Kecamatan,s.Residence_City,s.Residence_Zipcode,s.Jenis_Pekerjaan,s.MonthlyFixedIncome,s.InstallmentAmount,s.Status_Rumah,s.JumlahTanggungan,s.DownPayment,s.GoLiveDate,s.TglSelesaiAngsuran,s.Tenor,s.Odmax_Day_Final,s.LastPayment,s.Payment, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, s.CreatedOn, s.CustProId, s.ExpiredDate, 0);";
+                    query = "MERGE TR_Contact t USING #" + CustomerProId + " s ON t.ContactPhone = s.ContactPhone AND t.CustProId = s.CustProId "+
+                            " WHEN NOT MATCHED THEN Insert Values(s.CustomerContactId,s.ContactName,s.ContactStatus " +
+                            " ,s.ContactPhone,s.BranchId,s.BranchFullname,s.CustomerId,s.AgreementNo,s.CustomerName " +
+                            " ,(IIF(s.BirthDate = '1900-01-01', null, s.BirthDate)),s.Usia,s.KTP_Adress,s.KTP_RT,s.KTP_RW,s.KTP_Kelurahan,s.KTP_Kecamatan " +
+                            " ,s.KTP_City,s.KTP_Zipcode,s.Residence_Adress,s.Residence_Kelurahan,s.Residence_Kecamatan " +
+                            " ,s.Residence_City,s.Residence_Zipcode,s.Jenis_Pekerjaan,s.MonthlyFixedIncome,s.InstallmentAmount,s.Status_Rumah, " +
+                            " s.JumlahTanggungan,s.DownPayment, (IIF(s.GoLiveDate = '1900-01-01', null, s.GoLiveDate)),(IIF(s.TglSelesaiAngsuran = '1900-01-01', null, s.TglSelesaiAngsuran)),s.Tenor " +
+                            " ,s.Odmax_Day_Final,(IIF(s.LastPayment = '1900-01-01', null, s.LastPayment)), " +
+                            " s.Payment, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, s.CreatedOn, s.CustProId, s.ExpiredDate, 0, s.HomePhone, s.OtherPhone); ";
+
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
                         jmlRows = cmd.ExecuteNonQuery();

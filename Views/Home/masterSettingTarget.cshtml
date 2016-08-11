@@ -49,10 +49,13 @@
                                                         @item.TargetName
                                                     </td>
                                                     <td>
-                                                        @item.TargetFrom
+                                                        
+                                                        @Convert.ToDateTime(@item.TargetFrom).ToString("dd MMM yyyy")
+
                                                     </td>
                                                     <td>
-                                                        @item.TargetTo
+                                                        @Convert.ToDateTime(@item.TargetTo).ToString("dd MMM yyyy")
+                                                        
                                                     </td>
                                                     <td>
                                                         @item.TargetData
@@ -108,7 +111,7 @@
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="inputSmall">Input Target All</label>
+                                            <label class="control-label" for="inputSmall">Target Amount (Rp)</label>
                                             <input type="number" name="TargetAmountPaid" class="form-control input-sm" id="inputSmall" placeholder="entry target all" autofocus>
                                             <div id="NameError"></div>
                                         </div>
@@ -223,7 +226,7 @@
                                             <div id="NameError"></div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="control-label" for="inputSmall">Input Target All</label>
+                                            <label class="control-label" for="inputSmall">Target Amount (Rp)</label>
                                             <input type="number" name="TargetAmountPaid" class="form-control input-sm" id="editAmountPaid" placeholder="entry target all" autofocus>
                                             <div id="NameError"></div>
                                         </div>

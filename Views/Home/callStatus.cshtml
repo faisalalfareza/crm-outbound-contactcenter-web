@@ -55,7 +55,8 @@
                                                                 @item.CallStatus<span> , </span>@item.SubStatus
                                                             </td>
                                                             <td>
-                                                                @item.BeginCall
+                                                                @Convert.ToDateTime(@item.BeginCall).ToString("dd-MMM-yy HH:mm")
+
                                                             </td>
                                                             <td>
                                                                 @if (item.CallBack.Equals(item.BeginCall))
@@ -64,7 +65,7 @@
                                                                 }
                                                                 else
                                                                 {
-                                                                    @item.CallBack
+                                                                    @Convert.ToDateTime(@item.CallBack).ToString("dd-MMM-yy HH:mm")
                                                                 }
                                                             </td>
                                                             <td>
@@ -114,7 +115,9 @@
                                                                 @item.CallStatus<span> , </span>@item.SubStatus
                                                             </td>
                                                             <td>
-                                                                @item.BeginCall
+
+                                                                @Convert.ToDateTime(@item.BeginCall).ToString("dd-MMM-yy HH:mm")
+
                                                             </td>
                                                             <td>
                                                                 @if (item.CallBack.Equals(item.BeginCall))
@@ -123,7 +126,8 @@
                                                                 }
                                                                 else
                                                                 {
-                                                                    @item.CallBack
+                                                                    @Convert.ToDateTime(@item.CallBack).ToString("dd-MMM-yy HH:mm")
+                                                                    
                                                                 }
                                                             </td>
                                                             <td>

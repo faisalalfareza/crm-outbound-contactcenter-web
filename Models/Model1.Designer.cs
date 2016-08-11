@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM Contact Center\MVC_CRUD\Models\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -70,7 +70,7 @@ namespace MVC_CRUD.Models
         public String Periode { get; set; }
         public int? UserId { get; set; }
         public string UserName { get; set; }
-        public int Achievment { get; set; }
+        public string Achievment { get; set; }
         public int Target { get; set; }
         public int Closing { get; set; }
         public int Prospect { get; set; }
@@ -78,7 +78,9 @@ namespace MVC_CRUD.Models
         public int Contacted { get; set; }
         public int Connected { get; set; }
         public int NotConnected { get; set; }
-    }
+        public string UserSkill { get; set; }
+        public string Image { get; set; }
+        }
 
         public class Productivity
         {

@@ -18,6 +18,10 @@ namespace MVC_CRUD.Models
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
+
+            [Required]
+            [Display(Name = "Captcha")]
+            public string Captcha { get; set; }
         }
     }
 }

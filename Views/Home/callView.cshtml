@@ -40,14 +40,14 @@
                                         <tr valign="center">
 
                                             <td>Home Phone</td>
-                                            <td>-</td>
+                                            <td>@ViewBag.call.HomePhone</td>
                                             <td><a onclick="" class="badge badge-info nmrDial"><i class="fa fa-phone-square text-white"></i></a></td>
 
                                         </tr>
                                         <tr valign="center">
 
                                             <td>Other Phone</td>
-                                            <td>-</td>
+                                            <td>@ViewBag.call.OtherPhone</td>
                                             <td><a onclick="" class="badge badge-info nmrDial"><i class="fa fa-phone-square text-white"></a></td>
 
                                         </tr>
@@ -125,7 +125,8 @@
                                                             Birth Date
                                                         </td>
                                                         <td>
-                                                            @Convert.ToDateTime(@ViewBag.call.BirthDate).ToShortDateString()
+                                                            @Convert.ToDateTime(@ViewBag.call.BirthDate).ToString("dd MMM yyyy")
+
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -149,7 +150,7 @@
                                                             Level
                                                         </td>
                                                         <td>
-                                                            Gold
+                                                            Platinum
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -160,6 +161,9 @@
                                                             @ViewBag.CustomerName
                                                         </td>
                                                     </tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
+                                                    <tr><td>&nbsp;</td></tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -211,8 +215,9 @@
                     <div class="col-md-12">
                         @using (Html.BeginForm("ExportToExcelContact", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
                         { <div class="button">
-                           <button type="submit" onclick="javascript: dialCallPost();" class="btn btn-info btn-raised btn-sm"><i class="fa fa-paw"></i> &nbsp; Withdraw</button>
-                           <button type="button" onclick="javascript: dialCallPost();" class="btn btn-success btn-raised btn-sm"><i class="fa fa-check-circle"></i> &nbsp; Reassign</button>
+                            <input type="hidden" id="hdContactId" value="@ViewBag.call.ContactId"/>
+                           <button type="button" onclick="UpdateStatus(1)" class="btn btn-info btn-raised btn-sm"><i class="fa fa-paw"></i> &nbsp; Withdraw</button>
+                           <button type="button" onclick="UpdateStatus(2)" class="btn btn-success btn-raised btn-sm"><i class="fa fa-check-circle"></i> &nbsp; Reassign</button>
                           </div> 
                         }
                         <div class="panel panel-primary">
@@ -223,18 +228,21 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th>Date Time</th>
-                                        <th>Phone Number</th>
-                                        <th>Call Status</th>
-                                        <th>Sub Status</th>
+                                        <th style="width:140px">Date Time</th>
+                                        <th style="width:100px">Phone Number</th>
+                                        <th style="width:100px">Call Status</th>
+                                        <th style="width:100px">Sub Status</th>
                                         <th>Remarks</th>
-                                        <th>Aging Agent</th>
-                                        <th>agent</th>
+                                        <th style="width:100px">Aging Agent</th>
+                                        <th style="width:100px">Agent</th>
                                     </tr>
                                     @foreach (var item in ViewBag.historydetail)
                                     {
                                         <tr>
-                                            <td>@item.CallDate</td>
+                                            <td>
+                                            @Convert.ToDateTime(@item.CallDate).ToString("dd-MMM-yy HH:mm")
+
+                                            </td>
                                             <td>@item.ContactPhone</td>
                                             <td>@item.CallStatus</td>
                                             <td>@item.SubStatus</td>
@@ -260,3 +268,21 @@
 
 </body>
 
+<script>
+    function UpdateStatus(status)
+    {
+        var ContactId = @ViewBag.call.ContactId;
+        var param = {
+            ContactId: ContactId,
+            Status: status
+        };
+
+        $.post('@Url.Action("UpdateCallStatus", "Home")', param, function (result) {
+
+            if(result == 1)
+            {
+                document.location = '@Url.Action("callStatus", "Home")'
+            }
+        });
+    }
+</script>
