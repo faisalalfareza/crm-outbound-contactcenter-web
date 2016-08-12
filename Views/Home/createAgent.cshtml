@@ -31,8 +31,6 @@
                                             <div id="NameError"></div>
                                         </div>
 
-                                       
-                                       
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -58,6 +56,11 @@
 
                                             <div id="SkillError"></div>
                                         </div>
+
+                                        <footer>
+                                            <label style="color:red">@(Request.QueryString["msg"])</label>
+                                        </footer>
+
                                     </div>
                                     <div class="col-sm-12">
                                         <button type="button" id="buttonProject" data-toggle="modal" data-target="#project" class="btn btn-info btn-raised btn-sm"><i class="fa fa-plus-circle"></i> &nbsp; Assign to Project</button>
@@ -77,6 +80,7 @@
                                             </thead>
                                             <tbody></tbody>
                                         </table>
+
                                     </div>
                                 </div>
                                 <div class="widget-footer">

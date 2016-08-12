@@ -590,7 +590,7 @@ namespace MVC_CRUD.Controllers
                 return RedirectToAction("masterAgent");
             }
             else {
-                return RedirectToAction("createAgent");
+                return Redirect("~/Home/createAgent?msg=Warning! Duplicate Email");
             }
         }
 
@@ -830,7 +830,7 @@ namespace MVC_CRUD.Controllers
                 return RedirectToAction("masterUser");
             }
             else {
-                return RedirectToAction("createUser");
+                return Redirect("~/Home/createUser?msg=Warning! Duplicate Email");
             }
             
         }
