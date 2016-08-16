@@ -4,46 +4,10 @@
 }
 <!-- Include Page Header -->
 @RenderPage("~/Views/Gates/Head.cshtml")
-@*<script src="~/Scripts/jquery-1.7.1.js"></script>*@
-<script>
-    function add2() {
 
-            var Custdata = new FormData();
-            var CustProId = $("#CustProId").val();
-            Custdata.append("CustProId", CustProId);
-            var DateFrom = $("#DateFrom").val();
-            Custdata.append("DateFrom", DateFrom);
-            var DateTo = $("#DateTo").val();
-            Custdata.append("DateTo", DateTo);
 
-            $("#byPerformance").find('tbody tr').remove();
-            $("#byProductivity").find('tbody tr').remove();
-
-        $.ajax({
-            url: '@Url.Action("targetSet2", "Home")',
-            type: 'POST',
-            data: Custdata,
-            contentType: false,
-            processData: false,
-            async: true,
-            success: function (data) {
-                if (data.Performance) {
-                    data.Performance.forEach(function (item) {
-                        $('#byPerformance').find('tbody').append('<tr><td>' + item.UserName + '</td><td><image src="' + item.Image + '"/>&nbsp;' + item.Achievment + ' %</td><td>' + item.Target + '</td><td>' + item.Closing + '</td><td>' + item.Prospect + '</td><td>' + item.Contacted + '</td><td>' + item.Connected + '</td><td>' + item.NotConnected + '</td></tr>')
-                    });
-                }
-                if (data.Productivity) {
-                    data.Productivity.forEach(function (item) {
-                        $('#byProductivity').find('tbody').append('<tr><td>' + item.UserName + '</td><td>' + item.callAtemp + '</td><td>' + item.Utillization + '</td><td>' + item.talkTime + '</td></tr>')
-                    });
-                }
-            },
-            error: function (error) {
-                alert('error');
-            }
-        });
-    }
-</script>
+<!--Bootstrap Table [ OPTIONAL ]-->
+<link href="../libs/misc/datatables/datatables.min.css" rel="stylesheet">
 
 <body class="sb-left">
     @RenderPage("~/Views/Gates/Header.cshtml")
@@ -131,7 +95,8 @@
                             <div id="byPerformance" class="tab-pane fade in active">
                                 <div class="widget-body">
                                     <div class="table-responsive">
-                                        <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+
+                                        @*<table id="tblPerformanceNew" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <th>Agent Name</th>
@@ -145,7 +110,46 @@
                                                 </tr>
                                             </thead>
                                             <tbody></tbody>
-                                        </table>
+                                        </table>*@
+
+                                        <div id="ListPerformance" style="width:100%">
+
+                                        </div>
+
+                                        <script type="text/x-handlebars-template" id="dtPerformance">
+
+                                            <table class="table table-striped" data-plugin="DataTable" id="tblPerformance" cellspacing="0" width="100%">
+                                                <thead>
+
+                                                    <tr>
+                                                        <th style="width:150px">Agent Name</th>
+                                                        <th style="width:100px">Achievement</th>
+                                                        <th style="width:100px">Target</th>
+                                                        <th style="width:80px">Closing</th>
+                                                        <th style="width:80px">Prospect</th>
+                                                        <th style="width:80px">Contacted</th>
+                                                        <th style="width:80px">Connected</th>
+                                                        <th style="width:80px">Not Connected</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each this}}
+                                                    <tr>
+                                                        <td>{{AgentName}}</td>
+                                                        <td><image src="{{Image}}" />&nbsp; {{Achievement}}</td>
+                                                        <td>{{Target}}</td>
+                                                        <td>{{Closing}}</td>
+                                                        <td>{{Prospect}}</td>
+                                                        <td>{{Contacted}}</td>
+                                                        <td>{{Connected}}</td>
+                                                        <td>{{NotConnected}}</td>
+                                                    </tr>
+                                                    {{/each}}
+
+                                                </tbody>
+                                            </table>
+                                        </script>
+
                                     </div>
                                 </div><!-- .widget-body -->
                             </div>
@@ -153,6 +157,8 @@
                             <div id="byProductivity" class="tab-pane fade in">
                                 <div class="widget-body">
                                     <div class="table-responsive">
+                                        
+                                        <div style="display:none">
                                         <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
@@ -164,6 +170,38 @@
                                             </thead>
                                             <tbody></tbody>
                                         </table>
+                                        </div>
+
+                                        <div id="ListProductivity" style="width:100%">
+
+                                        </div>
+
+                                        <script type="text/x-handlebars-template" id="dtProductivity">
+
+                                            <table class="table table-striped" data-plugin="DataTable" id="tblProductivity" cellspacing="0" width="100%">
+                                                <thead>
+
+                                                    <tr>
+                                                        <th>User</th>
+                                                        <th style="width:150px">Call Attempt</th>
+                                                        <th style="width:150px">Utillization</th>
+                                                        <th style="width:150px">Talk Time</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {{#each this}}
+                                                    <tr>
+                                                        <td>{{User}}</td>
+                                                        <td>{{CallAttempt}}</td>
+                                                        <td>{{Utillization}}</td>
+                                                        <td>{{TalkTime}}</td>
+                                                    </tr>
+                                                    {{/each}}
+
+                                                </tbody>
+                                            </table>
+                                        </script>
+
                                     </div>
                                 </div><!-- .widget-body -->
                             </div>
@@ -177,6 +215,7 @@
         </div><!-- .wrap -->
         <!-- Include Page Footer -->
         @RenderPage("~/Views/Gates/Footer.cshtml")
+        
         <!-- Include Page Foot -->
         @RenderPage("~/Views/Gates/Foot.cshtml")
 
@@ -184,7 +223,10 @@
     <!--========== END app main -->
 </body>
 
-<script type="text/javascript">
+<script src="~/Scripts/handlebars-v3.0.3.js"></script>
+    <script src="~/Libs/misc/datatables/datatables.min.js"></script>
+
+<script>
             
             function CheckDate() {
                 if ($("#txtstart").val() != "" && $("#txtend").val() != "") {
@@ -200,4 +242,114 @@
                     }
                 }
             }
+
+
+    function GetPerformance() {
+
+        var Custdata = new FormData();
+        var CustProId = $("#CustProId").val();
+        Custdata.append("CustProId", CustProId);
+        var DateFrom = $("#DateFrom").val();
+        Custdata.append("DateFrom", DateFrom);
+        var DateTo = $("#DateTo").val();
+        Custdata.append("DateTo", DateTo);
+
+        $.ajax({
+            url: '@Url.Action("GetPerformance", "Home")',
+            type: 'POST',
+            data: Custdata,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+                var data = JSON.parse(data);
+
+                var source = $('#dtPerformance').html();
+                var tmpl = Handlebars.compile(source);
+
+                $('#ListPerformance').html(tmpl(data));
+
+                var table = $('#tblPerformance').DataTable();
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });
+    }
+
+    function GetProductivity() {
+
+        var Custdata = new FormData();
+        var CustProId = $("#CustProId").val();
+        Custdata.append("CustProId", CustProId);
+        var DateFrom = $("#DateFrom").val();
+        Custdata.append("DateFrom", DateFrom);
+        var DateTo = $("#DateTo").val();
+        Custdata.append("DateTo", DateTo);
+
+        $.ajax({
+            url: '@Url.Action("GetProductivity", "Home")',
+            type: 'POST',
+            data: Custdata,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+                var data = JSON.parse(data);
+
+                var source = $('#dtProductivity').html();
+                var tmpl = Handlebars.compile(source);
+
+                $('#ListProductivity').html(tmpl(data));
+
+                var table = $('#tblProductivity').DataTable();
+
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });
+    }
+
+    function add2() {
+
+        GetPerformance();
+        GetProductivity();
+
+        @*var Custdata = new FormData();
+            var CustProId = $("#CustProId").val();
+            Custdata.append("CustProId", CustProId);
+            var DateFrom = $("#DateFrom").val();
+            Custdata.append("DateFrom", DateFrom);
+            var DateTo = $("#DateTo").val();
+            Custdata.append("DateTo", DateTo);
+
+            $("#byPerformance").find('tbody tr').remove();
+            $("#byProductivity").find('tbody tr').remove();
+
+        $.ajax({
+            url: '@Url.Action("targetSet2", "Home")',
+            type: 'POST',
+            data: Custdata,
+            contentType: false,
+            processData: false,
+            async: true,
+            success: function (data) {
+                if (data.Performance) {
+                    data.Performance.forEach(function (item) {
+                        $('#byPerformance').find('tbody').append('<tr><td>' + item.UserName + '</td><td><image src="' + item.Image + '"/>&nbsp;' + item.Achievment + ' %</td><td>' + item.Target + '</td><td>' + item.Closing + '</td><td>' + item.Prospect + '</td><td>' + item.Contacted + '</td><td>' + item.Connected + '</td><td>' + item.NotConnected + '</td></tr>')
+                    });
+                }
+
+                if (data.Productivity) {
+                    data.Productivity.forEach(function (item) {
+                        $('#byProductivity').find('tbody').append('<tr><td>' + item.UserName + '</td><td>' + item.callAtemp + '</td><td>' + item.Utillization + '</td><td>' + item.talkTime + '</td></tr>')
+                    });
+                }
+            },
+            error: function (error) {
+                alert('error');
+            }
+        });*@
+    }
 </script>

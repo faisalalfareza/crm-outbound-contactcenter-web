@@ -23,10 +23,10 @@
                                     <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Contact</th>
-                                                <th>Aging Data</th>
-                                                <th>Level</th>
+                                                <th style="width:30px">#</th>
+                                                <th style="width:220px">Contact</th>
+                                                <th style="width:90px">Aging Data</th>
+                                                @*<th>Level</th>*@
                                                 <th>Project Name</th>
                                             </tr>
                                         </thead>
@@ -44,9 +44,9 @@
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.AgingData)<span> Day</span>
                                                     </td>
-                                                    <td>
+                                                    @*<td>
                                                         Platinum
-                                                    </td>
+                                                    </td>*@
                                                     <td>
                                                         @Html.DisplayFor(modelItem => item.CustomerName)<span> - </span>@Html.DisplayFor(modelItem => item.CustProName)
                                                     </td>

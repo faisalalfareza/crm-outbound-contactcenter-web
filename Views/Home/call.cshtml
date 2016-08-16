@@ -188,14 +188,7 @@
                                                             @ViewBag.call.ContactName
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            Cust Id
-                                                        </td>
-                                                        <td>
-                                                            @ViewBag.call.CustomerContactId
-                                                        </td>
-                                                    </tr>
+                                                    
                                                     <tr>
                                                         <td>
                                                             Birth Date
@@ -223,20 +216,28 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
+                                                            City
+                                                        </td>
+                                                        <td>
+                                                            @ViewBag.call.KTP_City
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
                                                             Monthly Income
                                                         </td>
                                                         <td>
                                                             IDR @String.Format("{0:0,0.00}", @ViewBag.call.MonthlyFixedIncome)
                                                         </td>
                                                     </tr>
-                                                    <tr>
+                                                    @*<tr>
                                                         <td>
                                                             Level
                                                         </td>
                                                         <td>
                                                             Platinum
                                                         </td>
-                                                    </tr>
+                                                    </tr>*@
                                                     <tr>
                                                         <td>
                                                             Customer Project
@@ -250,6 +251,7 @@
                                                     <tr><td>&nbsp;</td></tr>
                                                     <tr><td>&nbsp;</td></tr>
                                                     <tr><td>&nbsp;</td></tr>
+                                                    @*<tr><td>&nbsp;</td></tr>*@
 
                                                 </tbody>
                                             </table>
@@ -331,18 +333,19 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th style="width:140px">Date Time</th>
-                                        <th style="width:150px">Phone Number</th>
+                                        <th style="width:100px">Date Time</th>
+                                        <th style="width:120px">Phone Number</th>
                                         <th style="width:120px">Call Status</th>
                                         <th style="width:150px">Sub Status</th>
-                                        <th>Remarks</th>
+                                        <th style="width:300px">Remarks</th>
                                         <th style="width:100px">Aging Agent</th>
-                                        <th style="width:120px">Agent</th>
+                                        <th style="width:140px">Agent</th>
                                     </tr>
                                     @foreach (var item in ViewBag.historydetail)
                                     {
                                         <tr>
-                                            <td>@item.CallDate</td>
+                                            <td>
+                                            @Convert.ToDateTime(@item.CallDate).ToString("dd-MMM-yyyy HH:mm")</td>
                                             <td>@item.ContactPhone</td>
                                             <td>@item.CallStatus</td>
                                             <td>@item.SubStatus</td>

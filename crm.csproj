@@ -297,6 +297,16 @@
     <Content Include="Asset\js\plugins.js" />
     <Content Include="Asset\js\ripples.min.js" />
     <Content Include="Asset\js\tables-datatables.js" />
+    <Content Include="Asset\plugins\datatables\extensions\Responsive\css\dataTables.responsive.css" />
+    <Content Include="Asset\plugins\datatables\extensions\Responsive\js\dataTables.responsive.min.js" />
+    <Content Include="Asset\plugins\datatables\media\css\dataTables.bootstrap.css" />
+    <Content Include="Asset\plugins\datatables\media\images\sort_asc.png" />
+    <Content Include="Asset\plugins\datatables\media\images\sort_asc_disabled.png" />
+    <Content Include="Asset\plugins\datatables\media\images\sort_both.png" />
+    <Content Include="Asset\plugins\datatables\media\images\sort_desc.png" />
+    <Content Include="Asset\plugins\datatables\media\images\sort_desc_disabled.png" />
+    <Content Include="Asset\plugins\datatables\media\js\dataTables.bootstrap.js" />
+    <Content Include="Asset\plugins\datatables\media\js\jquery.dataTables.js" />
     <Content Include="bin\Antlr3.Runtime.dll" />
     <Content Include="bin\CuteWebUI.AjaxUploader.dll" />
     <Content Include="bin\DotNetOpenAuth.AspNet.dll" />
@@ -602,6 +612,7 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Scripts\handlebars-v3.0.3.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
