@@ -20,7 +20,7 @@ namespace MVC_CRUD.Controllers
 {
     public class HomeController : Controller
     {
-        DB_CRM_CCEntitiesNew db = new DB_CRM_CCEntitiesNew();
+        DB_CRM_CCEntities db = new DB_CRM_CCEntities();
         public ActionResult crmAgent()
         {
             if (Session["UserId"] != null && Session["RoleId"].ToString() == "4")

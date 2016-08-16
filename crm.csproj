@@ -47,6 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\EntityFramework.SqlServer.dll</HintPath>
@@ -111,9 +115,6 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -218,54 +219,54 @@
     </Compile>
     <Compile Include="Models\AuthModels.cs" />
     <Compile Include="Models\CaptchaText.cs" />
+    <Compile Include="Models\ContactCenterCRM.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactCenterCRM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactCenterCRM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ContactCenterCRM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactCenterCRM.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\contactCenterModels.cs" />
-    <Compile Include="Models\DBCRM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBCRM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBCRM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBCRM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DBCRM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBCRM.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TR_Contact.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TR_Customer.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TR_Role.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TR_StringMap.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TR_TargetSetting.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TR_User.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TT_CallHistory.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TT_CallResult.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TT_CustomerProject.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TT_UserProject.cs">
-      <DependentUpon>DBCRM.tt</DependentUpon>
+      <DependentUpon>ContactCenterCRM.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -590,24 +591,24 @@
     <Content Include="Asset\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Asset\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\UploadCRM.xlsx" />
-    <EntityDeploy Include="Models\DBCRM.edmx">
+    <Content Include="Models\ContactCenterCRM.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ContactCenterCRM.edmx</DependentUpon>
+      <LastGenOutput>ContactCenterCRM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ContactCenterCRM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ContactCenterCRM.edmx</DependentUpon>
+      <LastGenOutput>ContactCenterCRM.cs</LastGenOutput>
+    </Content>
+    <EntityDeploy Include="Models\ContactCenterCRM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBCRM.Designer.cs</LastGenOutput>
+      <LastGenOutput>ContactCenterCRM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DBCRM.edmx.diagram">
-      <DependentUpon>DBCRM.edmx</DependentUpon>
+    <Content Include="Models\ContactCenterCRM.edmx.diagram">
+      <DependentUpon>ContactCenterCRM.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Models\DBCRM.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBCRM.edmx</DependentUpon>
-      <LastGenOutput>DBCRM.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\DBCRM.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBCRM.edmx</DependentUpon>
-      <LastGenOutput>DBCRM.cs</LastGenOutput>
-    </Content>
     <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\handlebars-v3.0.3.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />

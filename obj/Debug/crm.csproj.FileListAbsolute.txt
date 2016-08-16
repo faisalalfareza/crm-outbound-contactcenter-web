@@ -493,3 +493,11 @@ D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\obj\Debug\MVC_CRUD.dll
 D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\obj\Debug\MVC_CRUD.pdb
 D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\bin\EntityFramework.SqlServer.xml
 D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\bin\EntityFramework.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\CRMCC\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\Data\ASP.NET\Contact Center\CRMCC\CRMCC\obj\Debug\MVC_CRUD.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\CRMCC\obj\Debug\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\CRMCC\bin\MVC_CRUD.dll.config
+D:\Data\ASP.NET\Contact Center\CRMCC\CRMCC\bin\MVC_CRUD.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\CRMCC\bin\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\CRMCC\bin\EntityFramework.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\CRMCC\bin\EntityFramework.SqlServer.xml
