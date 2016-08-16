@@ -405,6 +405,19 @@ namespace MVC_CRUD.Controllers
             return RedirectToAction("masterCustomerProject");
         }
 
+        public ActionResult updateCustomerProjectExpDate(int? CustProId, DateTime CustProExpired)
+        {
+            TT_CustomerProject tabelCustPro = db.TT_CustomerProject.Find(CustProId);
+            if (tabelCustPro != null)
+            {
+                var dtCustPro = db.TT_CustomerProject.Where(p => p.CustProId == CustProId).FirstOrDefault();
+                dtCustPro.CustProExpired = CustProExpired;
+                dtCustPro.status = DateTime.Now >= CustProExpired ? 0 : 1;
+                db.SaveChanges();
+            }
+            return RedirectToAction("masterExpired");
+        }
+
         public ActionResult deleteCustomerProject(int id)
         {
             TT_CustomerProject tabelCustPro = db.TT_CustomerProject.Find(id);
@@ -857,38 +870,52 @@ namespace MVC_CRUD.Controllers
             //UserPass = Helper.EncodePassword(UserPass, "th1siScRmc0nT4Ctc3nTeR!!!");
             //String alias = Email.Substring(0, Email.IndexOf('@')).Replace('.', ' ');
 
-            var dtUser = db.TR_User.Where(p => p.Email == Email && p.UserId != UserId);
-
-            if (dtUser.Count() < 1)
+            if (UserId != 1) //Admin
             {
-                TR_User user = db.TR_User.Where(x => x.UserId == UserId).FirstOrDefault();
-                user.RoleId = RoleId;
-                user.UserName = Username;
-                user.Email = Email;
-                //user.UserPass = UserPass;
-                //user.UserSkill = UserSkill;
-                user.UserStatus = UserStatus;
+                var dtUser = db.TR_User.Where(p => p.Email == Email && p.UserId != UserId);
 
-                db.SaveChanges();
-                return RedirectToAction("masterUser");
+                if (dtUser.Count() < 1)
+                {
+                    TR_User user = db.TR_User.Where(x => x.UserId == UserId).FirstOrDefault();
+                    user.RoleId = RoleId;
+                    user.UserName = Username;
+                    user.Email = Email;
+                    //user.UserPass = UserPass;
+                    //user.UserSkill = UserSkill;
+                    user.UserStatus = UserStatus;
+
+                    db.SaveChanges();
+                    return RedirectToAction("masterUser");
+                }
+                else
+                {
+                    return RedirectToAction("updateUser/" + UserId);
+                }
             }
             else {
                 return RedirectToAction("updateUser/" + UserId);
             }
             
+            
         }
 
         public ActionResult deleteUser(int id)
         {
-            TR_User tabelUser = db.TR_User.Find(id);
-            if (tabelUser == null)
+            if (id != 1) //Admin
             {
-                return HttpNotFound();
-            }
-            db.TR_User.Remove(tabelUser);
-            db.SaveChanges();
+                TR_User tabelUser = db.TR_User.Find(id);
+                if (tabelUser == null)
+                {
+                    return HttpNotFound();
+                }
+                db.TR_User.Remove(tabelUser);
+                db.SaveChanges();
 
-            return RedirectToAction("masterUser");
+                return RedirectToAction("masterUser");
+            }
+            else {
+                return RedirectToAction("masterUser");
+            }
         }
 
 
