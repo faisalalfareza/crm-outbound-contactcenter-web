@@ -65,7 +65,7 @@ namespace MVC_CRUD.Controllers
             {
                 if (Session["CaptchaImageText"].ToString().ToUpper() == model.Captcha.ToUpper())
                 {
-                    using (DB_CRM_CCEntities db = new DB_CRM_CCEntities())
+                    using (DB_CRM_CCEntitiesNew db = new DB_CRM_CCEntitiesNew())
                     {
                         String Password = Helper.EncodePassword(model.Password, "th1siScRmc0nT4Ctc3nTeR!!!");
                         var loginValid = db.TR_User.Where(x => x.Email.Equals(model.UserName) && x.UserPass.Equals(Password) && x.UserStatus == 1).FirstOrDefault();
@@ -127,7 +127,7 @@ namespace MVC_CRUD.Controllers
                 {
                     if (NewPassword == VerifryPassword)
                     {
-                        using (DB_CRM_CCEntities db = new DB_CRM_CCEntities())
+                        using (DB_CRM_CCEntitiesNew db = new DB_CRM_CCEntitiesNew())
                         {
                             var dtUser = db.TR_User.Where(p => p.UserId == UserId);
                             if (dtUser.Count() > 0)

@@ -485,3 +485,11 @@ D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\bin\MV
 D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\obj\Debug\MVC_CRUD.dll
 D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\obj\Debug\MVC_CRUD.pdb
 D:\Data\ASP.NET\Contact Center\CRMCC\Update V7.20\Update V7.20\CRM CC New\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\bin\MVC_CRUD.dll.config
+D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\bin\MVC_CRUD.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\bin\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\obj\Debug\crm.csprojResolveAssemblyReference.cache
+D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\obj\Debug\MVC_CRUD.dll
+D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\obj\Debug\MVC_CRUD.pdb
+D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\bin\EntityFramework.SqlServer.xml
+D:\Data\ASP.NET\Contact Center\CRMCC\CRM CC New\bin\EntityFramework.xml
