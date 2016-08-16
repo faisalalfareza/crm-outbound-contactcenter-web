@@ -1399,7 +1399,7 @@ namespace MVC_CRUD.Controllers
 											CONVERT(FLOAT,
 											@Target * (
 											(CASE(UserSkill)
-											when 'Beginner' then ts.Beginner
+											when 'Junior' then ts.Beginner
 											when 'Intermediate' then ts.Intermediate
 											else ts.Advance
 											end)/Convert(Float,100)
@@ -1573,7 +1573,7 @@ namespace MVC_CRUD.Controllers
 											CONVERT(FLOAT,
 											@Target * (
 											(CASE(UserSkill)
-											when 'Beginner' then ts.Beginner
+											when 'Junior' then ts.Beginner
 											when 'Intermediate' then ts.Intermediate
 											else ts.Advance
 											end)/Convert(Float,100)
