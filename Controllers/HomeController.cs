@@ -1871,11 +1871,11 @@ namespace MVC_CRUD.Controllers
         }
 
         [HttpPost]
-        public ActionResult createSettingTarget(int CustProId, String TargetName, int TargetAmountPaid, DateTime? TargetFrom, int TargetData, DateTime? TargetTo, int Advance, int Intermediate, int Beginner)
+        public ActionResult createSettingTarget(int CustProId, String TargetName, int TargetAmountPaid, DateTime? TargetFrom, int TargetData, DateTime? TargetTo, int Advance, int Intermediate, int Junior)
         {
             TR_TargetSetting Target = new TR_TargetSetting();
             Target.Advance = Advance;
-            Target.Beginner = Beginner;
+            Target.Beginner = Junior;
             Target.CreatedOn = DateTime.Now;
             Target.Created_by = Convert.ToString(Session["UserId"]);
             Target.Intermediate = Intermediate;
@@ -1892,11 +1892,11 @@ namespace MVC_CRUD.Controllers
         }
 
         [HttpPost]
-        public ActionResult editSettingTarget(int TargetId, int CustProId, String TargetName, int TargetAmountPaid, DateTime? TargetFrom, int TargetData, DateTime? TargetTo, int Advance, int Intermediate, int Beginner)
+        public ActionResult editSettingTarget(int TargetId, int CustProId, String TargetName, int TargetAmountPaid, DateTime? TargetFrom, int TargetData, DateTime? TargetTo, int Advance, int Intermediate, int Junior)
         {
             TR_TargetSetting Target = db.TR_TargetSetting.Find(TargetId);
             Target.Advance = Advance;
-            Target.Beginner = Beginner;
+            Target.Beginner = Junior;
             Target.CreatedOn = DateTime.Now;
             Target.Created_by = Convert.ToString(Session["UserId"]);
             Target.Intermediate = Intermediate;
