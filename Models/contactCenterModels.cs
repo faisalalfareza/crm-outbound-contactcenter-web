@@ -107,12 +107,20 @@ namespace MVC_CRUD.Models
             public DateTime? TargetFrom { get; set; }
             public DateTime? TargetTo { get; set; }
             public int? TargetData { get; set; }
-            public decimal? TargetAmountPaid { get; set; }
+            public string TargetAmountPaid { get; set; }
             public String CustProName { get; set; }
             public int? Advance { get; set; }
             public int? Beginner { get; set; }
             public int? Intermediate { get; set; }
             public int CustProId { get; set; }
+        }
+
+        public class HistoryUploadContact
+        {
+            public int CreatedBy { get; set; }
+            public string CreatedByName { get; set; }
+            public DateTime? CreatedOn { get; set; }
+            public int TotalContact { get; set; }
         }
 
     }

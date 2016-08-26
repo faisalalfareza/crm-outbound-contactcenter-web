@@ -26,7 +26,6 @@ namespace MVC_CRUD.Models
         }
     
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<TR_Contact> TR_Contact { get; set; }
         public virtual DbSet<TR_Customer> TR_Customer { get; set; }
         public virtual DbSet<TR_Role> TR_Role { get; set; }
         public virtual DbSet<TR_StringMap> TR_StringMap { get; set; }
@@ -36,5 +35,6 @@ namespace MVC_CRUD.Models
         public virtual DbSet<TT_CallResult> TT_CallResult { get; set; }
         public virtual DbSet<TT_CustomerProject> TT_CustomerProject { get; set; }
         public virtual DbSet<TT_UserProject> TT_UserProject { get; set; }
+        public virtual DbSet<TR_Contact> TR_Contact { get; set; }
     }
 }

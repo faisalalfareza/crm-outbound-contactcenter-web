@@ -21,6 +21,7 @@
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a data-toggle="tab" href="#dataSuspect">Suspect</a></li>
                                     <li><a data-toggle="tab" href="#dataClosing">Closing</a></li>
+                                    <li><a data-toggle="tab" href="#dataActive">Active</a></li>
                                 </ul>
                             </div>
                             <div class="tab-content">
@@ -33,11 +34,11 @@
                                                         <th style="width:20px">#</th>
                                                         <th style="width:120px">Contact</th>
                                                         <th style="width:150px">Status</th>
-                                                        <th style="width:100px">Begin Call</th>
-                                                        <th style="width:100px">Call Back</th>
-                                                        <th style="width:50px">Aging</th>
-                                                        @*<th>Level</th>*@
-                                                        <th></th>
+                                                        <th style="width:80px">Begin Call</th>
+                                                        <th style="width:80px">Call Back</th>
+                                                        <th style="width:90px">Aging</th>
+                                                        <th style="width:120px">Project Name</th>
+                                                        <th style="width:20px"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -71,9 +72,9 @@
                                                             <td>
                                                                 @item.AgingData<span> Day</span>
                                                             </td>
-                                                            @*<td>
-                                                                Platinum
-                                                            </td>*@
+                                                            <td>
+                                                                @item.CustProName
+                                                            </td>
                                                             <td>
                                                                 @item.Reach<span>x</span>
                                                             </td>
@@ -92,13 +93,13 @@
                                                 <thead>
                                                     <tr>
                                                         <th style="width:20px">#</th>
-                                                        <th style="width:150px">Contact</th>
+                                                        <th style="width:120px">Contact</th>
                                                         <th style="width:150px">Status</th>
-                                                        <th style="width:60px">Begin Call</th>
-                                                        <th style="width:60px">Call Back</th>
-                                                        <th style="width:50px">Aging</th>
-                                                        @*<th>Level</th>*@
-                                                        <th style="width:40px"></th>
+                                                        <th style="width:80px">Begin Call</th>
+                                                        <th style="width:80px">Call Back</th>
+                                                        <th style="width:90px">Aging</th>
+                                                        <th style="width:120px">Project Name</th>
+                                                        <th style="width:20px"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -133,9 +134,9 @@
                                                             <td>
                                                                 @item.AgingData<span> Day</span>
                                                             </td>
-                                                            @*<td>
-                                                                Platinum
-                                                            </td>*@
+                                                            <td>
+                                                                @item.CustProName
+                                                            </td>
                                                             <td>
                                                                 @item.Reach<span>x</span>
                                                             </td>
@@ -146,6 +147,67 @@
                                         </div>
                                     </div><!-- .widget-body -->
                                 </div>
+
+                                <div id="dataActive" class="tab-pane fade">
+                                    <div class="widget-body">
+                                        <div class="table-responsive">
+                                            <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width:20px">#</th>
+                                                        <th style="width:120px">Contact</th>
+                                                        <th style="width:150px">Status</th>
+                                                        <th style="width:80px">Begin Call</th>
+                                                        <th style="width:80px">Call Back</th>
+                                                        <th style="width:90px">Aging</th>
+                                                        <th style="width:120px">Project Name</th>
+                                                        <th style="width:20px"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in ViewBag.active)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                <a href="@Url.Action("callclose/" + item.ContactId, "Home")"><span class='badge badge-success'> <i class='fa fa-book'></i> &nbsp; View</span></a>
+                                                            </td>
+                                                            <td>
+                                                                @item.ContactName
+                                                            </td>
+                                                            <td>
+                                                                @item.CallStatus<span> , </span>@item.SubStatus
+                                                            </td>
+                                                            <td>
+                                                                @Convert.ToDateTime(@item.BeginCall).ToString("dd-MMM-yy HH:mm")
+                                                            </td>
+                                                            <td>
+                                                                @if (item.CallBack.Equals(item.BeginCall))
+                                                                {
+                                                                    <span>-</span>
+                                                                }
+                                                                else
+                                                                {
+                                                                    @Convert.ToDateTime(@item.CallBack).ToString("dd-MMM-yy HH:mm")
+                                                                }
+                                                            </td>
+                                                            <td>
+                                                                @item.AgingData<span> Day</span>
+                                                            </td>
+                                                            <td>
+                                                                @item.CustProName
+                                                            </td>
+
+                                                            <td>
+                                                                @item.Reach<span>x</span>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div><!-- .widget-body -->
+                                </div>
+
                             </div>
 
                         </div><!-- .widget -->

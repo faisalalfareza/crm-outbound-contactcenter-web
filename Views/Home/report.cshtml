@@ -72,7 +72,6 @@
                             </div>
                         </div>
                       
-
                         <div class="col-sm-3">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -90,27 +89,13 @@
                                 <li class="active"><a data-toggle="tab" href="#byPerformance">Report by Performance</a></li>
                                 <li><a data-toggle="tab" href="#byProductivity">Report by Productivity</a></li>
                             </ul>
+
                         </div>
                         <div class="tab-content">
                             <div id="byPerformance" class="tab-pane fade in active">
                                 <div class="widget-body">
-                                    <div class="table-responsive">
 
-                                        @*<table id="tblPerformanceNew" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>Agent Name</th>
-                                                    <th>Achievement</th>
-                                                    <th>Target</th>
-                                                    <th>Closing</th>
-                                                    <th>Prospect</th>
-                                                    <th>Contacted</th>
-                                                    <th>Connected</th>
-                                                    <th>Not Connected</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody></tbody>
-                                        </table>*@
+                                    <div class="table-responsive">
 
                                         <div id="ListPerformance" style="width:100%">
 
@@ -150,7 +135,12 @@
                                             </table>
                                         </script>
 
+                                        <div class="col-sm-2">
+                                            <a class="btn btn-primary" id="btnDownloadPerformance" style="display:none">Download</a>
+                                        </div>
+
                                     </div>
+
                                 </div><!-- .widget-body -->
                             </div>
 
@@ -202,6 +192,10 @@
                                             </table>
                                         </script>
 
+                                        <div class="col-sm-2">
+                                            <a class="btn btn-primary" id="btnDownloadProductivity" style="display:none">Download</a>
+                                        </div>
+
                                     </div>
                                 </div><!-- .widget-body -->
                             </div>
@@ -224,7 +218,7 @@
 </body>
 
 <script src="~/Scripts/handlebars-v3.0.3.js"></script>
-    <script src="~/Libs/misc/datatables/datatables.min.js"></script>
+<script src="~/Libs/misc/datatables/datatables.min.js"></script>
 
 <script>
             
@@ -263,13 +257,17 @@
             async: true,
             success: function (data) {
                 var data = JSON.parse(data);
-
                 var source = $('#dtPerformance').html();
                 var tmpl = Handlebars.compile(source);
 
                 $('#ListPerformance').html(tmpl(data));
-
                 var table = $('#tblPerformance').DataTable();
+
+                document.getElementById("btnDownloadPerformance").style.display = "block";
+                document.getElementById("btnDownloadPerformance").href = "../Report/ReportPerformance?From=" + DateFrom + "&&To=" + DateTo + "&&ProjectId=" + CustProId + "";
+
+                document.getElementById("btnDownloadProductivity").style.display = "block";
+                document.getElementById("btnDownloadProductivity").href = "../Report/ReportProductivity?From=" + DateFrom + "&&To=" + DateTo + "&&ProjectId=" + CustProId + "";
             },
             error: function (error) {
                 alert('error');
@@ -315,41 +313,5 @@
 
         GetPerformance();
         GetProductivity();
-
-        @*var Custdata = new FormData();
-            var CustProId = $("#CustProId").val();
-            Custdata.append("CustProId", CustProId);
-            var DateFrom = $("#DateFrom").val();
-            Custdata.append("DateFrom", DateFrom);
-            var DateTo = $("#DateTo").val();
-            Custdata.append("DateTo", DateTo);
-
-            $("#byPerformance").find('tbody tr').remove();
-            $("#byProductivity").find('tbody tr').remove();
-
-        $.ajax({
-            url: '@Url.Action("targetSet2", "Home")',
-            type: 'POST',
-            data: Custdata,
-            contentType: false,
-            processData: false,
-            async: true,
-            success: function (data) {
-                if (data.Performance) {
-                    data.Performance.forEach(function (item) {
-                        $('#byPerformance').find('tbody').append('<tr><td>' + item.UserName + '</td><td><image src="' + item.Image + '"/>&nbsp;' + item.Achievment + ' %</td><td>' + item.Target + '</td><td>' + item.Closing + '</td><td>' + item.Prospect + '</td><td>' + item.Contacted + '</td><td>' + item.Connected + '</td><td>' + item.NotConnected + '</td></tr>')
-                    });
-                }
-
-                if (data.Productivity) {
-                    data.Productivity.forEach(function (item) {
-                        $('#byProductivity').find('tbody').append('<tr><td>' + item.UserName + '</td><td>' + item.callAtemp + '</td><td>' + item.Utillization + '</td><td>' + item.talkTime + '</td></tr>')
-                    });
-                }
-            },
-            error: function (error) {
-                alert('error');
-            }
-        });*@
     }
 </script>

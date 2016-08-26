@@ -65,13 +65,13 @@
                                             <div class="form-group">
                                                 <label class="sr-only" for="status">Call Status</label>
                                                 <select disabled id="status" class="form-control" name="callstatus">
-                                                    <option value="Closing" selected>Closing</option>
+                                                    <option value="Closing" selected>@ViewBag.call.CallStatus</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label class="sr-only" for="transaction">Sub Status</label>
                                                 <select disabled id="transaction" class="form-control" name="substatus">
-                                                    <option value="Payment">Payment</option>
+                                                    <option value="Payment">@ViewBag.call.SubStatus</option>
                                                 </select>
                                             </div>
                                             <div class="form-group has-info">

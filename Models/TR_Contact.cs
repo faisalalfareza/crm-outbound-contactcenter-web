@@ -59,6 +59,7 @@ namespace MVC_CRUD.Models
         public string Param4 { get; set; }
         public string Param5 { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
         public Nullable<int> CustProId { get; set; }
         public Nullable<System.DateTime> ExpiredDate { get; set; }
         public Nullable<int> UserId { get; set; }

@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.submenu = "History Top 20 Upload";
+}
+
+<!-- Include Page Head -->
+@RenderPage("~/Views/Gates/Head.cshtml")
+
+<body class="sb-left">
+    @RenderPage("~/Views/Gates/Header.cshtml")
+    <!-- APP MAIN ==========-->
+    <main id="app-main" class="app-main">
+        <div class="wrap">
+            <section class="app-content">
+                <div class="row">
+                    <!-- DOM dataTable -->
+                    <div class="col-sm-12">
+                        <div class="widget">
+                            <div class="widget-body">
+                                <div class="table-responsive">
+                                    <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:150px">Created By</th>
+                                                <th style="width:150px">Created On</th>
+                                                <th style="width:80px">Total Contact</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in ViewBag.HistoryUpload)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @item.CreatedByName
+                                                    </td>
+                                                    <td>
+                                                        @Convert.ToDateTime(item.CreatedOn).ToString("dd-MMM-yyyy")
+                                                    </td>
+                                                    <td>
+                                                        @item.TotalContact
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- .widget-body -->
+                        </div><!-- .widget -->
+                    </div>
+                </div><!-- END column -->
+            </section><!-- .app-content -->
+        </div><!-- .wrap -->
+        
+        <!-- Include Page Footer -->
+        @RenderPage("~/Views/Gates/Footer.cshtml")
+        <!-- Include Page Foot -->
+        @RenderPage("~/Views/Gates/Foot.cshtml")
+    </main>
+    <!--========== END app main -->
+</body>

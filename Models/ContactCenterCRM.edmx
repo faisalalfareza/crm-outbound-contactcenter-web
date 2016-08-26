@@ -15,58 +15,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'DB_CRM_CC.dbo.TMP_UploadContact' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="TMP_UploadContact">
-          <Property Name="ContactId" Type="int" />
-          <Property Name="ContactName" Type="varchar" MaxLength="50" />
-          <Property Name="ContactStatus" Type="int" />
-          <Property Name="ContactPhone" Type="varchar" MaxLength="50" />
-          <Property Name="BranchId" Type="int" />
-          <Property Name="BranchFullname" Type="varchar" MaxLength="50" />
-          <Property Name="CustomerId" Type="varchar" MaxLength="50" />
-          <Property Name="AgreementNo" Type="int" />
-          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
-          <Property Name="BirthDate" Type="date" />
-          <Property Name="date" Type="int" />
-          <Property Name="KTP_Adress" Type="varchar" MaxLength="50" />
-          <Property Name="KTP_RT" Type="char" MaxLength="10" />
-          <Property Name="KTP_RW" Type="char" MaxLength="10" />
-          <Property Name="KTP_Kelurahan" Type="varchar" MaxLength="50" />
-          <Property Name="KTP_Kecamatan" Type="varchar" MaxLength="50" />
-          <Property Name="KTP_City" Type="varchar" MaxLength="50" />
-          <Property Name="KTP_Zipcode" Type="int" />
-          <Property Name="Residence_Adress" Type="varchar" MaxLength="50" />
-          <Property Name="Residence_Kelurahan" Type="varchar" MaxLength="50" />
-          <Property Name="Residence_Kecamatan" Type="varchar" MaxLength="50" />
-          <Property Name="Residence_City" Type="varchar" MaxLength="50" />
-          <Property Name="Residence_Zipcode" Type="int" />
-          <Property Name="Jenis_Pekerjaan" Type="varchar" MaxLength="50" />
-          <Property Name="MonthlyFixedIncome" Type="int" />
-          <Property Name="InstallmentAmount" Type="int" />
-          <Property Name="Status_Rumah" Type="varchar" MaxLength="50" />
-          <Property Name="JumlahTanggungan" Type="int" />
-          <Property Name="DownPayment" Type="int" />
-          <Property Name="MobilePhone" Type="int" />
-          <Property Name="GoLiveDate" Type="date" />
-          <Property Name="TglSelesaiAngsuran" Type="date" />
-          <Property Name="Tenor" Type="int" />
-          <Property Name="Odmax_Day_Final" Type="int" />
-          <Property Name="LastPayment" Type="date" />
-          <Property Name="Payment" Type="int" />
-          <Property Name="CallStatus" Type="varchar" MaxLength="50" />
-          <Property Name="SubStatus" Type="varchar" MaxLength="50" />
-          <Property Name="Remarks" Type="varchar" MaxLength="50" />
-          <Property Name="Param1" Type="varchar" MaxLength="50" />
-          <Property Name="Param2" Type="varchar" MaxLength="50" />
-          <Property Name="Param3" Type="varchar" MaxLength="50" />
-          <Property Name="Param4" Type="varchar" MaxLength="50" />
-          <Property Name="Param5" Type="varchar" MaxLength="50" />
-          <Property Name="CustProId" Type="int" />
-          <Property Name="ExpiredDate" Type="date" />
-          <Property Name="UserId" Type="int" />
-          <Property Name="FileName" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="TR_Contact">
           <Key>
             <PropertyRef Name="ContactId" />
@@ -116,6 +64,7 @@ warning 6013: The table/view 'DB_CRM_CC.dbo.TMP_UploadContact' does not have a p
           <Property Name="Param4" Type="varchar" MaxLength="50" />
           <Property Name="Param5" Type="varchar" MaxLength="50" />
           <Property Name="CreatedOn" Type="date" />
+          <Property Name="CreatedBy" Type="int" />
           <Property Name="CustProId" Type="int" />
           <Property Name="ExpiredDate" Type="date" />
           <Property Name="UserId" Type="int" />
@@ -268,61 +217,6 @@ warning 6013: The table/view 'DB_CRM_CC.dbo.TMP_UploadContact' does not have a p
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TR_Contact">
-          <Key>
-            <PropertyRef Name="ContactId" />
-          </Key>
-          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CustomerContactId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactStatus" Type="Int32" />
-          <Property Name="ContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BranchId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BranchFullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerId" Type="Int32" />
-          <Property Name="AgreementNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
-          <Property Name="Usia" Type="Int32" />
-          <Property Name="KTP_Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="KTP_RT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="KTP_RW" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="KTP_Kelurahan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="KTP_Kecamatan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="KTP_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="KTP_Zipcode" Type="Int32" />
-          <Property Name="Residence_Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Residence_Kelurahan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Residence_Kecamatan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Residence_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Residence_Zipcode" Type="Int32" />
-          <Property Name="Jenis_Pekerjaan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MonthlyFixedIncome" Type="Int32" />
-          <Property Name="InstallmentAmount" Type="Int32" />
-          <Property Name="Status_Rumah" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="JumlahTanggungan" Type="Int32" />
-          <Property Name="DownPayment" Type="Int32" />
-          <Property Name="GoLiveDate" Type="DateTime" Precision="0" />
-          <Property Name="TglSelesaiAngsuran" Type="DateTime" Precision="0" />
-          <Property Name="Tenor" Type="Int32" />
-          <Property Name="Odmax_Day_Final" Type="Int32" />
-          <Property Name="LastPayment" Type="DateTime" Precision="0" />
-          <Property Name="Payment" Type="Int32" />
-          <Property Name="CallStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="SubStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Param1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Param2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Param3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Param4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Param5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
-          <Property Name="CustProId" Type="Int32" />
-          <Property Name="ExpiredDate" Type="DateTime" Precision="0" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="HomePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="OtherPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="TR_Customer">
           <Key>
             <PropertyRef Name="CustomerId" />
@@ -444,7 +338,6 @@ warning 6013: The table/view 'DB_CRM_CC.dbo.TMP_UploadContact' does not have a p
         </EntityType>
         <EntityContainer Name="DB_CRM_CCEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="TR_Contact" EntityType="Self.TR_Contact" />
           <EntitySet Name="TR_Customer" EntityType="Self.TR_Customer" />
           <EntitySet Name="TR_Role" EntityType="Self.TR_Role" />
           <EntitySet Name="TR_StringMap" EntityType="Self.TR_StringMap" />
@@ -454,7 +347,64 @@ warning 6013: The table/view 'DB_CRM_CC.dbo.TMP_UploadContact' does not have a p
           <EntitySet Name="TT_CallResult" EntityType="Self.TT_CallResult" />
           <EntitySet Name="TT_CustomerProject" EntityType="Self.TT_CustomerProject" />
           <EntitySet Name="TT_UserProject" EntityType="Self.TT_UserProject" />
+          <EntitySet Name="TR_Contact" EntityType="DB_CRM_CCModel1.TR_Contact" />
         </EntityContainer>
+        <EntityType Name="TR_Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerContactId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactStatus" Type="Int32" />
+          <Property Name="ContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BranchId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BranchFullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="AgreementNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Usia" Type="Int32" />
+          <Property Name="KTP_Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="KTP_RT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="KTP_RW" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="KTP_Kelurahan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KTP_Kecamatan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KTP_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="KTP_Zipcode" Type="Int32" />
+          <Property Name="Residence_Adress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Residence_Kelurahan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Residence_Kecamatan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Residence_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Residence_Zipcode" Type="Int32" />
+          <Property Name="Jenis_Pekerjaan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MonthlyFixedIncome" Type="Int32" />
+          <Property Name="InstallmentAmount" Type="Int32" />
+          <Property Name="Status_Rumah" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="JumlahTanggungan" Type="Int32" />
+          <Property Name="DownPayment" Type="Int32" />
+          <Property Name="GoLiveDate" Type="DateTime" Precision="0" />
+          <Property Name="TglSelesaiAngsuran" Type="DateTime" Precision="0" />
+          <Property Name="Tenor" Type="Int32" />
+          <Property Name="Odmax_Day_Final" Type="Int32" />
+          <Property Name="LastPayment" Type="DateTime" Precision="0" />
+          <Property Name="Payment" Type="Int32" />
+          <Property Name="CallStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Param1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Param2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Param3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Param4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Param5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CustProId" Type="Int32" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="0" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="HomePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OtherPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -469,62 +419,6 @@ warning 6013: The table/view 'DB_CRM_CC.dbo.TMP_UploadContact' does not have a p
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TR_Contact">
-            <EntityTypeMapping TypeName="DB_CRM_CCModel1.TR_Contact">
-              <MappingFragment StoreEntitySet="TR_Contact">
-                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
-                <ScalarProperty Name="CustomerContactId" ColumnName="CustomerContactId" />
-                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-                <ScalarProperty Name="ContactStatus" ColumnName="ContactStatus" />
-                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
-                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
-                <ScalarProperty Name="BranchFullname" ColumnName="BranchFullname" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="AgreementNo" ColumnName="AgreementNo" />
-                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="Usia" ColumnName="Usia" />
-                <ScalarProperty Name="KTP_Adress" ColumnName="KTP_Adress" />
-                <ScalarProperty Name="KTP_RT" ColumnName="KTP_RT" />
-                <ScalarProperty Name="KTP_RW" ColumnName="KTP_RW" />
-                <ScalarProperty Name="KTP_Kelurahan" ColumnName="KTP_Kelurahan" />
-                <ScalarProperty Name="KTP_Kecamatan" ColumnName="KTP_Kecamatan" />
-                <ScalarProperty Name="KTP_City" ColumnName="KTP_City" />
-                <ScalarProperty Name="KTP_Zipcode" ColumnName="KTP_Zipcode" />
-                <ScalarProperty Name="Residence_Adress" ColumnName="Residence_Adress" />
-                <ScalarProperty Name="Residence_Kelurahan" ColumnName="Residence_Kelurahan" />
-                <ScalarProperty Name="Residence_Kecamatan" ColumnName="Residence_Kecamatan" />
-                <ScalarProperty Name="Residence_City" ColumnName="Residence_City" />
-                <ScalarProperty Name="Residence_Zipcode" ColumnName="Residence_Zipcode" />
-                <ScalarProperty Name="Jenis_Pekerjaan" ColumnName="Jenis_Pekerjaan" />
-                <ScalarProperty Name="MonthlyFixedIncome" ColumnName="MonthlyFixedIncome" />
-                <ScalarProperty Name="InstallmentAmount" ColumnName="InstallmentAmount" />
-                <ScalarProperty Name="Status_Rumah" ColumnName="Status_Rumah" />
-                <ScalarProperty Name="JumlahTanggungan" ColumnName="JumlahTanggungan" />
-                <ScalarProperty Name="DownPayment" ColumnName="DownPayment" />
-                <ScalarProperty Name="GoLiveDate" ColumnName="GoLiveDate" />
-                <ScalarProperty Name="TglSelesaiAngsuran" ColumnName="TglSelesaiAngsuran" />
-                <ScalarProperty Name="Tenor" ColumnName="Tenor" />
-                <ScalarProperty Name="Odmax_Day_Final" ColumnName="Odmax_Day_Final" />
-                <ScalarProperty Name="LastPayment" ColumnName="LastPayment" />
-                <ScalarProperty Name="Payment" ColumnName="Payment" />
-                <ScalarProperty Name="CallStatus" ColumnName="CallStatus" />
-                <ScalarProperty Name="SubStatus" ColumnName="SubStatus" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Param1" ColumnName="Param1" />
-                <ScalarProperty Name="Param2" ColumnName="Param2" />
-                <ScalarProperty Name="Param3" ColumnName="Param3" />
-                <ScalarProperty Name="Param4" ColumnName="Param4" />
-                <ScalarProperty Name="Param5" ColumnName="Param5" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CustProId" ColumnName="CustProId" />
-                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
-                <ScalarProperty Name="OtherPhone" ColumnName="OtherPhone" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -653,6 +547,63 @@ warning 6013: The table/view 'DB_CRM_CC.dbo.TMP_UploadContact' does not have a p
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CustProId" ColumnName="CustProId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TR_Contact">
+            <EntityTypeMapping TypeName="DB_CRM_CCModel1.TR_Contact">
+              <MappingFragment StoreEntitySet="TR_Contact">
+                <ScalarProperty Name="OtherPhone" ColumnName="OtherPhone" />
+                <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="CustProId" ColumnName="CustProId" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Param5" ColumnName="Param5" />
+                <ScalarProperty Name="Param4" ColumnName="Param4" />
+                <ScalarProperty Name="Param3" ColumnName="Param3" />
+                <ScalarProperty Name="Param2" ColumnName="Param2" />
+                <ScalarProperty Name="Param1" ColumnName="Param1" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="SubStatus" ColumnName="SubStatus" />
+                <ScalarProperty Name="CallStatus" ColumnName="CallStatus" />
+                <ScalarProperty Name="Payment" ColumnName="Payment" />
+                <ScalarProperty Name="LastPayment" ColumnName="LastPayment" />
+                <ScalarProperty Name="Odmax_Day_Final" ColumnName="Odmax_Day_Final" />
+                <ScalarProperty Name="Tenor" ColumnName="Tenor" />
+                <ScalarProperty Name="TglSelesaiAngsuran" ColumnName="TglSelesaiAngsuran" />
+                <ScalarProperty Name="GoLiveDate" ColumnName="GoLiveDate" />
+                <ScalarProperty Name="DownPayment" ColumnName="DownPayment" />
+                <ScalarProperty Name="JumlahTanggungan" ColumnName="JumlahTanggungan" />
+                <ScalarProperty Name="Status_Rumah" ColumnName="Status_Rumah" />
+                <ScalarProperty Name="InstallmentAmount" ColumnName="InstallmentAmount" />
+                <ScalarProperty Name="MonthlyFixedIncome" ColumnName="MonthlyFixedIncome" />
+                <ScalarProperty Name="Jenis_Pekerjaan" ColumnName="Jenis_Pekerjaan" />
+                <ScalarProperty Name="Residence_Zipcode" ColumnName="Residence_Zipcode" />
+                <ScalarProperty Name="Residence_City" ColumnName="Residence_City" />
+                <ScalarProperty Name="Residence_Kecamatan" ColumnName="Residence_Kecamatan" />
+                <ScalarProperty Name="Residence_Kelurahan" ColumnName="Residence_Kelurahan" />
+                <ScalarProperty Name="Residence_Adress" ColumnName="Residence_Adress" />
+                <ScalarProperty Name="KTP_Zipcode" ColumnName="KTP_Zipcode" />
+                <ScalarProperty Name="KTP_City" ColumnName="KTP_City" />
+                <ScalarProperty Name="KTP_Kecamatan" ColumnName="KTP_Kecamatan" />
+                <ScalarProperty Name="KTP_Kelurahan" ColumnName="KTP_Kelurahan" />
+                <ScalarProperty Name="KTP_RW" ColumnName="KTP_RW" />
+                <ScalarProperty Name="KTP_RT" ColumnName="KTP_RT" />
+                <ScalarProperty Name="KTP_Adress" ColumnName="KTP_Adress" />
+                <ScalarProperty Name="Usia" ColumnName="Usia" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="AgreementNo" ColumnName="AgreementNo" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="BranchFullname" ColumnName="BranchFullname" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="ContactStatus" ColumnName="ContactStatus" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="CustomerContactId" ColumnName="CustomerContactId" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

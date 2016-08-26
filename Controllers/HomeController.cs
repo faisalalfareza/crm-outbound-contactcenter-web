@@ -154,7 +154,7 @@ namespace MVC_CRUD.Controllers
                                          UserName = agent.UserName
                                      }).OrderByDescending(x => x.CallDate);
                 TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
-                TT_CallHistory callhis = db.TT_CallHistory.Where(p => p.ContactId == (id)).FirstOrDefault();
+                TT_CallHistory callhis = db.TT_CallHistory.Where(p => p.ContactId == (id)).OrderByDescending(p=> p.CallDate).FirstOrDefault();
 
                 TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
                 String CustomerName = (from h in db.TR_Customer
@@ -940,11 +940,14 @@ namespace MVC_CRUD.Controllers
                                                  CallBack = grouping.Max(prod => prod.CallDate)
                                              }) on contact.ContactId equals callH.ContactId
                               join manager in db.TR_User on contact.UserId equals manager.UserId
+                              join custP in db.TT_CustomerProject on contact.CustProId equals custP.CustProId
                               where UserId.Contains((int)contact.UserId) && contact.ContactStatus == 3
                               select new HistoryCall()
                               {
                                   ContactName = contact.ContactName,
                                   ContactId = contact.ContactId,
+                                  CustomerName = contact.CustomerName,
+                                  CustProName = custP.CustProName,
                                   CustomerContactId = contact.CustomerContactId,
                                   CallStatus = contact.CallStatus,
                                   SubStatus = contact.SubStatus,
@@ -965,11 +968,14 @@ namespace MVC_CRUD.Controllers
                                                  CallBack = grouping.Max(prod => prod.CallDate)
                                              }) on contact.ContactId equals callH.ContactId
                               join manager in db.TR_User on contact.UserId equals manager.UserId
+                              join custP in db.TT_CustomerProject on contact.CustProId equals custP.CustProId
                               where UserId.Contains((int)contact.UserId) && contact.ContactStatus == 4
                               select new HistoryCall()
                               {
                                   ContactName = contact.ContactName,
                                   ContactId = contact.ContactId,
+                                  CustomerName = contact.CustomerName,
+                                  CustProName = custP.CustProName,
                                   CustomerContactId = contact.CustomerContactId,
                                   CallStatus = contact.CallStatus,
                                   SubStatus = contact.SubStatus,
@@ -980,8 +986,40 @@ namespace MVC_CRUD.Controllers
                                            where h.ContactId == contact.ContactId
                                            select h).Count()
                               };
+
+                var active = (from contact in db.TR_Contact.Where(p => p.CallStatus != "Closing")
+                              join callH in (from call in db.TT_CallHistory
+                                             group call by call.ContactId into grouping
+                                             select new
+                                             {
+                                                 ContactId = grouping.Key,
+                                                 BeginCall = grouping.Min(prod => prod.CallDate),
+                                                 CallBack = grouping.Max(prod => prod.CallDate)
+                                             }) on contact.ContactId equals callH.ContactId
+                              join manager in db.TR_User on contact.UserId equals manager.UserId
+                              join custP in db.TT_CustomerProject on contact.CustProId equals custP.CustProId
+                              join cust in db.TR_Customer on custP.CustomerId equals cust.CustomerId
+                              select new HistoryCall()
+                              {
+                                  ContactName = contact.ContactName,
+                                  ContactId = contact.ContactId,
+                                  CustomerName = contact.CustomerName,
+                                  CustProName = custP.CustProName,
+                                  CustomerContactId = contact.CustomerContactId,
+                                  CallStatus = contact.CallStatus,
+                                  SubStatus = contact.SubStatus,
+                                  BeginCall = callH.BeginCall,
+                                  CallBack = callH.CallBack,
+                                  AgingAgent = SqlFunctions.DateDiff("d", SqlFunctions.DateAdd("d", -3, contact.ExpiredDate), DateTime.Now),
+                                  AgingData = SqlFunctions.DateDiff("d", contact.CreatedOn, DateTime.Now),
+                                  Reach = (from h in db.TT_CallHistory
+                                           where h.ContactId == contact.ContactId
+                                           select h).Count()
+                              });
+
                 ViewBag.closing = closing.ToList();
                 ViewBag.suspect = suspect.ToList();
+                ViewBag.active = active.ToList();
                 return View();
             } else {
                 return RedirectToAction("Login", "Auth");
@@ -1857,7 +1895,7 @@ namespace MVC_CRUD.Controllers
                                   TargetFrom = settTarget.TargetFrom,
                                   TargetTo = settTarget.TargetTo,
                                   TargetData = settTarget.TargetData,
-                                  TargetAmountPaid = settTarget.TargetAmount,
+                                  TargetAmountPaid = settTarget.TargetAmount.ToString(),
                                   CustProName = custP.CustProName,
                                   Advance = settTarget.Advance,
                                   Beginner = settTarget.Beginner,
@@ -1872,15 +1910,17 @@ namespace MVC_CRUD.Controllers
         }
 
         [HttpPost]
-        public ActionResult createSettingTarget(int CustProId, String TargetName, int TargetAmountPaid, DateTime? TargetFrom, int TargetData, DateTime? TargetTo, int Advance, int Intermediate, int Junior)
+        public ActionResult createSettingTarget(int CustProId, String TargetName, string TargetAmountPaid, DateTime? TargetFrom, int TargetData, DateTime? TargetTo, int Advance, int Intermediate, int Junior)
         {
+            int TargetAmountPaids = Convert.ToInt32(TargetAmountPaid.Replace(",", ""));
+
             TR_TargetSetting Target = new TR_TargetSetting();
             Target.Advance = Advance;
             Target.Beginner = Junior;
             Target.CreatedOn = DateTime.Now;
             Target.Created_by = Convert.ToString(Session["UserId"]);
             Target.Intermediate = Intermediate;
-            Target.TargetAmount = TargetAmountPaid;
+            Target.TargetAmount = TargetAmountPaids;
             Target.TargetData = TargetData;
             Target.TargetFrom = TargetFrom;
             Target.TargetTo = TargetTo;
@@ -1893,15 +1933,17 @@ namespace MVC_CRUD.Controllers
         }
 
         [HttpPost]
-        public ActionResult editSettingTarget(int TargetId, int CustProId, String TargetName, int TargetAmountPaid, DateTime? TargetFrom, int TargetData, DateTime? TargetTo, int Advance, int Intermediate, int Junior)
+        public ActionResult editSettingTarget(int TargetId, int CustProId, String TargetName, string TargetAmountPaid, DateTime? TargetFrom, int TargetData, DateTime? TargetTo, int Advance, int Intermediate, int Junior)
         {
+            int TargetAmountPaids = Convert.ToInt32(TargetAmountPaid.Replace(",", ""));
+
             TR_TargetSetting Target = db.TR_TargetSetting.Find(TargetId);
             Target.Advance = Advance;
             Target.Beginner = Junior;
             Target.CreatedOn = DateTime.Now;
             Target.Created_by = Convert.ToString(Session["UserId"]);
             Target.Intermediate = Intermediate;
-            Target.TargetAmount = TargetAmountPaid;
+            Target.TargetAmount = TargetAmountPaids;
             Target.TargetData = TargetData;
             Target.TargetFrom = TargetFrom;
             Target.TargetTo = TargetTo;
@@ -1940,7 +1982,7 @@ namespace MVC_CRUD.Controllers
                                            UserName = agent.UserName
                                        }).OrderByDescending(x => x.CallDate);
                 TR_Contact call = db.TR_Contact.Where(p => p.ContactId.Equals(id)).FirstOrDefault();
-                TT_CallHistory callhis = db.TT_CallHistory.Where(p => p.ContactId == (id)).FirstOrDefault();
+                TT_CallHistory callhis = db.TT_CallHistory.Where(p => p.ContactId == (id)).OrderByDescending(x => x.CallDate).FirstOrDefault();
 
                 TT_CustomerProject paramProject = db.TT_CustomerProject.Where(p => p.CustProId == call.CustProId).FirstOrDefault();
                 String CustomerName = (from h in db.TR_Customer
