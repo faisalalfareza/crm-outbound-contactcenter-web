@@ -11,7 +11,7 @@
     <main id="app-main" class="app-main">
         <div class="wrap">
             <section class="app-content">
-                <div class="row">
+                <div class="row" style="width:800px">
                     <!-- DOM dataTable -->
                     <div class="col-sm-12">
                         <div class="widget">
@@ -20,9 +20,9 @@
                                     <table id="default-datatable" data-plugin="DataTable" class="table table-striped" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                <th style="width:150px">Created By</th>
                                                 <th style="width:150px">Created On</th>
-                                                <th style="width:80px">Total Contact</th>
+                                                <th style="width:150px">Created By</th>
+                                                <th style="width:80px">#Total Data</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -30,13 +30,13 @@
                                             {
                                                 <tr>
                                                     <td>
+                                                        @Convert.ToDateTime(item.CreatedOn).ToString("dd-MMM-yyyy HH:mm")
+                                                    </td>
+                                                    <td>
                                                         @item.CreatedByName
                                                     </td>
-                                                    <td>
-                                                        @Convert.ToDateTime(item.CreatedOn).ToString("dd-MMM-yyyy")
-                                                    </td>
-                                                    <td>
-                                                        @item.TotalContact
+                                                    <td align="right">
+                                                        @Convert.ToDecimal(item.TotalContact).ToString("N0")
                                                     </td>
                                                 </tr>
                                             }

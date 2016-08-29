@@ -188,7 +188,7 @@ namespace MVC_CRUD.Controllers
                                 {
                                     //data.Periode = Periode;
                                     data.UserName = reader["UserName"].ToString();
-                                    data.Achievment = String.Format("{0:0.##}", Convert.ToDouble(reader["Achievement"].ToString()));
+                                    data.Achievment = String.Format("{0:0.#}", Convert.ToDouble(reader["Achievement"].ToString()));
                                     data.Target = target;
                                     data.Closing = Convert.ToInt32(reader["Closing"].ToString());
                                     data.Prospect = Convert.ToInt32(reader["Prospect"].ToString());
@@ -364,7 +364,7 @@ namespace MVC_CRUD.Controllers
                                     Jam = Jam + (Menit / 60);
                                     Menit = Menit % 60;
 
-                                    data.talkTime = Jam + ":" + Menit + ":" + Detik;
+                                    data.talkTime = Jam.ToString().PadLeft(2, '0') + ":" + Menit.ToString().PadLeft(2, '0') + ":" + Detik.ToString().PadLeft(2, '0');
                                     productivity.Add(data);
                                     //Console.WriteLine((i + 1) + ". | " + reader["UserId"].ToString() + " | " + reader["UserName"].ToString() + " | " + reader["Achievement"].ToString() + "% | " + target + " | " + reader["Closing"].ToString() + " | " + reader["Prospect"].ToString() + " | " + reader["Promising"].ToString() + " | " + reader["Contacted"].ToString() + " | " + reader["Connected"].ToString() + " | " + reader["NotConnected"].ToString() + " | " + reader["Total"].ToString());
                                 }
@@ -526,34 +526,34 @@ namespace MVC_CRUD.Controllers
                     CellAchImage.BorderWidthRight = 0;
                     tbReport.AddCell(CellAchImage);
 
-                    PdfPCell CellAch = new PdfPCell(new Phrase("100.00", fontstys));
+                    PdfPCell CellAch = new PdfPCell(new Phrase(dtReport.Achievment, fontstys));
                     CellAch.HorizontalAlignment = 1;
                     CellAch.BorderWidthLeft = 0;
                     CellAch.BorderWidthTop = 0;
                     tbReport.AddCell(CellAch);
 
-                    PdfPCell CellTarget = new PdfPCell(new Phrase(dtReport.Target.ToString(), fontstys));
-                    CellTarget.HorizontalAlignment = 1;
+                    PdfPCell CellTarget = new PdfPCell(new Phrase(dtReport.Target.ToString("N0"), fontstys));
+                    CellTarget.HorizontalAlignment = 2;
                     tbReport.AddCell(CellTarget);
 
-                    PdfPCell CellClosing = new PdfPCell(new Phrase(dtReport.Closing.ToString(), fontstys));
-                    CellClosing.HorizontalAlignment = 1;
+                    PdfPCell CellClosing = new PdfPCell(new Phrase(dtReport.Closing.ToString("N0"), fontstys));
+                    CellClosing.HorizontalAlignment = 2;
                     tbReport.AddCell(CellClosing);
 
-                    PdfPCell CellProspect = new PdfPCell(new Phrase(dtReport.Prospect.ToString(), fontstys));
-                    CellProspect.HorizontalAlignment = 1;
+                    PdfPCell CellProspect = new PdfPCell(new Phrase(dtReport.Prospect.ToString("N0"), fontstys));
+                    CellProspect.HorizontalAlignment = 2;
                     tbReport.AddCell(CellProspect);
 
-                    PdfPCell CellContacted = new PdfPCell(new Phrase(dtReport.Contacted.ToString(), fontstys));
-                    CellContacted.HorizontalAlignment = 1;
+                    PdfPCell CellContacted = new PdfPCell(new Phrase(dtReport.Contacted.ToString("N0"), fontstys));
+                    CellContacted.HorizontalAlignment = 2;
                     tbReport.AddCell(CellContacted);
 
-                    PdfPCell CellConnected = new PdfPCell(new Phrase(dtReport.Connected.ToString(), fontstys));
-                    CellConnected.HorizontalAlignment = 1;
+                    PdfPCell CellConnected = new PdfPCell(new Phrase(dtReport.Connected.ToString("N0"), fontstys));
+                    CellConnected.HorizontalAlignment = 2;
                     tbReport.AddCell(CellConnected);
 
-                    PdfPCell CellNotConnected = new PdfPCell(new Phrase(dtReport.NotConnected.ToString(), fontstys));
-                    CellNotConnected.HorizontalAlignment = 1;
+                    PdfPCell CellNotConnected = new PdfPCell(new Phrase(dtReport.NotConnected.ToString("N0"), fontstys));
+                    CellNotConnected.HorizontalAlignment = 2;
                     tbReport.AddCell(CellNotConnected);
                 }
                 pdfDoc.Add(new Paragraph("\n"));
@@ -599,7 +599,7 @@ namespace MVC_CRUD.Controllers
 
                 float[] widths = new float[] { 0.6f, 0.1f, 3f };
                 table.SetWidths(widths);
-                table.WidthPercentage = 80f;
+                table.WidthPercentage = 70f;
 
                 //Detail Merchant
                 PdfPCell cell = new PdfPCell(new Phrase("Report Productivity", font8));
@@ -693,12 +693,12 @@ namespace MVC_CRUD.Controllers
                     CellUser.HorizontalAlignment = 0;
                     tbReport.AddCell(CellUser);
                     
-                    PdfPCell CellTarget = new PdfPCell(new Phrase(dtReport.callAtemp.ToString(), fontstys));
-                    CellTarget.HorizontalAlignment = 1;
+                    PdfPCell CellTarget = new PdfPCell(new Phrase(dtReport.callAtemp.ToString("N0"), fontstys));
+                    CellTarget.HorizontalAlignment = 2;
                     tbReport.AddCell(CellTarget);
 
-                    PdfPCell CellClosing = new PdfPCell(new Phrase(dtReport.Utillization.ToString(), fontstys));
-                    CellClosing.HorizontalAlignment = 1;
+                    PdfPCell CellClosing = new PdfPCell(new Phrase(dtReport.Utillization.ToString("N0"), fontstys));
+                    CellClosing.HorizontalAlignment = 2;
                     tbReport.AddCell(CellClosing);
 
                     PdfPCell CellProspect = new PdfPCell(new Phrase(dtReport.talkTime.ToString(), fontstys));

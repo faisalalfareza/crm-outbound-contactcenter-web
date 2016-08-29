@@ -122,12 +122,12 @@
                                                     <tr>
                                                         <td>{{AgentName}}</td>
                                                         <td><image src="{{Image}}" />&nbsp; {{Achievement}}</td>
-                                                        <td>{{Target}}</td>
-                                                        <td>{{Closing}}</td>
-                                                        <td>{{Prospect}}</td>
-                                                        <td>{{Contacted}}</td>
-                                                        <td>{{Connected}}</td>
-                                                        <td>{{NotConnected}}</td>
+                                                        <td align="right">{{Target}}</td>
+                                                        <td align="right">{{Closing}}</td>
+                                                        <td align="right">{{Prospect}}</td>
+                                                        <td align="right">{{Contacted}}</td>
+                                                        <td align="right">{{Connected}}</td>
+                                                        <td align="right">{{NotConnected}}</td>
                                                     </tr>
                                                     {{/each}}
 
@@ -173,8 +173,8 @@
 
                                                     <tr>
                                                         <th>User</th>
-                                                        <th style="width:150px">Call Attempt</th>
-                                                        <th style="width:150px">Utillization</th>
+                                                        <th style="width:100px">Call Attempt</th>
+                                                        <th style="width:100px">Utillization</th>
                                                         <th style="width:150px">Talk Time</th>
                                                     </tr>
                                                 </thead>
@@ -182,8 +182,8 @@
                                                     {{#each this}}
                                                     <tr>
                                                         <td>{{User}}</td>
-                                                        <td>{{CallAttempt}}</td>
-                                                        <td>{{Utillization}}</td>
+                                                        <td align="right">{{CallAttempt}}</td>
+                                                        <td align="right">{{Utillization}}</td>
                                                         <td>{{TalkTime}}</td>
                                                     </tr>
                                                     {{/each}}

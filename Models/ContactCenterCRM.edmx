@@ -63,13 +63,13 @@
           <Property Name="Param3" Type="varchar" MaxLength="50" />
           <Property Name="Param4" Type="varchar" MaxLength="50" />
           <Property Name="Param5" Type="varchar" MaxLength="50" />
-          <Property Name="CreatedOn" Type="date" />
-          <Property Name="CreatedBy" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
           <Property Name="CustProId" Type="int" />
           <Property Name="ExpiredDate" Type="date" />
           <Property Name="UserId" Type="int" />
           <Property Name="HomePhone" Type="varchar" MaxLength="20" />
           <Property Name="OtherPhone" Type="varchar" MaxLength="20" />
+          <Property Name="CreatedBy" Type="int" />
         </EntityType>
         <EntityType Name="TR_Customer">
           <Key>
@@ -397,13 +397,13 @@
           <Property Name="Param3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Param4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Param5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
-          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="CustProId" Type="Int32" />
           <Property Name="ExpiredDate" Type="DateTime" Precision="0" />
           <Property Name="UserId" Type="Int32" />
           <Property Name="HomePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="OtherPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -553,12 +553,12 @@
           <EntitySetMapping Name="TR_Contact">
             <EntityTypeMapping TypeName="DB_CRM_CCModel1.TR_Contact">
               <MappingFragment StoreEntitySet="TR_Contact">
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="OtherPhone" ColumnName="OtherPhone" />
                 <ScalarProperty Name="HomePhone" ColumnName="HomePhone" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
                 <ScalarProperty Name="CustProId" ColumnName="CustProId" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="Param5" ColumnName="Param5" />
                 <ScalarProperty Name="Param4" ColumnName="Param4" />

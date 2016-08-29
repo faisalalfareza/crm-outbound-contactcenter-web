@@ -1690,7 +1690,7 @@ namespace MVC_CRUD.Controllers
                                 {
                                     //data.Periode = Periode;
                                     data.UserName = reader["UserName"].ToString();
-                                    data.Achievment = String.Format("{0:0.##}", Convert.ToDouble(reader["Achievement"].ToString()));
+                                    data.Achievment = String.Format("{0:0.#}", Convert.ToDouble(reader["Achievement"].ToString()));
                                     data.Target = target;
                                     data.Closing = Convert.ToInt32(reader["Closing"].ToString());
                                     data.Prospect = Convert.ToInt32(reader["Prospect"].ToString());
@@ -1715,12 +1715,12 @@ namespace MVC_CRUD.Controllers
                 Dictionary<String, String> dict = new Dictionary<string, string>();
                 dict.Add("AgentName", m.UserName.ToString());
                 dict.Add("Achievement", m.Achievment);
-                dict.Add("Target", m.Target.ToString());
-                dict.Add("Closing", m.Closing.ToString());
-                dict.Add("Prospect", m.Prospect.ToString());
-                dict.Add("Contacted", m.Contacted.ToString());
-                dict.Add("Connected", m.Connected.ToString());
-                dict.Add("NotConnected", m.NotConnected.ToString());
+                dict.Add("Target", m.Target.ToString("N0"));
+                dict.Add("Closing", m.Closing.ToString("N0"));
+                dict.Add("Prospect", m.Prospect.ToString("N0"));
+                dict.Add("Contacted", m.Contacted.ToString("N0"));
+                dict.Add("Connected", m.Connected.ToString("N0"));
+                dict.Add("NotConnected", m.NotConnected.ToString("N0"));
                 dict.Add("Image", m.Image.ToString());
                 _list.Add(dict);
             }
@@ -1855,7 +1855,7 @@ namespace MVC_CRUD.Controllers
                                     Jam = Jam + (Menit / 60);
                                     Menit = Menit % 60;
 
-                                    data.talkTime = Jam + ":" + Menit + ":" + Detik;
+                                    data.talkTime = Jam.ToString().PadLeft(2, '0') + ":" + Menit.ToString().PadLeft(2, '0') + ":" + Detik.ToString().PadLeft(2, '0');
                                     productivity.Add(data);
                                     //Console.WriteLine((i + 1) + ". | " + reader["UserId"].ToString() + " | " + reader["UserName"].ToString() + " | " + reader["Achievement"].ToString() + "% | " + target + " | " + reader["Closing"].ToString() + " | " + reader["Prospect"].ToString() + " | " + reader["Promising"].ToString() + " | " + reader["Contacted"].ToString() + " | " + reader["Connected"].ToString() + " | " + reader["NotConnected"].ToString() + " | " + reader["Total"].ToString());
                                 }
@@ -1871,8 +1871,8 @@ namespace MVC_CRUD.Controllers
             {
                 Dictionary<String, String> dict = new Dictionary<string, string>();
                 dict.Add("User", m.UserName.ToString());
-                dict.Add("CallAttempt", m.callAtemp.ToString());
-                dict.Add("Utillization", m.Utillization.ToString());
+                dict.Add("CallAttempt", m.callAtemp.ToString("N0"));
+                dict.Add("Utillization", m.Utillization.ToString("N0"));
                 dict.Add("TalkTime", m.talkTime.ToString());
                 _list.Add(dict);
             }

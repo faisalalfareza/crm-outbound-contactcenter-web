@@ -30,8 +30,8 @@
                                                 <th>Target Name</th>
                                                 <th style="width:70px">From</th>
                                                 <th style="width:70px">To</th>
-                                                <th style="width:100px">Target Data</th>
-                                                <th style="width:140px">Target Amount Paid</th>
+                                                <th style="width:80px">Target Data</th>
+                                                <th style="width:120px">Target Amount Paid</th>
                                                 <th style="width:120px">Project Name</th>
                                             </tr>
                                         </thead>
@@ -57,11 +57,10 @@
                                                         @Convert.ToDateTime(@item.TargetTo).ToString("dd MMM yyyy")
                                                         
                                                     </td>
-                                                    <td>
-                                                        @item.TargetData
+                                                    <td align="right">
+                                                        @Convert.ToDecimal(item.TargetData).ToString("N0")
                                                     </td>
-                                                    <td>
-                                                        @*@String.Format("{0:n0}", item.TargetAmountPaid)*@
+                                                    <td align="right">
                                                         @Convert.ToDecimal(item.TargetAmountPaid).ToString("N0")
                                                     </td>
                                                     <td>

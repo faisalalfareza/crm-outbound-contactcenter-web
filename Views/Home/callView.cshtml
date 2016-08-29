@@ -65,7 +65,7 @@
                                     </h4>
                                 </div>
                                 <div id="collapse2" class="panel-collapse collapse in">
-                                    <div class="panel-body">
+                                    <div class="panel-body" style="height:133px">
                                         <form id="formInteraction">
                                             <div class="form-group">
                                                 <select id="status" class="form-control" name="callstatus"  disabled>
@@ -100,70 +100,60 @@
                                     </h4>
                                 </div>
                                 <div id="collapse1" class="panel-collapse collapse in">
-                                    <div class="panel-body">
+                                    <div class="panel-body" style="height:230px">
                                         <div class="big">
-                                            <table align="center">
+                                            <table>
                                                 <tbody>
                                                     <tr>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             Name
                                                         </td>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             @ViewBag.call.ContactName
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             Cust Id
                                                         </td>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             @ViewBag.call.CustomerContactId
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             Birth Date
                                                         </td>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             @Convert.ToDateTime(@ViewBag.call.BirthDate).ToString("dd MMM yyyy")
 
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             Address
                                                         </td>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             @ViewBag.call.KTP_Adress
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             Monthly Income
                                                         </td>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             IDR @String.Format("{0:0,0.00}", @ViewBag.call.MonthlyFixedIncome)
                                                         </td>
                                                     </tr>
+                                                    
                                                     <tr>
-                                                        <td>
-                                                            Level
-                                                        </td>
-                                                        <td>
-                                                            Platinum
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             Customer Project
                                                         </td>
-                                                        <td>
+                                                        <td style="font-size:15px">
                                                             @ViewBag.CustomerName
                                                         </td>
                                                     </tr>
-                                                    <tr><td>&nbsp;</td></tr>
-                                                    <tr><td>&nbsp;</td></tr>
-                                                    <tr><td>&nbsp;</td></tr>
                                                 </tbody>
                                             </table>
                                         </div>
