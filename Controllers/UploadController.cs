@@ -150,7 +150,7 @@ namespace crm.Controllers
                             " ,s.Residence_City,s.Residence_Zipcode,s.Jenis_Pekerjaan,s.MonthlyFixedIncome,s.InstallmentAmount,s.Status_Rumah, " +
                             " s.JumlahTanggungan,s.DownPayment, (IIF(s.GoLiveDate = '1900-01-01', null, s.GoLiveDate)),(IIF(s.TglSelesaiAngsuran = '1900-01-01', null, s.TglSelesaiAngsuran)),s.Tenor " +
                             " ,s.Odmax_Day_Final,(IIF(s.LastPayment = '1900-01-01', null, s.LastPayment)), " +
-                            " s.Payment, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, s.CreatedOn, s.CreatedBy, s.ExpiredDate, 0, s.HomePhone, s.OtherPhone, s.CustProId); ";
+                            " s.Payment, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, s.CreatedOn, s.CustProId, s.ExpiredDate, 0, s.HomePhone, s.OtherPhone, s.CreatedBy); ";
 
                     using (SqlCommand cmd = new SqlCommand(query, con))
                     {
@@ -199,7 +199,7 @@ namespace crm.Controllers
                                             CreatedByName = g.Key.UserName == null ? "" : g.Key.UserName,
                                             CreatedOn = g.Key.CreatedOn,
                                             TotalContact = g.Count()
-                                        }).OrderByDescending(p => p.CreatedOn).Take(20);
+                                        }).OrderByDescending(p => p.CreatedOn).Take(20).OrderByDescending(p=> p.CreatedOn);
 
                 ViewBag.HistoryUpload = dtHistoryContact.ToList();
                 return View();
