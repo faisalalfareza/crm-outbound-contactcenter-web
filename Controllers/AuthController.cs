@@ -69,9 +69,10 @@ namespace MVC_CRUD.Controllers
                     {
                         String Password = Helper.EncodePassword(model.Password, "th1siScRmc0nT4Ctc3nTeR!!!");
                         var loginValid = db.TR_User.Where(x => x.Email.Equals(model.UserName) && x.UserPass.Equals(Password) && x.UserStatus == 1).FirstOrDefault();
-
+                        
                         if (loginValid != null)
                         {
+                            #region valid
                             Session["UserId"] = loginValid.UserId;
                             Session["UserName"] = loginValid.UserName;
                             Session["RoleId"] = loginValid.RoleId;
@@ -97,6 +98,7 @@ namespace MVC_CRUD.Controllers
                                 }
                                 return RedirectToAction("crmAgent", "Home");
                             }
+                            #endregion
                         }
                         else
                         {
